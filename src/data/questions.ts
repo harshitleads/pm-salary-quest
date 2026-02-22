@@ -97,9 +97,7 @@ export const questions: Question[] = [
       "multipleCorrect": false,
       "hint": "Framework: Data-driven prioritization. Where do most users drop off? Start there.",
       "explanation": "Option B is correct. Use funnel analytics to identify where the highest drop-off occurs - that's your highest-impact optimization opportunity. Option A risks removing fields you actually need (address, payment info). Option C is expensive and slow - test after you know where the problem is. Option D relies on stated preferences (often unreliable) rather than revealed behavior. The hint guides you: prioritize based on where users are actually abandoning, not where they say they're annoyed."
-    }
-  ]
-}
+    },
 {
   "id": 6,
   "category": "Product Design",
@@ -116,7 +114,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Behavioral psychology. What creates habits? Make the desired action easier and more frequent.",
   "explanation": "Option B is correct. Meditation is a habit-building product - success = daily usage. Streaks and reminders leverage behavioral psychology (commitment device + triggers). Option A changes core value prop (meditation is solo). Option C doesn't drive frequency. Option D risks making meditation feel like a game vs. genuine practice. The hint points to Hooked Model: trigger (reminder) + action + variable reward (streak continues)."
-}
+},
 {
   "id": 7,
   "category": "Metrics",
@@ -133,7 +131,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: MAU/WAU ratio tells you usage frequency. High MAU, low WAU = infrequent but valuable use case.",
   "explanation": "Option B is correct. 60% MAU is strong (people return monthly), but 20% WAU suggests the product serves a monthly/periodic need, not a daily workflow tool. Examples: expense reporting, monthly invoicing. Option A is wrong - 60% MAU shows value. Option C would hurt MAU too. Option D assumes frequency is always better - not true for all products. The hint guides you: MAU/WAU ratio reveals natural usage cadence, not product quality."
-}
+},
 {
   "id": 8,
   "category": "Product Sense",
@@ -150,7 +148,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Paradox of choice. Too many options creates decision paralysis. Reduce cognitive load.",
   "explanation": "Options B and C are both valid. B addresses choice paralysis directly - when overwhelmed, just start something (Netflix actually built this). C improves recommendation quality so users trust suggestions faster. Option A is extreme and hurts Netflix's core value (selection). Option D adds MORE complexity. The hint references the Paradox of Choice: more options → harder decisions → inaction. Both B and C reduce decision burden."
-}
+},
 {
   "id": 9,
   "category": "Behavioral",
@@ -167,7 +165,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Disagree and commit requires first understanding the disagreement. Listen before deciding.",
   "explanation": "Option B is correct. Strong disagreement often signals important perspective you're missing. Schedule 1:1 time to deeply understand their concerns - they may see UX implications or user needs you don't. Option A damages collaboration. Option C escalates too early. Option D assumes everything is testable (some things aren't). The hint points to: you can't 'disagree and commit' until you actually understand what you're disagreeing about. Listen first, then decide."
-}
+},
 {
   "id": 10,
   "category": "Product Design",
@@ -184,7 +182,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Reduce friction in the response workflow. Make it easier to send quality responses quickly.",
   "explanation": "Options A and C are both valid. A (AI suggestions) reduces cognitive load - hosts can edit vs. write from scratch. C (templates) helps hosts standardize common responses. Option B (notifications) improves awareness but not response speed. Option D is wrong because B doesn't help speed, just awareness. The hint emphasizes reducing friction: both A and C make the actual act of responding faster and easier."
-}
+},
 {
   "id": 11,
   "category": "Metrics",
@@ -201,7 +199,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Context matters. Consumer vs. B2B? Annual vs. monthly contracts? Benchmarks vary.",
   "explanation": "Option C is correct. 5% monthly churn context-dependent: for consumer monthly subscriptions, it's reasonable; for enterprise annual contracts, it's terrible; for freemium products, it might be high or low depending on acquisition cost. Options A, B, D make universal claims without context. The hint guides you to ask: What type of product? What's the contract length? What's LTV relative to CAC? What's the competitive benchmark? You cannot assess churn without these answers."
-}
+},
 {
   "id": 12,
   "category": "Product Sense",
@@ -218,7 +216,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: North Star metric. What behavior indicates successful discovery that drives retention?",
   "explanation": "Option B is correct. Percentage of listening time from discoveries indicates users are actually enjoying new music enough to listen repeatedly - not just clicking once. Option A can be gamed (listen 30 sec to 100 artists). Option C measures engagement with one feature, not overall discovery success. Option D confuses correlation with causation. The hint points to: a good North Star metric directly measures the value delivered (enjoying new music) not just activity (clicking)."
-}
+},
 {
   "id": 13,
   "category": "Behavioral",
@@ -235,7 +233,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Negotiate on scope, not timeline. Fixed time, variable scope OR fixed scope, variable time.",
   "explanation": "Options B and C are both professional approaches. B explores scope reduction to maintain timeline while delivering core value (MVP thinking). C respects engineering estimate and adjusts plans accordingly (pragmatic). Option A damages trust without understanding why it's 6 weeks. Option D is expensive and often doesn't speed things up (Brooks' Law). The hint guides you: you can control scope OR timeline, rarely both. Pick which constraint matters more."
-}
+},
 {
   "id": 14,
   "category": "Product Design",
@@ -252,7 +250,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Start with user's job-to-be-done. Why do users want dark mode for reading?",
   "explanation": "Option C is correct. Dark mode for a reading app is primarily about eye comfort during extended use, especially in low light. This is the core job-to-be-done. Option A is nice-to-have but not primary. Option B prioritizes battery over reading experience (wrong trade-off). Option D is copycat thinking. The hint guides you back to user needs: they're reading for hours, often at night - optimize for comfort first, aesthetics second."
-}
+},
 {
   "id": 15,
   "category": "Metrics",
@@ -269,7 +267,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Two-sided marketplace health = both sides get value and come back. Retention > vanity metrics.",
   "explanation": "Option D is correct. Repeat booking rate shows both sides find value and return - the ultimate marketplace health indicator. Option A is a vanity metric (inactive freelancers don't help). Option B measures volume but not retention or profitability. Option C measures conversion but not if matches are good quality. The hint emphasizes: marketplaces live or die on retention - if both sides come back, you're building a sustainable business."
-}
+},
 {
   "id": 16,
   "category": "Product Sense",
@@ -286,7 +284,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: User behavior signals unmet needs. What problem is satellite view solving that map view isn't?",
   "explanation": "Options B and C are both valid interpretations. B suggests map data quality issues - users don't trust the map so they verify with satellite imagery. C suggests visual landmarks or terrain users want to see (beaches, mountains, architecture). Both are real user needs. Option A is too generic. Option D ignores data patterns. The hint guides you: users switch views for a reason - they're compensating for something missing or seeking something specific."
-}
+},
 {
   "id": 17,
   "category": "Behavioral",
@@ -303,7 +301,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Fail fast, learn faster. Acknowledge mistakes quickly and extract maximum learning value.",
   "explanation": "Option C is correct. Roll back to stop the bleeding (user impact), then invest time understanding why it failed and documenting learnings to prevent repeat mistakes. Option A stops the damage but misses learning opportunity. Option B risks further decline. Option D compounds the error. The hint emphasizes: mistakes are inevitable in product, but the value comes from learning. Rolling back without analysis wastes a learning opportunity."
-}
+},
 {
   "id": 18,
   "category": "Product Design",
@@ -320,7 +318,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Time-to-value. Get users to their first success moment as quickly as possible.",
   "explanation": "Option B is correct. Small teams want to start working immediately - get them to first value (organized project) in under 5 minutes. Option A creates friction before value. Option C is better than A but still delays actual work. Option D assumes users will figure it out (many won't). The hint points to: onboarding should minimize time between signup and first 'aha moment' - for PM tools, that's seeing their work organized."
-}
+},
 {
   "id": 19,
   "category": "Metrics",
@@ -337,7 +335,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Benchmarks need context. 15% for 7-day trial vs. 30-day trial are very different.",
   "explanation": "Option C is correct. 15% conversion depends on: trial length (7 days vs. 30 days), product type (B2B SaaS vs. consumer), price point, onboarding quality, and competitive landscape. Without context, you can't assess if 15% is good. Options A and D make blanket statements. Option B assumes it's good without validation. The hint guides you: always ask for context before judging metrics. What's the trial mechanics? What's being converted to?"
-}
+},
 {
   "id": 20,
   "category": "Product Sense",
@@ -354,7 +352,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Engagement vs. addiction. Time spent is good only if users feel good about it.",
   "explanation": "Options B and D are correct. B (well-being scores) directly measures if increased time makes users feel worse (doomscrolling, FOMO). D (creation) indicates active vs. passive consumption - creators are healthier users. Option A can go up while health declines. Option C measures business success, not user health. The hint emphasizes: optimizing for time spent risks creating addictive but harmful patterns. Balance quantitative metrics (time) with qualitative health indicators."
-}
+},
 {
   "id": 21,
   "category": "Behavioral",
@@ -371,7 +369,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Let data and strategy decide, not politics or consensus-seeking.",
   "explanation": "Option C is correct. Escalate to user data (which solves a real problem?) and company goals (which aligns with strategy?). This depoliticizes the decision. Option A is politics-driven. Option B dilutes focus and doubles work. Option D often results in a solution that serves neither need well. The hint guides you: good product decisions come from evidence and strategy, not stakeholder management. Use data as the tiebreaker."
-}
+},
 {
   "id": 22,
   "category": "Product Design",
@@ -388,7 +386,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Reduce friction AND anxiety. Make checkout fast and feel safe.",
   "explanation": "Options B and D are both valid. B (one-click) reduces friction - fewer steps to complete purchase. D (trust signals) reduces anxiety - addresses 'is this site safe?' concern at the highest-risk moment. Option A is retargeting, not abandonment reduction. Option C can work but is more aggressive (may annoy users). The hint guides you: cart abandonment has two causes - too much friction OR too much anxiety. Address both."
-}
+},
 {
   "id": 23,
   "category": "Metrics",
@@ -405,7 +403,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Fix retention before driving adoption. Broken experiences don't benefit from more traffic.",
   "explanation": "Option B is correct. 40% adoption is actually strong for a new feature, but 10% abandonment after first use suggests a broken experience. If you drive more adoption without fixing retention, you're just exposing more users to a poor experience. Option A is premature optimization. Option C spreads focus. Option D ignores leading indicators. The hint points to: fix the product experience (retention) before optimizing the funnel (adoption). Make it work, then make people find it."
-}
+},
 {
   "id": 24,
   "category": "Product Sense",
@@ -422,7 +420,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Build around the lasting behavior, not the temporary transaction. Network > job search.",
   "explanation": "Option B is correct. Frequent job changes make professional network even MORE valuable (you need it across multiple companies). LinkedIn's moat is the network, not job search (Indeed, Glassdoor do that). Lean into network durability. Options A, C, D focus on the transaction (job search) not the lasting behavior (maintaining professional connections). The hint guides you: optimize for what persists across user's entire career, not just one moment in it."
-}
+},
 {
   "id": 25,
   "category": "Behavioral",
@@ -439,7 +437,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Disagree and commit, but first make sure disagreement is heard with evidence.",
   "explanation": "Options B and C are both professional approaches. B (push back with data) gives CEO information to reconsider - maybe they have context you don't, maybe you have user data they don't. Discuss with evidence. C (quick test) validates the hypothesis cheaply if CEO still wants to proceed. Option A abandons PM judgment. Option D is politics. The hint points to: you can ultimately commit to CEO's decision, but your job is to surface risks and alternatives first. Present evidence, then execute the decision."
-}
+},
 {
   "id": 26,
   "category": "Product Sense",
@@ -456,7 +454,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Don't chase new markets to escape problems in existing ones. Understand both signals.",
   "explanation": "Options B and C are both valid. B (investigate US) is critical - is US saturated, or is the product failing? Don't expand to escape problems you don't understand. C (localize for Asia) capitalizes on growth momentum while maintaining US market. Option A abandons largest market prematurely. Option D is expensive and creates fragmentation. The hint warns: international expansion should come from strength, not as an escape from domestic challenges."
-}
+},
 {
   "id": 27,
   "category": "Product Design",
@@ -473,7 +471,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Async-first for remote teams. Synchronous tools force timezone alignment.",
   "explanation": "Option B is correct. Remote teams span timezones - async commenting lets teams collaborate without synchronous overlap. Option A (video) is already available elsewhere (Zoom) and forces real-time. Option C is clever but noisy. Option D adds complexity without clarity of use case. The hint guides you: remote ≠ real-time. Best remote collaboration is async-first, letting people work across timezones effectively. Figma's strength is visual artifact persistence, build on that."
-}
+},
 {
   "id": 28,
   "category": "Metrics",
@@ -490,7 +488,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Logo retention ≠ revenue retention. Users staying but paying less signals value mismatch.",
   "explanation": "Options B and D are both plausible. B (downgrades) explains the gap - customers stay but reduce spend (fewer seats, lower tier). D (over-selling) means customers buy too much initially, then right-size. Both indicate value-to-price misalignment. Option A misses the revenue problem. Option C assumes price is too high universally (might be wrong tier/packaging). The hint emphasizes: companies keep the product but reduce spend - that's a retention signal, not a pricing signal."
-}
+},
 {
   "id": 29,
   "category": "Behavioral",
@@ -507,7 +505,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Diagnose root cause. Speed problems come from scope, process, or tech debt.",
   "explanation": "Options A and C are both valid. C (diagnose) identifies the actual bottleneck - is it unclear specs slowing eng down? Tech debt? Scope inflation? A (cut scope) is often the fastest fix - ship smaller but ship more often. Option B (add people) often slows teams further (Brooks' Law). Option D creates pressure without addressing root cause. The hint guides you: slow teams rarely speed up from pressure - they speed up from removing blockers (scope, process, debt)."
-}
+},
 {
   "id": 30,
   "category": "Product Sense",
@@ -524,7 +522,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: What's unique about groceries vs. restaurant delivery? Think user expectation gaps.",
   "explanation": "Option B is correct. Grocery delivery's unique challenge: users order 20 items, 3 are out of stock - do you cancel the whole order? Substitute automatically? Ask the user mid-shop? This doesn't exist in restaurant delivery. Options A, C, D are operational challenges but don't fundamentally change product experience. The hint guides you: groceries require handling incomplete orders gracefully - that's a product design problem, not just operations."
-}
+},
 {
   "id": 31,
   "category": "Product Design",
@@ -541,7 +539,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Lapsed users need motivation AND low friction. Make returning easy and rewarding.",
   "explanation": "Option B is correct. After 30 days, skill atrophy is real - jumping back at previous difficulty creates failure and re-lapse. Make the first lesson easier to rebuild confidence and habit. Option A creates guilt (demotivating). Option C creates social pressure (can backfire). Option D is nice but doesn't address re-entry friction. The hint guides you: returning is hard psychologically and practically - reduce both barriers. Make success easy at first."
-}
+},
 {
   "id": 32,
   "category": "Metrics",
@@ -558,7 +556,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Ambitious goals need math. 10x in 12 months = 21% monthly growth. Is that feasible?",
   "explanation": "Option C is correct. 1M to 10M in 12 months requires ~21% compounding monthly growth - extremely aggressive. Work backward to understand: what channels drive that growth? What's required activation rate? What's market size? Is this realistic? Then discuss with CEO. Option B sounds like pushback without analysis. Option A acts without strategy. Option D ignores the goal. The hint emphasizes: use math to validate ambition, then build strategy from that reality."
-}
+},
 {
   "id": 33,
   "category": "Behavioral",
@@ -575,7 +573,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Tech debt is real debt. Understand the interest rate before deciding to pay it down.",
   "explanation": "Option B is correct. Ask engineering: what breaks if we don't do this? What slows down if we keep deferring? What's the velocity impact? Sometimes infrastructure work is critical for long-term velocity - PMs who always say no create unsustainable technical debt. Options A, C, D don't seek understanding first. The hint guides you: technical debt compounds like financial debt - sometimes paying it down is the highest ROI investment. Understand the tradeoff before deciding."
-}
+},
 {
   "id": 34,
   "category": "Product Sense",
@@ -592,7 +590,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Enterprise vs. SMB have different collaboration patterns and security requirements.",
   "explanation": "Option D is correct. Both B (security) and C (org structure) are valid enterprise concerns - they want cross-team visibility but also compliance and hierarchy. This suggests enterprise needs features like: public channels with security controls, org-wide channels that respect department boundaries, better admin controls. Option A is defeatist. B or C alone miss part of the picture. The hint guides you: enterprise isn't just 'bigger SMB' - different needs require different product strategy."
-}
+},
 {
   "id": 35,
   "category": "Product Design",
@@ -609,7 +607,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Meeting fatigue has two causes - too many meetings AND too intense/exhausting.",
   "explanation": "Options B and D are both valid. B (enforced breaks) addresses intensity - back-to-back video calls are exhausting, breaks help. D (analytics) addresses quantity - show people the data, let them opt out of low-value meetings. Option A might reduce meetings but doesn't address fatigue. Option C is clever but niche. The hint guides you: tackle both dimensions - make meetings less exhausting AND help people have fewer meetings."
-}
+},
 {
   "id": 36,
   "category": "Metrics",
@@ -626,7 +624,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Activation = achieving core value. Outcomes predict retention better than activity.",
   "explanation": "Option C is correct. Users who achieve their goal (sent campaign, closed deal, shipped project) see value and convert. Options A, B, D measure activity, not value. Someone can log in daily, complete onboarding, explore features but never get value - they won't convert. The hint points to: optimize for outcomes (value received) not outputs (features used). Activation is about value realized, not buttons clicked."
-}
+},
 {
   "id": 37,
   "category": "Product Sense",
@@ -643,7 +641,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Apple's brand = privacy + quality. Which AI risk threatens core brand promise most?",
   "explanation": "Option B is correct. Apple's brand is built on 'it just works' - AI hallucinations (Siri giving wrong directions, Photos misidentifying people) directly undermine this. Privacy (A) is important but Apple's done on-device processing. Complexity (C) is real but manageable. Battery (D) is solvable with hardware. The hint guides you to: the highest risk is the one that damages core brand promise - for Apple, that's reliability and quality, not privacy (they solved that) or simplicity (they're experts)."
-}
+},
 {
   "id": 38,
   "category": "Behavioral",
@@ -660,7 +658,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Diagnose before prescribing. Plateaus have different causes requiring different solutions.",
   "explanation": "Options B and C are both correct. B (diagnose) identifies if plateau is from: market saturation, competitive pressure, product-market fit drift, or execution issues. C (experiment first) tests if growth can be reignited with existing product before big bets. Option A jumps to solution. Option D is copycat thinking. The hint guides you: plateaus signal something changed - understand what before committing to strategy. Big bets without diagnosis often miss the actual problem."
-}
+},
 {
   "id": 39,
   "category": "Product Design",
@@ -677,7 +675,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Different user segments need different solutions. Technical vs. non-technical founders.",
   "explanation": "Options A and C are both valid. A (no-code) serves non-technical founders who can't code integrations. C (pre-built integrations) serves both segments - technical founders use platform APIs, non-technical use platform UI. Option B is interesting but narrow (only helps developers). Option D improves existing flow but doesn't fundamentally speed up integration. The hint guides you: 'startups' includes technical and non-technical founders - serve both segments with different solutions."
-}
+},
 {
   "id": 40,
   "category": "Metrics",
@@ -694,7 +692,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: NPS measures satisfaction, not market opportunity or virality. Great product ≠ big market.",
   "explanation": "Options B and C are both plausible. B (small market) - users love it but total addressable market is limited. C (low virality) - satisfied users don't naturally share/refer, product isn't viral. Both explain high satisfaction without growth. Option A assumes NPS always drives growth (false). Option D dismisses valuable signal. The hint guides you: satisfaction is necessary but insufficient for growth - you also need market size OR virality OR sales motion. High NPS just means you're delighting current users."
-}
+},
 {
   "id": 41,
   "category": "Product Sense",
@@ -711,7 +709,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Fitness retention = progress. Users quit when they stop seeing results or plateau.",
   "explanation": "Option D is correct. Fitness products lose users when workout becomes stale or progress plateaus - personalized programs that adapt keep users seeing results and feeling challenged. Option A addresses price sensitivity, not engagement. Option B is content variety but not personalization. Option C (social) helps some users but isn't the core retention driver for fitness. The hint guides you: people stick with fitness when they see progress - build systems that ensure continued progress through personalization."
-}
+},
 {
   "id": 42,
   "category": "Behavioral",
@@ -728,7 +726,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Prioritization under constraint reveals what really matters. Use strategy, not convenience.",
   "explanation": "Option C is correct. Return to first principles: what drives the most impact toward company goals? What serves the most critical user needs? Cut from the bottom of that prioritized list. Option A optimizes for engineering convenience. Option B might cut high-value features serving small but important segments. Option D abdicates PM responsibility. The hint guides you: constraints force clarity - use them to validate that your roadmap actually reflects priorities. Cut the lowest-impact work, not the hardest work."
-}
+},
 {
   "id": 43,
   "category": "Product Design",
@@ -745,7 +743,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Discovery at scale needs algorithms + curation. One alone won't work.",
   "explanation": "Options B and D are both valuable. B (algorithmic) scales personalization - show JavaScript devs relevant JS projects. D (follow maintainers) leverages human curation - 'this maintainer makes good stuff, show me more from them.' Option A (stars/forks) is gameable and doesn't scale. Option C (manual curation) doesn't scale to millions of projects. The hint guides you: both algorithmic (scale) and social (trust) signals are needed for good discovery. Use both."
-}
+},
 {
   "id": 44,
   "category": "Metrics",
@@ -762,7 +760,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Growth vs. monetization vs. retention - optimal lever depends on unit economics.",
   "explanation": "Option D is correct. If CAC is low and LTV is high, grow users. If LTV is low, focus on revenue expansion (C). If conversion rate is below benchmark, optimize that (B). Without unit economics, you can't prioritize. Options A, B, C might each be correct in different contexts. The hint guides you: optimization priorities depend on where the biggest economic leverage is - know your CAC, LTV, payback period before deciding which metric to move."
-}
+},
 {
   "id": 45,
   "category": "Product Sense",
@@ -779,7 +777,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Adjacent expansion. Leverage existing capabilities before building entirely new ones.",
   "explanation": "Option A is correct. Grocery delivery leverages: existing restaurant partnerships (many do groceries), delivery infrastructure, user base that already orders food. Operations are similar. Options B, C, D require new: regulations (B, D), fulfillment models (C, D), merchant relationships (B, C, D). The hint guides you: expand into adjacencies that leverage existing strengths and require minimal new capabilities. Test grocery before building entirely new businesses like alcohol or prescription."
-}
+},
 {
   "id": 46,
   "category": "Behavioral",
@@ -796,7 +794,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Balance customer retention with product integrity. Investigate before deciding.",
   "explanation": "Options B and C are both correct. B (negotiate) explores if timeline is flexible - maybe it's already on roadmap. C (investigate) determines if this signals broader market need or one customer's edge case. Both gather information before committing. Option A creates technical debt from one-off features. Option D is cavalier about customer retention. The hint guides you: one customer's ultimatum might reveal an important market signal OR an edge case - investigate before deciding, don't react immediately either way."
-}
+},
 {
   "id": 47,
   "category": "Product Design",
@@ -813,7 +811,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: What scales? What's in Spotify's control? Streaming royalties aren't.",
   "explanation": "Option C is correct. Spotify can build concert discovery + take affiliate fees on ticket sales - this creates sustainable revenue for artists AND Spotify. Option A (tips) is nice but doesn't scale (most users won't tip). Option B (merch) is valuable but competitive (Shopify, Bandcamp do this). Option D (higher royalties) requires negotiating with labels, mostly out of Spotify's control. The hint guides you: build features you control that create scalable value for artists. Concerts are high-margin, high-value for artists, and Spotify can facilitate discovery."
-}
+},
 {
   "id": 48,
   "category": "Metrics",
@@ -830,7 +828,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Feature success = adoption + engagement + business impact. All three matter.",
   "explanation": "Option D is correct. You need all three: (A) Adoption shows teams find it discoverable and try it. (B) Engagement shows they use it repeatedly - it's valuable. (C) Retention shows it improves core product value. One metric alone is incomplete - high adoption without engagement means it's tried once and abandoned. High engagement without retention impact means it's used but not critical. The hint guides you: comprehensive feature evaluation needs adoption (top of funnel) + engagement (usage) + business impact (outcomes)."
-}
+},
 {
   "id": 49,
   "category": "Product Sense",
@@ -847,7 +845,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Bear markets change user behavior. Optimize for new behavior, not old.",
   "explanation": "Options B and C are both smart. B (staking/earn) serves remaining users who aren't trading but are holding - create value from assets sitting idle. C (adjacent products) reduces dependence on trading volume (wallets, NFTs, Layer 2). Option A is necessary but not product strategy. Option D optimizes for shrinking user base. The hint guides you: bear markets drive behavior change - fewer speculators, more long-term holders. Build for the behavior that persists in downturns."
-}
+},
 {
   "id": 50,
   "category": "Behavioral",
@@ -864,7 +862,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Incident response = acknowledge + fix + compensate + prevent. Do all four.",
   "explanation": "Option C is correct. Full incident response includes: (1) Acknowledge to customer immediately, (2) Fix the bug so it doesn't affect others, (3) Post-mortem to understand how it happened, (4) Compensate customer appropriately, (5) Share learnings to prevent recurrence. Option A stops at compensation. Option B fixes but ignores customer. Option D escalates without action. The hint guides you: incidents require immediate tactical response (acknowledge + fix) AND strategic response (analyze + prevent). Do both."
-}
+},
 {
   "id": 51,
   "category": "Product Sense",
@@ -881,7 +879,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Decentralization trades central control for user autonomy. What are the second-order effects?",
   "explanation": "Option D is correct - all three risks are real. A: Decentralized moderation is unsolved (who removes illegal content?). B: Most users value features/experience over architecture. C: Decentralized networks fragment - harder to achieve critical mass. The hint guides you to think systemically: decentralization isn't just technical architecture, it fundamentally changes product economics (network effects), safety (moderation), and value prop (why would users care?). All three must be solved."
-}
+},
 {
   "id": 52,
   "category": "Product Design",
@@ -898,7 +896,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Trust calibration needs both deterministic validation and probabilistic signals.",
   "explanation": "Option D is correct. Automated testing (C) provides deterministic validation - does the code run? Are there syntax errors? This catches obvious failures. Confidence scores (A) help users calibrate trust for subtle issues tests can't catch. Option B (human review) is too slow for iterative development. The hint guides you: combine deterministic checks (tests, linters) with probabilistic signals (confidence) to help users make appropriate trust decisions."
-}
+},
 {
   "id": 53,
   "category": "Metrics",
@@ -915,7 +913,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Revenue concentration tells you where value is captured, not necessarily where to focus.",
   "explanation": "Options C and D are both valid strategies. C: SMB provides volume, user feedback, and pipeline for enterprise expansion - many companies start SMB and grow into enterprise. D: If needs are truly divergent, splitting into two products with focused strategies might be better than one compromised product. Option A abandons the broader market. Option B assumes failure without investigating if it's by design. The hint guides you: don't just chase revenue - understand if SMB serves strategic purposes beyond revenue."
-}
+},
 {
   "id": 54,
   "category": "Behavioral",
@@ -932,7 +930,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: 0-1 requires both learning (are we finding PMF?) and signals (are we making progress?).",
   "explanation": "Option D is correct. Early-stage products need dual metrics: (1) Learning velocity - are we testing hypotheses and gaining insights quickly? (2) Early PMF signals - retention cohorts, user feedback, willingness to pay. Option A creates pressure without framework. Option B ignores business outcomes. Option C applies scale-stage metrics too early. The hint guides you: 0-1 is about discovering what to build - measure both speed of learning AND early signals that you're heading toward product-market fit."
-}
+},
 {
   "id": 55,
   "category": "Product Sense",
@@ -949,7 +947,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Strategic decisions require multi-dimensional analysis. Revenue, moats, and mission all matter.",
   "explanation": "Option D is correct. This isn't a single-axis decision: Revenue (consumer can scale faster, API has enterprise margins). Moats (API creates integration lock-in, consumer creates brand/distribution). Mission (API enables ecosystem innovation, consumer demonstrates capabilities). All three must inform strategy. Options A, B, C optimize single dimension. The hint guides you: strategic product decisions are multi-objective optimization - revenue, defensibility, and strategic goals must all be considered."
-}
+},
 {
   "id": 56,
   "category": "Product Design",
@@ -966,7 +964,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI evals need both model quality (can it perform?) and user value (does it help?).",
   "explanation": "Option C is correct. AI product evals require dual measurement: (1) Model performance - accuracy, latency, consistency. (2) User outcomes - did users accomplish their goal? Were they satisfied? Option A only measures model. Option B only measures experience. Option D only measures business. The hint guides you: model quality is necessary but insufficient - a highly accurate model that confuses users or solves the wrong problem fails. Measure both technical performance and user value delivery."
-}
+},
 {
   "id": 57,
   "category": "Metrics",
@@ -983,7 +981,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Can't out-scale incumbents initially. Win through focus (segment dominance) or velocity.",
   "explanation": "Options C and D are both valid. C: Find a segment (power users, specific use case, geography) where you can be #1 - measure market share in that niche. D: 20% monthly growth from 1000 users is more impressive than 2% growth from 1M users - measure velocity. Options A and B either chase vanity metrics or ignore growth entirely. The hint guides you: beating large incumbents requires strategic focus OR execution velocity, measure those, not absolute user counts."
-}
+},
 {
   "id": 58,
   "category": "Behavioral",
@@ -1000,7 +998,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Disagree with data and experiments, not opinions. Make the disagreement testable.",
   "explanation": "Options A and D are both professional approaches. A: Build compelling case with user data, market analysis, competitive landscape - argue with evidence. D: Propose low-cost experiment to test the hypothesis - let data decide. Both approaches depoliticize the disagreement. Option B abandons your judgment without discussion. Option C escalates without attempting resolution. The hint guides you: strategic disagreements should be resolved with evidence and experiments, not hierarchy or politics."
-}
+},
 {
   "id": 59,
   "category": "Product Sense",
@@ -1017,7 +1015,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Monetization strategy determines market position, competition, and long-term business model.",
   "explanation": "Option D is correct. Every monetization choice has strategic implications: Free tier (distribution vs. revenue). API vs. consumer (developer platform vs. direct value capture). Model vs. apps (horizontal platform vs. vertical solutions). Each creates different moats, revenue models, and competitive dynamics. The hint guides you: monetization isn't just pricing - it's strategic positioning. Free tier + API = OpenAI model. Consumer subscription = Perplexity model. Enterprise + API = Anthropic current model. Each has different strategic tradeoffs."
-}
+},
 {
   "id": 60,
   "category": "Product Design",
@@ -1034,7 +1032,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Autonomy scales with trust and stakes. High-stakes actions require confirmation.",
   "explanation": "Option C is correct. Risk-based autonomy balances productivity and safety: auto-schedule meetings (low risk), confirm before booking flights (high cost), require approval before sending external emails (reputational risk). Option A is dangerous. Option B adds unnecessary friction. Option D puts cognitive burden on users. The hint guides you: autonomy isn't binary - it's a spectrum based on reversibility and impact. Design systems that act autonomously when safe, involve humans when stakes are high."
-}
+},
 {
   "id": 61,
   "category": "Metrics",
@@ -1051,7 +1049,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI value = outcomes achieved, not outputs generated. Measure task success, not usage.",
   "explanation": "Option C is correct. Measure whether AI actually improved the outcome: Did users complete their task? Faster? Better? Usage (A) can be high while value is low. Surveys (B) measure perception, not reality. Retention (D) is lagging and confounded. The hint guides you: AI features can be used frequently but deliver little value (users try repeatedly because it keeps failing). Measure outcomes (did the code work? was the email sent? did they find the answer?) not just usage."
-}
+},
 {
   "id": 62,
   "category": "Behavioral",
@@ -1068,7 +1066,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Partial resourcing often means zero impact. Concentrate resources for real outcomes.",
   "explanation": "Options B and D are both valid. B: Fully fund one to completion, half-fund another (maybe MVP scope), pause third - ensures at least one succeeds. D: Challenge the constraint - can we get more resources? Can we extend timelines? Sometimes constraints can be negotiated. Option A guarantees mediocrity across all three. Option C ignores that all are important. The hint guides you: spreading resources thin often means nothing ships well. Concentrate resources where they'll have impact."
-}
+},
 {
   "id": 63,
   "category": "Product Sense",
@@ -1085,7 +1083,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Autonomous systems face technical, regulatory, liability, and UX challenges simultaneously.",
   "explanation": "Option D is correct - all are critical. Regulation: Different countries have different approval processes. Trust calibration: Users must understand system limits (when it fails). Liability: Who's responsible for accidents - user or Tesla? All three must be solved for product to succeed. The hint guides you: truly transformative products (autonomous vehicles, AI agents, medical AI) face challenges across multiple domains - technical feasibility is just one dimension. Product success requires solving regulatory, legal, and trust challenges too."
-}
+},
 {
   "id": 64,
   "category": "Product Design",
@@ -1102,7 +1100,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Scale requires automation, accuracy requires humans, engagement requires community.",
   "explanation": "Option D is correct. At 100M DAU scale, you need: (1) AI for speed (handles obvious violations immediately). (2) Human reviewers for nuance (cultural context, edge cases). (3) Community tools (reporting, voting) for distributed enforcement and user empowerment. Options A, B, C alone can't handle scale + accuracy + community trust. The hint guides you: content moderation at scale is a systems problem - no single approach works. Layer defenses: automated filters, human judgment, and community governance."
-}
+},
 {
   "id": 65,
   "category": "Metrics",
@@ -1119,7 +1117,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Perceived reliability ≠ measured accuracy. Distribution of errors and expectations matter.",
   "explanation": "Option D is correct. 95% average accuracy can feel unreliable if: (A) Test set doesn't match production (accuracy is actually lower). (B) The 5% errors occur on high-visibility tasks (users remember failures more than successes). (C) Users expect perfection (95% feels broken if expectation is 100%). All three must be investigated. The hint guides you: aggregate accuracy metrics hide important details about error distribution, use-case coverage, and user psychology. Perceived reliability is a function of actual performance AND user expectations AND error salience."
-}
+},
 {
   "id": 66,
   "category": "Behavioral",
@@ -1136,7 +1134,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Bad news delivered well maintains trust. Delay or deflection destroys it.",
   "explanation": "Options A and D are both appropriate. A: Be direct, explain why (strategic pivot, resource constraints), show you've considered their needs. D: Turn it into partnership - we're cutting X, what would be most valuable instead? Both maintain trust through transparency. Option B abdicates responsibility. Option C delays inevitable and erodes trust. The hint guides you: customers respect honesty and transparency, even when news is bad. Hiding or delaying bad news damages relationships more than the news itself."
-}
+},
 {
   "id": 67,
   "category": "Product Sense",
@@ -1153,7 +1151,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Pricing strategy depends on competition, customer WTP, and strategic positioning.",
   "explanation": "Option D is correct. The answer depends on: Is Google Workspace bundling AI (competitive pressure)? Do enterprise customers have budget for AI tools (WTP)? Is Microsoft defending Office or building new AI business (strategy)? Options A, B, C might each be right depending on these factors. The hint guides you: pricing and bundling decisions are strategic, not absolute - they depend on market dynamics, competitive moves, and your strategic goals (defend vs. expand vs. premium tier)."
-}
+},
 {
   "id": 68,
   "category": "Product Design",
@@ -1170,7 +1168,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Autonomous agents should escalate ambiguity, not make arbitrary choices.",
   "explanation": "Option D is correct. When team members give conflicting instructions ('schedule meeting Monday' vs. 'cancel all Monday meetings'), the agent should surface the conflict to relevant stakeholders, not make arbitrary decisions. Options A, B, C create implicit hierarchy that may be wrong for context. The hint guides you: agents operating on behalf of teams must recognize when autonomy is inappropriate - conflicting goals indicate human decision needed. Design for graceful escalation, not blind rule-following."
-}
+},
 {
   "id": 69,
   "category": "Metrics",
@@ -1187,7 +1185,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Appropriate reliance = users catch errors but don't over-verify. Measure both dimensions.",
   "explanation": "Option C is correct. Appropriate reliance means: when AI is wrong, users catch it (error detection rate) AND when AI is right, users don't waste time verifying (efficient trust). Over-reliance: low error detection. Under-reliance: excessive verification of correct outputs. This requires measuring both error rates and override behavior. Options A, B, D measure single dimensions. The hint guides you: trust calibration is bidirectional - measure both false acceptances (over-trust) and false rejections (under-trust)."
-}
+},
 {
   "id": 70,
   "category": "Behavioral",
@@ -1204,7 +1202,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Senior engineers see technical constraints PMs often miss. Investigate before deciding.",
   "explanation": "Options B and D are both appropriate. B: Understand their technical perspective - what implementation challenges do they see? What tradeoffs are you missing? D: Technical spike validates concerns cheaply before full commitment. Both show respect for expertise while maintaining PM responsibility. Option A delays without learning. Option C ignores valuable input. The hint guides you: the most experienced engineers often spot problems PMs can't see - investigate their concerns deeply before dismissing them."
-}
+},
 {
   "id": 71,
   "category": "Product Sense",
@@ -1221,7 +1219,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI in marketplaces affects sellers, buyers, and platform - all stakeholders matter.",
   "explanation": "Option D is correct. Each risk is real: (A) Generic descriptions reduce differentiation and conversion. (B) Sellers want control over how their products are presented. (C) False claims (AI hallucinates specs) create legal exposure and buyer distrust. All three must be addressed. The hint guides you: marketplace products must balance multiple stakeholders - optimize for sellers AND buyers AND platform. AI features that help one stakeholder while harming others create ecosystem problems."
-}
+},
 {
   "id": 72,
   "category": "Product Design",
@@ -1238,7 +1236,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Tools should amplify human capability, not replace human agency.",
   "explanation": "Option C is correct as product philosophy. Writing is creative expression - AI should help users write better (suggestions, research, outlines) not write FOR them (generating full paragraphs removes authorship). Option D is tactically true but misses the strategic philosophy. Options A, B are features, not philosophy. The hint guides you: product philosophy should clarify what role AI plays - Google Docs is about empowering writers, so AI should augment, not automate authorship. This guides every feature decision."
-}
+},
 {
   "id": 73,
   "category": "Metrics",
@@ -1255,7 +1253,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Low hit rate indicates either bad bets OR bad measurement. Investigate both.",
   "explanation": "Option D is correct. 20% hit rate could mean: (A) Poor prioritization - shipping features without validated impact hypothesis. (B) Poor measurement - good features without proper instrumentation or attribution. (C) Normal outcomes - some bets don't pan out. Most likely: combination of prioritization and measurement issues. Options A, B, C explain single causes. The hint guides you: before concluding 'we ship bad features,' investigate whether you're measuring correctly. Then fix both prioritization AND instrumentation."
-}
+},
 {
   "id": 74,
   "category": "Behavioral",
@@ -1272,7 +1270,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Performance management requires clarity (feedback) and structure (improvement plan).",
   "explanation": "Option D is correct. Effective performance management combines: (1) Direct, specific feedback about what's not working. (2) Clear improvement plan with measurable milestones and timeline. Both are necessary - feedback without plan is demotivating, plan without feedback creates confusion. Option A alone feels punitive. Option B alone lacks clarity on what's wrong. Option C avoids the problem. The hint guides you: help people improve by being clear about gaps AND structured about how to close them."
-}
+},
 {
   "id": 75,
   "category": "Product Sense",
@@ -1289,7 +1287,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Platform vs. feature decisions depend on defensibility and strategic moat.",
   "explanation": "Option D is correct. Build if: (1) Shopify's data moat (transaction history) creates better predictions than standalone tools. (2) It keeps merchants on platform vs. going elsewhere. Don't build if: specialized inventory tools will always be better, or it distracts from core platform. Option A ignores strategic tradeoffs. Option B is dogmatic. Option C might be right but needs same strategic analysis. The hint guides you: 'should we build X?' requires asking: does our unique position create advantage? Does it strengthen our moat? High merchant value alone isn't sufficient."
-}
+},
 {
   "id": 76,
   "category": "Product Sense",
@@ -1306,7 +1304,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Constitutional AI requires defining values, training them in, and making them verifiable.",
   "explanation": "Option D is correct. Constitutional AI faces: (A) Values definition - whose values? How do you handle conflicts? (B) Capability-values tradeoff - making AI harmless might make it less useful. (C) Auditability - users need to verify AI is actually following values, not just claiming to. All three are active research problems. The hint guides you: building 'aligned AI' isn't just technical - it requires philosophical clarity (what values?), engineering tradeoffs (capability vs. safety), and product transparency (how do users trust it?)."
-}
+},
 {
   "id": 77,
   "category": "Product Design",
@@ -1323,7 +1321,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Agent evals must measure correctness, quality, goal achievement, and safety.",
   "explanation": "Option D is correct. Comprehensive agent evaluation needs: (1) Correctness (does code run without errors?). (2) Quality (is it readable, secure, efficient?). (3) Task completion (did it solve the user's problem?). (4) Safety (did it break existing tests or introduce bugs?). Options A, B, C are each necessary but insufficient - code can be correct but insecure, achieve goals but be unmaintainable, or work but break other features. The hint guides you: agent evaluation is multi-dimensional - you need deterministic checks (tests) + quality metrics (linters) + goal alignment + regression detection."
-}
+},
 {
   "id": 78,
   "category": "Metrics",
@@ -1340,7 +1338,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Calibration = alignment between confidence and correctness. Measure mathematically.",
   "explanation": "Options B and D are both correct. B (calibration curve): Plot predicted confidence vs. actual correctness - well-calibrated model's 80% confidence predictions should be 80% accurate. D (ECE): Quantifies calibration gap across all confidence levels. Both are rigorous measurements. Option A tracks confidence but not accuracy. Option C is subjective. The hint guides you: calibration is a measurable property - use statistical metrics (ECE, Brier score) not just confidence levels. A model can be confidently wrong; calibration measures confidence-accuracy alignment."
-}
+},
 {
   "id": 79,
   "category": "Behavioral",
@@ -1357,7 +1355,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Responsible disclosure requires risk assessment and mitigation strategy.",
   "explanation": "Option D is correct. Publication decisions require: (1) Risk assessment - how dangerous is the capability? What's the misuse potential? (2) Defensive posture - do mitigations exist? Can we deploy safeguards first? (3) Benefit analysis - does publication accelerate safety research? Some capabilities should be published (safety techniques, alignment methods), others require staged release (powerful model capabilities), some should stay private (exploit techniques). Options A, B are dogmatic. Option C is one approach but not universal. The hint guides you: responsible disclosure isn't binary - it's risk-proportionate and context-dependent."
-}
+},
 {
   "id": 80,
   "category": "Product Sense",
@@ -1374,7 +1372,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Autonomy vs. transparency tradeoff. High-stakes tools need user awareness.",
   "explanation": "Options C and D are both valid. C (hybrid): Auto-select for convenience but show what tools are being used and allow override - balances UX and control. D recognizes different tools have different risk profiles: web search (safe to auto-use), code execution (requires permission), email sending (requires explicit consent). The hint guides you: tool use autonomy should scale with risk - transparent auto-selection for low-risk tools, explicit approval for high-stakes actions. Design graduated autonomy based on reversibility and impact."
-}
+},
 {
   "id": 81,
   "category": "Product Design",
@@ -1391,7 +1389,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Feedback mechanisms must balance signal quality with user friction.",
   "explanation": "Option D is correct. Effective agent feedback needs: (1) Low-friction signals (thumbs up/down) for volume. (2) Detailed correction for important failures (what should it have done?). (3) Implicit feedback from user edits (rejection signal). Different situations need different feedback depths - binary ratings for quick iterations, detailed explanations for safety-critical failures, edit patterns for learning preferences. Options A, B, C each capture one dimension but miss the spectrum. The hint guides you: one feedback mechanism can't optimize for both signal quality and volume - design layered feedback for different contexts."
-}
+},
 {
   "id": 82,
   "category": "Metrics",
@@ -1408,7 +1406,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Task success is binary, but user experience is multi-dimensional.",
   "explanation": "Option D is correct. 90% task success can feel unreliable if: (A) Takes too long - technically succeeds but feels broken. (B) Inconsistent - same request works sometimes, fails others (users can't predict). (C) Poor quality 'successes' - completed task but output needed heavy editing. All three create reliability perception gaps. The hint guides you: binary success metrics hide important quality signals - latency variance, consistency, and output quality all affect perceived reliability independent of success rate."
-}
+},
 {
   "id": 83,
   "category": "Behavioral",
@@ -1425,7 +1423,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Safety vs. speed requires pre-defined launch criteria, not reactive decisions.",
   "explanation": "Options C and D are both responsible approaches. C: Define objective safety criteria upfront ('what would make this safe enough to launch?') - removes subjective debate. D: Staged rollout lets you launch while maintaining safety posture - 1% of users, monitor closely, expand gradually. Both balance market pressure and safety rigor. Options A, B are dogmatic. The hint guides you: safety-speed tradeoffs should be governed by pre-agreed criteria and measured rollout, not reactive 'ship or don't ship' debates. Define thresholds early, measure against them, use staged deployment to manage risk."
-}
+},
 {
   "id": 84,
   "category": "Product Sense",
@@ -1442,7 +1440,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Data quality is a system property - task clarity, labeler skill, tooling, and validation all matter.",
   "explanation": "Option D is correct. High-quality labeled data requires: (1) Clear task definitions (what is this label? when to use it?). (2) Skilled labelers (domain expertise, training). (3) Good tooling (intuitive UI reduces errors). (4) Validation (spot checks, consensus, test questions). Remove any one element and quality degrades. Options A, B, C each address one factor but miss the system view. The hint guides you: data quality isn't about one lever - it's about designing the entire system (task → labeler → tool → validation) to minimize error at each stage."
-}
+},
 {
   "id": 85,
   "category": "Product Design",
@@ -1459,7 +1457,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: The goal isn't teaching prompting - it's achieving outcomes without requiring prompting expertise.",
   "explanation": "Option C is correct and drives product philosophy. Users don't want to learn prompting - they want to accomplish tasks. Product should either: (1) Guide prompting (templates, suggestions, autocomplete), (2) Remove prompting (structured inputs → AI generates prompts), (3) Learn from usage (AI improves prompts based on user edits). Options A, B are problems but not the strategic insight. Option D accepts defeat. The hint guides you: exposing LLM complexity to end users is product failure - abstract it away through better UX, don't teach users to work around it."
-}
+},
 {
   "id": 86,
   "category": "Metrics",
@@ -1476,7 +1474,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Learning = growing independence + expanding capability. Measure both dimensions.",
   "explanation": "Option D is correct. Healthy AI learning relationship shows: (1) Reduced dependence - users need AI scaffolding less over time for tasks they've done before. (2) Expanded capability - users attempt more complex tasks they couldn't before (AI enables growth). Both signals matter. Option A alone might mean users are abandoning the product. Option B alone might mean dependency. Option C doesn't measure learning. The hint guides you: AI should be a teacher, not a crutch - measure if users are growing in both independence and capability over time."
-}
+},
 {
   "id": 87,
   "category": "Behavioral",
@@ -1493,7 +1491,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Accuracy-fairness tradeoffs are context-dependent and require explicit decision-making.",
   "explanation": "Options C and D are both correct. C: Use case matters - bias in loan approvals is unacceptable even with accuracy loss, bias in movie recommendations matters less. D: Make tradeoffs explicit (1% accuracy drop to eliminate demographic disparity?) and involve stakeholders. Options A, B are dogmatic - both accuracy and fairness matter, but weight depends on context. The hint guides you: bias-accuracy tradeoffs are inevitable in some cases - your job is to make the tradeoff explicit, quantified, and context-appropriate, not pretend it doesn't exist or always choose one over the other."
-}
+},
 {
   "id": 88,
   "category": "Product Sense",
@@ -1510,7 +1508,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Sustainable moats come from business model differences, not feature advantages.",
   "explanation": "Option B is correct, but the real moat is the business model: Perplexity can give direct answers because it doesn't need clicks for ad revenue. Google's business model (ads) requires users to click through to websites. This creates product constraint Google can't easily escape without cannibalizing revenue. Options A, C are defensible but copiable. Option D is too pessimistic. The hint guides you: sustainable competition against incumbents requires business model differentiation - Perplexity's advantage isn't better AI, it's freedom from ads enabling better UX that Google structurally can't match."
-}
+},
 {
   "id": 89,
   "category": "Product Design",
@@ -1527,7 +1525,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Long-running agents need graceful failure modes - auto-recovery where possible, human-in-loop for critical failures.",
   "explanation": "Option D is correct. Multi-step workflows need: (1) Auto-retry for recoverable failures (API timeout → retry, web page down → try alternate source). (2) User checkpoints for critical decisions (before expensive actions, before irreversible steps). (3) Graceful degradation (if research fails, summarize partial results). Option A wastes completed work. Option B over-burdens user. Option C might loop on impossible tasks. The hint guides you: agent reliability requires layered failure handling - automatic recovery for simple failures, human judgment for complex ones, checkpoints to prevent cascading errors."
-}
+},
 {
   "id": 90,
   "category": "Metrics",
@@ -1544,7 +1542,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: High-variance systems need percentile metrics, not averages. Users remember bad experiences.",
   "explanation": "Option D is correct. LLM latency is highly variable (input length, complexity, model load) so you need: (1) P50 for typical experience (what most users see). (2) P99 for worst-case (what causes complaints). (3) Timeout strategy (when do you stop generation and show partial results?). Average latency hides variance - 5s average could be 1s for most, 30s for some. Option A, B miss tail latency. Option C only measures worst-case. The hint guides you: variable latency systems require percentile-based SLAs and explicit timeout policies - averages don't capture user experience."
-}
+},
 {
   "id": 91,
   "category": "Behavioral",
@@ -1561,7 +1559,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Crisis response requires speed (acknowledge), action (mitigate), and transparency (explain).",
   "explanation": "Option D is correct. First 24 hours require: (1) Acknowledge immediately (shows awareness and responsibility). (2) Mitigate (disable feature if needed, prevent further harm). (3) Investigate root cause (don't guess, understand what failed). (4) Commit to transparency (share findings when investigation complete). Option A fixes without acknowledging. Option B acknowledges without acting. Option C creates information vacuum. The hint guides you: AI crisis management requires parallel work streams - immediate public acknowledgment, tactical mitigation, thorough investigation, and commitment to public transparency about findings."
-}
+},
 {
   "id": 92,
   "category": "Product Sense",
@@ -1578,7 +1576,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: User-generated content creates dual moderation challenges - creation and ongoing behavior.",
   "explanation": "Option C is correct. Character.AI faces two moderation surfaces: (1) Character creation - users might create offensive personas, historical figures with problematic views, characters designed to bypass safety. (2) Character behavior - even well-intentioned characters might generate harmful content in conversations. Both require different moderation strategies: review at creation time + runtime safety filters. Options A, B address single surface. Option D is UX problem not safety. The hint guides you: platforms with user-generated AI face compound moderation - both the prompt/persona AND the generated outputs need safeguards."
-}
+},
 {
   "id": 93,
   "category": "Product Design",
@@ -1595,7 +1593,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI content is non-deterministic, long-form, and inherently branching - version control needs new paradigms.",
   "explanation": "Option D is correct. AI version control challenges: (A) Non-determinism - same input → different outputs, so 'versions' aren't sequential edits, they're parallel generations. (B) Content length - traditional diff views don't work for multi-paragraph AI outputs. (C) Exploration - users want to try multiple AI approaches, not just linear history. This requires tree-based version control (like git branches) not linear history (like Google Docs). The hint guides you: AI content creation is fundamentally different from human editing - version control must embrace non-determinism and parallel exploration."
-}
+},
 {
   "id": 94,
   "category": "Metrics",
@@ -1612,7 +1610,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: General capability is emergent from specific task performance. Measure breadth + depth.",
   "explanation": "Option D is philosophically correct but practically limiting. In practice, option A is best approximation: broad benchmark coverage (reasoning, knowledge, coding, math, language tasks) approximates general capability. But 'capability' is always contextual - GPT-4 might have high general capability but still fail at specific narrow tasks. The hint guides you: we measure capability through broad task coverage, recognizing that 'general intelligence' is an abstraction - what matters is: can it solve the diverse tasks users actually need?"
-}
+},
 {
   "id": 95,
   "category": "Behavioral",
@@ -1629,7 +1627,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Resolve capability-readiness disagreements with evidence, not hierarchy.",
   "explanation": "Option C is correct. Instead of arguing 'ready' vs. 'not ready,' define objective criteria: accuracy threshold, safety eval pass rate, user study results, edge case coverage. Then measure. This converts subjective debate into measurable validation. Option A uses hierarchy. Option B ships without criteria. Option D abdicates product judgment. The hint guides you: research-product disagreements on readiness should be resolved with pre-agreed success criteria and measurement - let data decide, not opinions or org charts."
-}
+},
 {
   "id": 96,
   "category": "Product Sense",
@@ -1646,7 +1644,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Transparency vs. simplicity tradeoff. High-stakes moderation needs explanation.",
   "explanation": "Option C is correct. Moderation transparency should scale with severity: (1) Minor prompt modifications (removing violence keywords): silent filtering is fine. (2) Rejected generations (violates policy): show reason (ToS violation, specific category). (3) Account suspension: full explanation required. Silent moderation works for minor cases, high-stakes actions need transparency for trust and appeal. Options A, B are universal claims. Option D segments wrong dimension. The hint guides you: moderation UX should communicate enough for users to understand and adjust behavior, without creating friction on minor corrections - transparency scales with consequence."
-}
+},
 {
   "id": 97,
   "category": "Product Design",
@@ -1663,7 +1661,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Multi-agent systems face decomposition, coordination, failure, and runaway risks.",
   "explanation": "Option D is correct. Multi-agent orchestration challenges: (1) Decomposition - how to break 'write business plan' into discrete agent tasks? (2) Communication - agents need shared context without overwhelming each other. (3) Failure propagation - one agent failing shouldn't cascade. (4) Runaway - agents might loop indefinitely or consume unbounded resources. All require explicit design. The hint guides you: multi-agent systems aren't just 'multiple AIs' - they need orchestration layer for task decomposition, message passing, failure isolation, and resource controls. This is systems engineering, not just LLM prompting."
-}
+},
 {
   "id": 98,
   "category": "Metrics",
@@ -1680,7 +1678,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Success rate without context is meaningless. Stakes and failure handling matter more.",
   "explanation": "Options C and D are both correct. C: Task stakes matter - 70% for 'find related papers' is acceptable, 70% for 'process payroll' is not. D: Failure UX matters - if agent clearly communicates failures and provides fallback, 70% might be acceptable; silent failures are catastrophic at any rate below 95%. The hint guides you: raw success rates don't determine launch readiness - you must consider: what's the consequence of failure? How does the product handle failures? What's the user's alternative? 70% might beat manual work even if it doesn't beat competitors."
-}
+},
 {
   "id": 99,
   "category": "Behavioral",
@@ -1697,7 +1695,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Safety vs. usability is optimization problem, not binary choice. Measure both.",
   "explanation": "Option C is correct. Treat this as multi-objective optimization: (1) Measure safety risk (what's probability and severity of each failure mode?). (2) Measure usability impact (what % of legitimate requests are blocked?). (3) Find Pareto frontier - which guardrails provide maximum safety for minimal usability cost? Some guardrails are high value/low friction (win-win), some are low value/high friction (remove), some are tough tradeoffs (discuss). Options A, B are dogmatic. Option D delays the tradeoff. The hint guides you: safety-usability tradeoffs should be data-driven optimization, not politics - measure both dimensions and find the efficient frontier."
-}
+},
 {
   "id": 100,
   "category": "Product Sense",
@@ -1714,7 +1712,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Research breakthroughs face validation, trust, timeline, and regulatory barriers before real-world impact.",
   "explanation": "Option D is correct. AlphaFold's path to clinical impact faces: (A) Validation - computational predictions must be verified in lab. (B) Trust - biologists need to understand why predictions are correct. (C) Timeline - even perfect predictions don't speed up clinical trials. (D) Regulation - FDA requires explainable models for medical decisions. Research breakthrough is necessary but insufficient - product work is building validation pipelines, interpretability tools, and regulatory-compliant workflows. The hint guides you: frontier AI research breakthroughs face a 'last mile problem' - real-world deployment requires validation, trust-building, and regulatory navigation beyond technical capability."
-}
+},
 {
   "id": 101,
   "category": "Product Sense",
@@ -1731,7 +1729,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI strategy isn't monolithic. Map use cases to strategic value and choose approach accordingly.",
   "explanation": "Option D is correct. AI strategy should be use-case specific: (1) Core differentiators: build or fine-tune (full control, competitive moat). (2) Standard capabilities: use APIs (speed to market). (3) Cost-sensitive batch tasks: open source (economics). (4) Regulated domains: on-prem models (compliance). No single approach optimizes across all dimensions. The hint guides you: company-level AI strategy requires portfolio thinking - different parts of the business have different strategic needs, cost constraints, and regulatory requirements. One-size-fits-all AI strategy sub-optimizes."
-}
+},
 {
   "id": 102,
   "category": "Product Design",
@@ -1748,7 +1746,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Platform architecture must balance standardization (efficiency) with flexibility (innovation).",
   "explanation": "Option C is correct. Optimal platform strategy: (1) Standardize commodity capabilities (basic text generation, embeddings, classification) for efficiency and cost. (2) Enable flexibility for differentiated use cases (product teams building competitive moats need custom approaches). (3) Provide both managed services AND infrastructure for custom models. Option A stifles innovation. Option B creates chaos and cost. Option D is implementation detail, not architecture philosophy. The hint guides you: platform strategy for AI faces classic centralization-decentralization tradeoff - solve with hybrid approach that standardizes common needs while enabling innovation at edges."
-}
+},
 {
   "id": 103,
   "category": "Metrics",
@@ -1765,7 +1763,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Evaluation frameworks need both horizontal (comparable) and vertical (meaningful) metrics.",
   "explanation": "Option C is correct. Standardized eval framework requires: (1) Platform metrics (all products measure): latency, cost-per-call, uptime, model performance. (2) Product metrics (context-specific): task completion rate, user satisfaction, business impact. This enables: horizontal comparison (which products are expensive to run?) AND vertical depth (is this product delivering value?). Options A, B, D optimize single dimension. The hint guides you: org-wide evaluation frameworks must serve dual purposes - operational efficiency (comparing across products) AND product quality (measuring user value). Layer metrics to achieve both."
-}
+},
 {
   "id": 104,
   "category": "Behavioral",
@@ -1782,7 +1780,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Research strategy depends on competitive positioning, talent availability, and capital efficiency.",
   "explanation": "Option D is correct for most companies, but C acknowledges context matters. Hybrid approach: (1) Internal lab focuses on applied research (product-adjacent, proprietary advantage). (2) Academic partnerships for fundamental research (cost-effective, access to cutting-edge). (3) Commercial partnerships for capabilities outside core competency. But optimal answer depends on: company stage, capital availability, talent market, competitive dynamics. The hint guides you: research org design is strategic decision that depends on positioning - are you competing on AI research itself (build big lab) or applying AI to domain expertise (lean lab + partnerships)?"
-}
+},
 {
   "id": 105,
   "category": "Product Sense",
@@ -1799,7 +1797,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Strategic partnerships with potential competitors require managing cooperation and competition simultaneously.",
   "explanation": "Option D is correct. Microsoft-OpenAI relationship requires: (1) Compete in product (build Office AI better than what OpenAI might build). (2) Integrate deeply (Azure + Microsoft products make OpenAI's success Microsoft's success). (3) Hedge dependencies (Anthropic partnership, internal models). This is classic co-opetition - cooperate where interests align (Microsoft cloud revenue, OpenAI distribution), compete where they diverge (enterprise SaaS). The hint guides you: managing strategic partnerships with potential competitors requires portfolio approach - maximize collaboration value while mitigating competitive risk through hedging and product excellence."
-}
+},
 {
   "id": 106,
   "category": "Product Design",
@@ -1816,7 +1814,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Org structure follows strategy. AI as platform vs. AI as differentiator require different structures.",
   "explanation": "Option D is most accurate, but C describes best practice for most companies. Optimal structure: (1) Central platform team: models, infrastructure, evals, tools (horizontal capabilities). (2) Embedded product AI: teams integrate AI into products, build product-specific models. (3) Applied research: translates research into product. But structure depends on: company size, AI maturity, whether AI is core business or feature. The hint guides you: organizational structure for AI depends on strategic role - commodity capability (centralize), competitive differentiator (embed + platform), core business (matrix with strong research arm)."
-}
+},
 {
   "id": 107,
   "category": "Metrics",
@@ -1833,7 +1831,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI ROI has near-term (measurable) and long-term (strategic) components. Measure both.",
   "explanation": "Option D is correct. $50M AI budget should have: (1) 60-70% with measurable ROI (revenue lift, cost savings, efficiency gains) - short-term payback. (2) 20-30% strategic investments (new capabilities, platform, research) - long-term positioning. (3) 10% experimental (high-risk, high-reward exploratory). Blended portfolio justifies overall spend while ensuring some projects deliver immediate returns. Options A, B, C are each parts of the portfolio. The hint guides you: large-scale AI investment requires portfolio management - some projects must deliver measurable near-term ROI to fund strategic long-term bets. Balance both to justify continued investment."
-}
+},
 {
   "id": 108,
   "category": "Behavioral",
@@ -1850,7 +1848,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Board communication requires strategic clarity, not technical detail. Focus on decisions, not information.",
   "explanation": "Option C is correct. Board-level AI strategy brief should cover: (1) Where we play - which AI capabilities matter for our business. (2) How we win - build, buy, partner decisions; competitive positioning. (3) What we need - investment, talent, partnerships required. (4) What we're betting - portfolio of bets from proven to exploratory. (5) What success looks like - metrics and milestones. Options A, B, D are components but not the organizing framework. The hint guides you: executives want strategic clarity and decision frameworks, not technology tutorials. Frame AI strategy around where to compete, how to win, and what resources are needed."
-}
+},
 {
   "id": 109,
   "category": "Product Sense",
@@ -1867,7 +1865,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Build vs. buy for infrastructure requires analyzing cost, performance, strategic control, and opportunity cost.",
   "explanation": "Option D is correct. Custom chip decision requires: (1) Economics - does volume justify NRE costs? What's payback period? (2) Performance - do workloads benefit from custom architecture? (3) Strategic - does chip design create competitive moat? (4) Opportunity cost - could that capital/talent be better deployed elsewhere? (5) Time - how long until custom chips deliver value? Amazon built Graviton and Inferentia because they had: massive scale (economics), specific workloads (performance), cloud business (strategic control). The hint guides you: infrastructure build-vs-buy requires multi-year, multi-hundred-million dollar analysis across economics, strategy, and opportunity cost - not just 'custom is better.'"
-}
+},
 {
   "id": 110,
   "category": "Product Design",
@@ -1884,7 +1882,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI governance frameworks must be risk-proportionate and enable innovation, not block it.",
   "explanation": "Option D is correct. Effective AI governance requires: (1) Risk-based approach - high-risk AI (medical, financial) gets heavy review, low-risk (recommendations) gets light touch. (2) Self-serve compliance - tools and templates that make governance easy, not bureaucratic. (3) Center of excellence - available for consultation but doesn't gate every decision. (4) Clear escalation paths - teams know when to involve governance. The hint guides you: bad governance kills innovation with bureaucracy, good governance enables safe innovation through risk-proportionate frameworks and self-serve tooling."
-}
+},
 {
   "id": 111,
   "category": "Metrics",
@@ -1901,7 +1899,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI capability is multi-dimensional - talent, infrastructure, deployment velocity, and business outcomes.",
   "explanation": "Option D is correct. AI organizational capability requires measuring: (1) Talent depth - can you attract/retain AI researchers and engineers? (2) Infrastructure - can you train and deploy models efficiently? (3) Velocity - time from idea to production. (4) Impact - are AI products moving business metrics? (5) Novel capabilities - are you solving previously impossible problems? Single metrics (A, B) miss systemic capability. Option C is outcome but not input. The hint guides you: organizational AI capability is portfolio of inputs (talent, infrastructure), processes (velocity), and outputs (impact, novel solutions). Measure across all dimensions."
-}
+},
 {
   "id": 112,
   "category": "Behavioral",
@@ -1918,7 +1916,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI safety is simultaneously compliance, risk management, and product excellence. Frame holistically.",
   "explanation": "Option D is correct. AI Safety leader drives: (1) Compliance - EU AI Act, regulations emerging globally. (2) Risk mitigation - prevents catastrophic failures (bias, hallucinations, security). (3) Product quality - reliable, trustworthy AI drives adoption and retention. (4) Competitive moat - safety-first companies win enterprise customers. This isn't siloed 'compliance' role - it's strategic function that enables scaling AI products responsibly. The hint guides you: safety skeptics see it as cost center - reframe as strategic enabler across compliance, risk, and product quality. Show how safety drives business outcomes."
-}
+},
 {
   "id": 113,
   "category": "Product Sense",
@@ -1935,7 +1933,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI transformation fails from: technology push, incremental optimization, and centralized ivory towers.",
   "explanation": "Option D is correct. Common AI transformation failures: (1) Technology-first - 'we need AI' without defined business value. (2) Incremental - automating bad processes instead of reimagining workflows. (3) Centralized ivory tower - AI team builds without business unit buy-in. Successful transformation requires: business problem focus, transformational thinking, and embedded AI teams working WITH business units. The hint guides you: AI transformation requires avoiding all three failure modes - start with problems not technology, think transformationally not incrementally, and embed AI capability in business units not central team."
-}
+},
 {
   "id": 114,
   "category": "Product Design",
@@ -1952,7 +1950,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI adoption requires building trust through gradual capability, clear value, and preserved control.",
   "explanation": "Option D is correct. Successful AI transition strategy: (1) Staged rollout - suggestions → assisted actions → autonomous actions. Build trust progressively. (2) Clear value - users need to see AI improving outcomes, not just being different. (3) Preserved agency - manual fallback for when users don't trust AI or have edge cases. (4) Transparent failures - when AI fails, explain why. This builds trust and adoption. The hint guides you: moving users from deterministic to AI systems requires managing trust, demonstrating value, and preserving control - all three simultaneously."
-}
+},
 {
   "id": 115,
   "category": "Metrics",
@@ -1969,7 +1967,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Executive metrics should balance inputs (resources), processes (execution), outputs (impact), and future (pipeline).",
   "explanation": "Option D is most accurate, but general principles: Track across: (1) Resource efficiency (cost, headcount productivity). (2) Execution velocity (deployment speed, incident response). (3) Business impact (revenue, adoption, satisfaction). (4) Future capability (innovation pipeline, talent). (5) Risk (safety incidents, compliance). Exact metrics depend on: startup (growth) vs. enterprise (efficiency), AI as product (revenue) vs. AI as capability (cost savings). The hint guides you: executive dashboards require balanced scorecard across resources, execution, impact, and future - avoid single-dimension optimization."
-}
+},
 {
   "id": 116,
   "category": "Behavioral",
@@ -1986,7 +1984,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Research publication tradeoffs require balancing talent retention, competitive advantage, and safety.",
   "explanation": "Options C and D are both valid. C (staged release): Publish fundamental research (builds reputation, advances field) while protecting product-specific applications and optimizations. D (negotiate): What does researcher need to publish for career growth vs. what gives competitors immediate advantage? Find middle ground. Option A risks talent loss. Option B ignores competitive dynamics. The hint guides you: research publication isn't binary - you can publish foundational work while protecting competitive moats, and negotiation can find mutual value. Best researchers want publication freedom - provide it while protecting critical IP."
-}
+},
 {
   "id": 117,
   "category": "Product Sense",
@@ -2003,7 +2001,7 @@ export const questions: Question[] = [
   "multipleCorrect": true,
   "hint": "Framework: Manage AI uncertainty through portfolio strategy and focus on durable competitive advantages.",
   "explanation": "Options C and D are both prudent. C (portfolio): Balance proven AI applications (certain value) with frontier bets (optionality if AGI arrives). This hedges uncertainty. D (moats): Invest in AI capabilities that create competitive advantage regardless of timeline - proprietary data, domain-specific models, distribution. Both reduce regret regardless of AGI outcome. Options A, B make binary bets. The hint guides you: managing AGI uncertainty requires portfolio thinking (hedge across scenarios) and focus on defensible competitive advantages that matter whether AGI arrives in 3 years or 30."
-}
+},
 {
   "id": 118,
   "category": "Product Design",
@@ -2016,11 +2014,11 @@ export const questions: Question[] = [
     "Hybrid - subscription for predictable usage, overage for spikes",
     "Depends on customer segment and competitive dynamics"
   ],
-  "correctAnswors": [3],
+  "correctAnswers": [3],
   "multipleCorrect": false,
   "hint": "Framework: AI pricing must balance cost volatility, customer preference, competitive positioning, and margin protection.",
   "explanation": "Option D is correct, but common patterns: (1) Enterprise: Committed spend with overages (predictability for them, volume for you). (2) SMB: Subscription tiers with usage limits (simplicity). (3) Developers: Pay-per-use (aligns with their economics). (4) High-value: Flat fee regardless of usage (simplifies buying). Choice depends on: customer willingness to manage usage, competitive pricing, your cost structure. The hint guides you: AI variable costs create pricing complexity - solve through customer segmentation and tailored pricing strategies, not one-size-fits-all. Match pricing to customer preference and margin requirements."
-}
+},
 {
   "id": 119,
   "category": "Metrics",
@@ -2037,7 +2035,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Competitive advantage requires measurable market outcomes from differentiated capabilities.",
   "explanation": "Option D is correct. Sustainable AI advantage shows in: (1) Market outcomes - are AI products gaining share? (2) Competitive positioning - do you win when customers evaluate AI capabilities? (3) Unique capabilities - do you have proprietary data, models, or workflows competitors can't replicate? (4) Margin expansion - does AI create pricing power? All four together indicate advantage; any one alone might be temporary. The hint guides you: competitive advantage requires both differentiated capabilities AND market validation that those capabilities create value customers will pay for."
-}
+},
 {
   "id": 120,
   "category": "Behavioral",
@@ -2054,7 +2052,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Blameless post-mortems maximize learning. Focus on systems, not individuals.",
   "explanation": "Option C is correct. Effective post-mortems are blameless and focus on: (1) Timeline - what happened when? (2) Root causes - what systemic failures enabled this? (3) Prevention - what changes (process, tooling, testing) prevent recurrence? (4) Action items - who owns what by when? Option A creates blame culture that hides problems. Option B is bureaucratic box-checking. Option D sounds comprehensive but accountability focus undermines learning. The hint guides you: AI incidents are usually systems failures, not individual failures - blameless culture that focuses on systemic improvements prevents future incidents better than punishment."
-}
+},
 {
   "id": 121,
   "category": "Product Sense",
@@ -2071,7 +2069,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Strategic roadmaps require balancing prediction, position-taking, and portfolio management.",
   "explanation": "Option D is most strategic. Multi-year roadmap requires: (1) Vision - what future state are we creating? What role do we play? (2) Bets - where do we take positions before consensus? (3) Portfolio - near-term value funds long-term capability. (4) Flexibility - how do we stay adaptive? Options A, B, C are tactical questions within strategic frame. The hint guides you: strategic roadmaps aren't just predictions (reactive) but position-taking (proactive) - decide what future you're building toward, then work backward to capabilities needed. Best strategies create the future, not just predict it."
-}
+},
 {
   "id": 122,
   "category": "Product Design",
@@ -2088,7 +2086,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: AI ethics isn't single principle - requires balancing benefit, autonomy, and equity.",
   "explanation": "Option D is correct. AI ethical frameworks must balance: (1) Beneficence - maximize good outcomes, minimize harm. (2) Autonomy - preserve user agency and informed consent. (3) Justice - ensure fair distribution of benefits and risks across populations. (4) Explicability - make AI decisions understandable. These often conflict - maximizing benefit might reduce autonomy, equity might reduce efficiency. Ethical AI requires explicitly navigating these tradeoffs. The hint guides you: AI ethics isn't following single rule - it's balancing multiple values that often conflict. Design ethical frameworks that make tradeoffs explicit and context-appropriate."
-}
+},
 {
   "id": 123,
   "category": "Metrics",
@@ -2105,7 +2103,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Competitive assessment requires mapping capabilities to business value, not just tech comparison.",
   "explanation": "Option C is correct. AI readiness assessment should map: (Vertical axis) AI capabilities - data, models, infrastructure, talent. (Horizontal axis) Business domains - product, operations, customer service, etc. This creates matrix showing: where you lead, where you lag, where gaps are highest-value. Options A, B, D measure single dimensions. The hint guides you: competitive AI readiness isn't about who has better models - it's about mapping AI capabilities across all business functions and comparing strategic positioning. Show board where you're ahead, where you're behind, and which gaps matter most for competitive outcomes."
-}
+},
 {
   "id": 124,
   "category": "Behavioral",
@@ -2122,7 +2120,7 @@ export const questions: Question[] = [
   "multipleCorrect": false,
   "hint": "Framework: Negotiation leverage comes from alternatives and unique value you provide.",
   "explanation": "Option D is correct. Enterprise AI partnerships require leverage from: (1) Scale (contract value), (2) Data (unique training data), (3) Distribution (customer access), (4) Competition (credible alternatives). But real leverage comes from credible alternatives - can you build, switch providers, or go open source? Without alternatives, you're price-taker regardless of scale. With alternatives, you negotiate as peers. Options A, B, C are value you provide but don't create leverage without option D. The hint guides you: negotiation leverage requires credible alternatives - develop in-house capability or multi-vendor strategy to negotiate from strength, not dependence."
-}
+},
 {
   "id": 125,
   "category": "Product Sense",
