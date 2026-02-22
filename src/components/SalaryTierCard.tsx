@@ -3,9 +3,9 @@ import { salaryTiers } from "@/data/questions";
 
 const tierButtonLabels: Record<string, string> = {
   Junior: "Practice Junior Questions →",
-  "Mid-Level": "Practice Mid-Level Questions →",
+  "Mid": "Practice Mid-Level Questions →",
   Senior: "Practice Senior Questions →",
-  "AI PM": "Practice AI Frontier Questions →",
+  "AI Frontier": "Practice AI Frontier Questions →",
   "Staff+": "Practice Staff+ Questions →",
 };
 
