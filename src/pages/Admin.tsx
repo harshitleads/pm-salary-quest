@@ -14,7 +14,7 @@ interface FeedbackRow {
   created_at: string;
 }
 
-const ALLOWED_DOMAIN = "@berkeley.edu";
+const ALLOWED_EMAILS = ["harshitsharma@berkeley.edu"];
 
 const Admin = () => {
   const [email, setEmail] = useState("");
@@ -40,12 +40,12 @@ const Admin = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const isAuthorized = user?.email?.endsWith(ALLOWED_DOMAIN) ?? false;
+  const isAuthorized = user?.email ? ALLOWED_EMAILS.includes(user.email) : false;
 
   const handleAuth = async () => {
     setAuthError("");
-    if (!email.endsWith(ALLOWED_DOMAIN)) {
-      setAuthError(`Only ${ALLOWED_DOMAIN} emails are allowed.`);
+    if (!ALLOWED_EMAILS.includes(email.toLowerCase())) {
+      setAuthError("Admin access restricted. Contact Harshit for access.");
       return;
     }
     if (password.length < 6) {
@@ -117,7 +117,7 @@ const Admin = () => {
             Admin {isSignUp ? "Sign Up" : "Login"}
           </h1>
           <p className="mb-6 text-center text-sm text-muted-foreground">
-            Restricted to {ALLOWED_DOMAIN} emails
+            Authorized admins only
           </p>
 
           {authError && (
@@ -171,7 +171,7 @@ const Admin = () => {
         <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-xl text-center">
           <h1 className="mb-4 text-quiz-heading text-foreground">Unauthorized</h1>
           <p className="mb-6 text-muted-foreground">
-            Only {ALLOWED_DOMAIN} accounts can access this page.
+            Admin access restricted. Contact Harshit for access.
           </p>
           <Button onClick={handleLogout} variant="outline" className="w-full">
             Sign Out
