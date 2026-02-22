@@ -107,6 +107,15 @@
 }
 
 @layer utilities {
+  /* Safari iOS fix: ensure animated elements are visible even if animation fails */
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-pop {
+    -webkit-animation-fill-mode: forwards;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
   .gradient-hero {
     background: linear-gradient(135deg, hsl(213 100% 12%) 0%, hsl(260 60% 25%) 50%, hsl(213 100% 19%) 100%);
   }
@@ -127,5 +136,18 @@
   }
   .text-points {
     color: hsl(var(--success));
+  }
+}
+
+/* Safari iOS: prevent invisible elements if animation doesn't fire */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-slide-in,
+  .animate-scale-pop {
+    animation: none !important;
+    -webkit-animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
   }
 }
