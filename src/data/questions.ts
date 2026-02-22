@@ -1714,21 +1714,29 @@ export const questions: Question[] = [
   "explanation": "Option D is correct. AlphaFold's path to clinical impact faces: (A) Validation - computational predictions must be verified in lab. (B) Trust - biologists need to understand why predictions are correct. (C) Timeline - even perfect predictions don't speed up clinical trials. (D) Regulation - FDA requires explainable models for medical decisions. Research breakthrough is necessary but insufficient - product work is building validation pipelines, interpretability tools, and regulatory-compliant workflows. The hint guides you: frontier AI research breakthroughs face a 'last mile problem' - real-world deployment requires validation, trust-building, and regulatory navigation beyond technical capability."
 },
 {
-  "id": 101,
+ "id": 101,
   "category": "Product Sense",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "You're leading AI strategy for a $50B company. How do you decide: build foundation models vs. use APIs vs. fine-tune open source?",
+  "question": "Your $50B company is building AI strategy. Engineering wants to build foundation models for control. Finance wants APIs for speed. Which do you prioritize?",
   "options": [
-    "Build - foundation models are strategic moat",
-    "APIs - focus on product, not infrastructure",
-    "Open source - best cost-performance ratio",
-    "Portfolio approach - different strategies for different use cases based on strategic value"
+    "Build foundation models - creates long-term competitive moat and strategic independence",
+    "Use APIs initially, build selectively only where you have unique data advantage",
+    "Open source fine-tuning - balance control and cost without building from scratch",
+    "Run parallel experiments for 6 months, then commit based on what works"
   ],
-  "correctAnswers": [3],
+  "correctAnswers": [1],
   "multipleCorrect": false,
-  "hint": "Framework: AI strategy isn't monolithic. Map use cases to strategic value and choose approach accordingly.",
-  "explanation": "Option D is correct. AI strategy should be use-case specific: (1) Core differentiators: build or fine-tune (full control, competitive moat). (2) Standard capabilities: use APIs (speed to market). (3) Cost-sensitive batch tasks: open source (economics). (4) Regulated domains: on-prem models (compliance). No single approach optimizes across all dimensions. The hint guides you: company-level AI strategy requires portfolio thinking - different parts of the business have different strategic needs, cost constraints, and regulatory requirements. One-size-fits-all AI strategy sub-optimizes."
+  "hint": "Framework: Strategic decisions require commitment, not endless experimentation. Choose based on moat, not optionality.",
+  "explanation": "Option B is correct for most companies. Here's why each approach works or doesn't:
+
+A) 'Build foundation models' - Wrong for most companies because: building foundation models requires $50M-$500M investment, 50-200 person teams, and 12-24 month timelines. Unless AI is your core product (like OpenAI), this diverts resources from actual competitive advantages. You're competing with OpenAI/Anthropic/Google who have multi-billion dollar head starts. Shows poor capital allocation.
+
+B) 'Use APIs initially, build selectively' - CORRECT. This is how most successful AI companies operate (Stripe, Notion, Intercom). Use APIs for commodity capabilities, build/fine-tune only where: (1) You have proprietary data competitors can't access, (2) The capability is core to your competitive moat, (3) API costs become prohibitive at scale. This maximizes speed while preserving capital for strategic investments. The hint guides you: Staff+ PMs make decisive resource allocation - APIs let you move fast on 80% of use cases, reserve build capacity for strategic 20%.
+
+C) 'Open source fine-tuning' - Wrong because: fine-tuning still requires significant ML infrastructure, doesn't give you foundation model control, and leaves you dependent on OSS roadmaps. Worse economics than APIs (engineering cost) without strategic control of building. Falls between two stools.
+
+D) 'Parallel experiments' - Wrong because: this is analysis paralysis disguised as rigor. Six months of parallel experiments wastes capital and splits team focus. Staff+ PMs make strategic bets based on incomplete information, not run science experiments. You're not discovering new physics - you're choosing between known tradeoffs. Decisiveness matters more than perfect information."
 },
 {
   "id": 102,
@@ -1752,17 +1760,25 @@ export const questions: Question[] = [
   "category": "Metrics",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "You're building AI evals across an organization with 20 AI-powered products. How do you create standardized evaluation framework?",
+  "question": "You're building evaluation framework for 20 AI products across the company. Teams want autonomy to define their own metrics. How do you balance standardization vs. flexibility?",
   "options": [
-    "Universal metrics applied to all products (accuracy, latency, cost)",
-    "Product-specific metrics defined by each team",
-    "Layered framework - universal platform metrics + product-specific outcome metrics",
-    "Focus on business metrics only - revenue, retention, user satisfaction"
+    "Mandate universal metrics (latency, cost, accuracy) - comparability matters more than context",
+    "Let each team define their own metrics - they understand their products best",
+    "Define success outcomes (business impact), let teams choose technical metrics to measure them",
+    "Create metric marketplace - teams share metrics, others adopt what works"
   ],
   "correctAnswers": [2],
   "multipleCorrect": false,
-  "hint": "Framework: Evaluation frameworks need both horizontal (comparable) and vertical (meaningful) metrics.",
-  "explanation": "Option C is correct. Standardized eval framework requires: (1) Platform metrics (all products measure): latency, cost-per-call, uptime, model performance. (2) Product metrics (context-specific): task completion rate, user satisfaction, business impact. This enables: horizontal comparison (which products are expensive to run?) AND vertical depth (is this product delivering value?). Options A, B, D optimize single dimension. The hint guides you: org-wide evaluation frameworks must serve dual purposes - operational efficiency (comparing across products) AND product quality (measuring user value). Layer metrics to achieve both."
+  "hint": "Framework: Align on outcomes, not metrics. Different products need different measurements to reach same goals.",
+  "explanation": "Option C is correct. Here's why each approach works or doesn't:
+
+A) 'Mandate universal metrics' - Wrong because: latency matters for real-time chat, not for batch document analysis. Accuracy means different things for medical AI vs. recommendation engines. Universal metrics create false comparability and misaligned incentives - teams game metrics rather than deliver value. Shows lack of product thinking sophistication.
+
+B) 'Let teams define own metrics' - Wrong because: complete autonomy prevents any cross-product learning, resource allocation, or strategic oversight. You can't answer 'which AI products are working?' or 'where should we invest more?' without some standardization. This is abdication, not empowerment.
+
+C) 'Define success outcomes, flexible metrics' - CORRECT. This balances autonomy and alignment: (1) Universal outcomes: user value (NPS, task completion), business impact (revenue, retention), efficiency (cost per task). (2) Team-defined metrics: how they measure technical performance varies by use case. Example: Chat AI measures latency, Document AI measures accuracy, Recommendation AI measures click-through. All contribute to retention (universal outcome). The hint guides you: Staff+ thinking aligns on what matters (business outcomes) while empowering teams on how to measure technical performance. Don't confuse measurement standardization with outcome alignment.
+
+D) 'Metric marketplace' - Wrong because: creates coordination overhead without solving core tension. Teams won't adopt others' metrics if they don't fit their use case. This is process theater that delays decisions. Sounds collaborative but is actually passive - no one owns standardization or makes hard calls."
 },
 {
   "id": 104,
@@ -1786,17 +1802,25 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "Satya Nadella asks you: how should Microsoft position against OpenAI becoming a competitor in enterprise software?",
+  "question": "Microsoft invested $13B in OpenAI. Now OpenAI is building products that compete with Office. What's Microsoft's best strategic response?",
   "options": [
-    "Compete - build better AI products than OpenAI",
-    "Embrace - integrate OpenAI deeply, make it hard for them to compete",
-    "Hedge - build alternative AI partnerships to reduce OpenAI dependence",
-    "All three - compete in products, integrate their technology, develop alternatives"
+    "Compete aggressively - build better AI features in Office/Azure than OpenAI can",
+    "Deepen integration - make Azure + Office the best platform for OpenAI models, increasing switching costs",
+    "Hedge with alternatives - invest in Anthropic, develop internal models, reduce OpenAI dependency",
+    "Acquire OpenAI fully - eliminate competition by owning them outright"
   ],
-  "correctAnswers": [3],
+  "correctAnswers": [1],
   "multipleCorrect": false,
-  "hint": "Framework: Strategic partnerships with potential competitors require managing cooperation and competition simultaneously.",
-  "explanation": "Option D is correct. Microsoft-OpenAI relationship requires: (1) Compete in product (build Office AI better than what OpenAI might build). (2) Integrate deeply (Azure + Microsoft products make OpenAI's success Microsoft's success). (3) Hedge dependencies (Anthropic partnership, internal models). This is classic co-opetition - cooperate where interests align (Microsoft cloud revenue, OpenAI distribution), compete where they diverge (enterprise SaaS). The hint guides you: managing strategic partnerships with potential competitors requires portfolio approach - maximize collaboration value while mitigating competitive risk through hedging and product excellence."
+  "hint": "Framework: When partners become competitors, your moat determines strategy. Distribution beats technology.",
+  "explanation": "Option B is correct. Here's why each strategy works or doesn't:
+
+A) 'Compete aggressively' - Wrong because: Microsoft can't out-research OpenAI in foundation models - that's not their core competency. Even if they build comparable models, OpenAI has brand and direct user relationships. This plays to OpenAI's strength (AI research) away from Microsoft's strength (distribution). Burning capital on unfavorable competition.
+
+B) 'Deepen integration' - CORRECT. Microsoft's moat is distribution (Windows, Office, Azure, GitHub), not AI research. Strategy: (1) Make Azure the best place to run OpenAI models (performance, pricing, tooling) - even if OpenAI builds products, they need Microsoft cloud. (2) Integrate OpenAI into Office so deeply that competing products require ripping out infrastructure. (3) Use OpenAI success to sell more Azure (win even when they succeed). The hint guides you: Microsoft's advantage is making OpenAI's success dependent on Microsoft's platform - distribution moats beat technology moats in enterprise. Make them need you more than you need them.
+
+C) 'Hedge with alternatives' - Wrong because: this signals distrust and weakens the partnership without reducing competitive threat. Anthropic investment is too small to matter strategically, internal models are 2-3 years behind. Hedging makes sense AFTER deepening integration, not instead of it. Shows defensive thinking.
+
+D) 'Acquire fully' - Wrong because: (1) OpenAI's governance structure prevents full acquisition (non-profit parent board), (2) Key talent would leave (they want research freedom), (3) Regulators would block (~$100B acquisition of leading AI company). Shows lack of M&A sophistication and governance understanding."
 },
 {
   "id": 106,
@@ -1837,17 +1861,25 @@ export const questions: Question[] = [
   "category": "Behavioral",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "Your board asks you to brief them on AI strategy in 15 minutes. What framework do you use?",
+  "question": "Your board asks you to brief them on AI strategy in 15 minutes. The board includes: a tech CEO, a policy expert, a finance exec, and a retail operator. What framework do you lead with?",
   "options": [
-    "Technology overview - explain what AI can do",
-    "Competitive landscape - who's ahead, who's behind",
-    "Strategic framework - where we play, how we win, what we need",
-    "Risk assessment - what could go wrong"
+    "Competitive positioning - show where we stand vs. competitors on AI capabilities and products",
+    "Business case - ROI model showing AI investment payback and revenue impact",
+    "Strategic choices - where we'll compete with AI, how we'll win, what we need to succeed",
+    "Risk assessment - what could go wrong with AI and how we're mitigating"
   ],
   "correctAnswers": [2],
   "multipleCorrect": false,
-  "hint": "Framework: Board communication requires strategic clarity, not technical detail. Focus on decisions, not information.",
-  "explanation": "Option C is correct. Board-level AI strategy brief should cover: (1) Where we play - which AI capabilities matter for our business. (2) How we win - build, buy, partner decisions; competitive positioning. (3) What we need - investment, talent, partnerships required. (4) What we're betting - portfolio of bets from proven to exploratory. (5) What success looks like - metrics and milestones. Options A, B, D are components but not the organizing framework. The hint guides you: executives want strategic clarity and decision frameworks, not technology tutorials. Frame AI strategy around where to compete, how to win, and what resources are needed."
+  "hint": "Framework: Diverse boards need strategy (choices + tradeoffs), not tactics. Lead with what matters to all members.",
+  "explanation": "Option C is correct. Here's why each framework works or doesn't:
+
+A) 'Competitive positioning' - Wrong because: half your board (policy expert, retail operator) won't have reference frame for AI competitive dynamics. Tech CEO cares, but finance exec wants to know 'should we invest more/less?' and policy expert wants to know 'what are we exposed to?' Competitive analysis is important but not the organizing framework. Too narrow.
+
+B) 'Business case' - Wrong because: finance exec loves this, but retail operator doesn't care about payback periods, policy expert cares about regulatory risk, tech CEO wants strategic vision. Leading with ROI reduces AI to cost-benefit calculation - misses strategic positioning. Shows PM-level thinking, not Staff+ strategic framing.
+
+C) 'Strategic choices' - CORRECT. This framework speaks to everyone: (1) Where we play - which AI capabilities matter for our business (tech CEO + retail operator care). (2) How we win - build/buy/partner, competitive moat (tech CEO + finance exec care). (3) What we need - capital, talent, partnerships (finance exec cares). (4) What we're betting - portfolio from proven to exploratory (everyone cares). (5) Risks we're managing (policy expert cares). The hint guides you: diverse boards need strategic framing that translates across expertise - choices, tradeoffs, and resource allocation speak universally. Answers 'what are we doing and why?' for every member.
+
+D) 'Risk assessment' - Wrong because: policy expert loves this, everyone else wants to know the opportunity side first. Leading with risk frames AI defensively ('we need to protect ourselves') vs. strategically ('we can win with this'). Risk is section 3-4 of the brief, not the opening frame."
 },
 {
   "id": 109,
@@ -1922,17 +1954,25 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "You're advising a Fortune 500 CEO on AI transformation. What's the biggest strategic mistake to avoid?",
+  "question": "You're advising a Fortune 500 CEO on AI transformation. She's considering: (A) creating central AI team to build products for business units, (B) distributing AI engineers into each BU, or (C) hiring consultants to guide transformation. What's your recommendation?",
   "options": [
-    "Technology-first thinking - deploying AI without clear business problems",
-    "Incremental thinking - optimizing existing processes vs. reimagining them",
-    "Centralized approach - AI team building products for business units",
-    "All three are common failure modes in AI transformation"
+    "Central AI team - concentrates expertise, prevents duplicate work, establishes standards",
+    "Distributed engineers - embeds AI where business problems are, ensures product-market fit",
+    "Consultant-led - brings external best practices, avoids organizational politics",
+    "Hybrid platform team + embedded engineers - platform builds shared capabilities, BUs build product AI"
   ],
   "correctAnswers": [3],
   "multipleCorrect": false,
-  "hint": "Framework: AI transformation fails from: technology push, incremental optimization, and centralized ivory towers.",
-  "explanation": "Option D is correct. Common AI transformation failures: (1) Technology-first - 'we need AI' without defined business value. (2) Incremental - automating bad processes instead of reimagining workflows. (3) Centralized ivory tower - AI team builds without business unit buy-in. Successful transformation requires: business problem focus, transformational thinking, and embedded AI teams working WITH business units. The hint guides you: AI transformation requires avoiding all three failure modes - start with problems not technology, think transformationally not incrementally, and embed AI capability in business units not central team."
+  "hint": "Framework: Transformation structure follows ownership. Who owns AI success - central team or business units?",
+  "explanation": "Option D is correct. Here's why each approach works or doesn't:
+
+A) 'Central AI team builds products' - Wrong because: this is the most common AI transformation failure mode. Central team becomes ivory tower building AI solutions without deep business context. Business units don't adopt products they didn't ask for ('not invented here'). Central team optimizes for technical elegance, not business impact. Creates organizational tension where BUs see AI team as cost center imposing solutions. Shows lack of organizational design experience.
+
+B) 'Distributed engineers only' - Wrong because: every business unit reinvents infrastructure, data pipelines, evaluation frameworks, security practices. Massive duplication of effort. No sharing of learnings across BUs. Can't attract top AI talent (they want to work with other AI experts, not be solo engineer in marketing department). Economics are terrible - 10 siloed AI engineers are less effective than 3 on shared platform + 7 embedded. 
+
+C) 'Consultant-led' - Wrong because: consultants don't build organizational capability, they create dependency. They leave after engagement with PowerPoints, no sustained AI capability. Often recommend their preferred tech stack regardless of fit. Can't attract/retain AI talent (they want to build products, not follow consultant playbooks). Shows abdication of transformation ownership.
+
+D) 'Hybrid platform + embedded' - CORRECT. This is how successful AI transformations work (Uber, Netflix, Meta): (1) Platform team (15-30% of AI headcount): builds shared infrastructure (training pipelines, model deployment, evals), sets standards, enables self-service. (2) Embedded product AI engineers (70-85%): sit in business units, build product-specific models, own outcomes. This prevents duplication while ensuring business relevance. The hint guides you: transformation ownership must be clear - platform team enables, business units own outcomes. Hybrid structure forces shared accountability."
 },
 {
   "id": 114,
@@ -1990,17 +2030,25 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "AGI skeptics say we're in an AI bubble. How do you advise leadership on investment strategy?",
+  "question": "Prominent AI researchers say current progress will plateau and AGI is 20+ years away. Your company has invested $200M in AI product bets. What do you advise leadership?",
   "options": [
-    "Reduce investment - wait for clarity",
-    "Maintain investment - can't afford to fall behind",
-    "Portfolio approach - proven ROI projects fund exploratory bets",
-    "Focus on defensible moats regardless of AGI timeline"
+    "Continue current investment - can't afford to be wrong about AGI timeline",
+    "Reduce AI investment by 50% - hedge against plateau by reallocating to proven technologies",
+    "Shift portfolio toward near-term ROI projects - prove value now, maintain optionality for AGI",
+    "Ignore predictions entirely - focus on building defensible competitive advantages regardless of AGI timeline"
   ],
-  "correctAnswers": [2, 3],
-  "multipleCorrect": true,
-  "hint": "Framework: Manage AI uncertainty through portfolio strategy and focus on durable competitive advantages.",
-  "explanation": "Options C and D are both prudent. C (portfolio): Balance proven AI applications (certain value) with frontier bets (optionality if AGI arrives). This hedges uncertainty. D (moats): Invest in AI capabilities that create competitive advantage regardless of timeline - proprietary data, domain-specific models, distribution. Both reduce regret regardless of AGI outcome. Options A, B make binary bets. The hint guides you: managing AGI uncertainty requires portfolio thinking (hedge across scenarios) and focus on defensible competitive advantages that matter whether AGI arrives in 3 years or 30."
+  "correctAnswers": [3],
+  "multipleCorrect": false,
+  "hint": "Framework: AGI timeline uncertainty requires strategy that wins in multiple futures. What's defensible either way?",
+  "explanation": "Option D is correct. Here's why each strategy works or doesn't:
+
+A) 'Continue investment - can't afford to be wrong' - Wrong because: this is FOMO-driven strategy, not strategic thinking. 'Can't afford to be wrong' is not investment thesis. If AGI plateaus, you've spent $200M building on shaky foundation. If it succeeds, fast-followers can catch up. This is betting on timing, not building moats. Shows fear-based decision making.
+
+B) 'Reduce 50%' - Wrong because: if you believed AGI was 20+ years away, you'd reduce 80-90%, not 50%. If you're uncertain, 50% reduction is arbitrary. This is worst of both worlds - not enough conviction to reallocate fully, not enough commitment to win in AI. Shows indecisiveness masquerading as prudence.
+
+C) 'Shift toward near-term ROI' - Wrong because: this assumes you haven't already done this. If your $200M portfolio doesn't have near-term ROI projects, you have execution problem not strategy problem. Also, 'near-term ROI' and 'optionality for AGI' often conflict - proving value now means production systems, technical debt, customer commitments that constrain future pivots. Shows confused capital allocation.
+
+D) 'Focus on defensible advantages regardless of timeline' - CORRECT. Strategy should be: (1) Proprietary data moats - whether AGI arrives or not, unique datasets create advantage. (2) AI-native product experiences - if AI progress continues, you're positioned; if it plateaus, you've still rebuilt products for current capabilities. (3) Talent density - AI experts create value in plateau scenario (optimizing current models) AND breakthrough scenario (riding next wave). (4) Distribution - AI products that reach customers win regardless of backend sophistication. The hint guides you: AGI uncertainty requires strategy that wins in multiple futures - build moats that are defensible whether AGI arrives in 2030 or 2050. Don't bet on timeline, bet on competitive structure."
 },
 {
   "id": 118,
@@ -2041,17 +2089,25 @@ export const questions: Question[] = [
   "category": "Behavioral",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "You're leading post-mortem for major AI incident that made headlines. What's the goal of this meeting?",
+  "question": "Your AI product caused a major incident - wrong medical advice went viral on social media. In the post-mortem, engineering says it was a data issue, product says it was missing safety guardrail, design says it was unclear UX. What's your opening statement?",
   "options": [
-    "Identify who's responsible",
-    "Document what went wrong for compliance",
-    "Understand root causes and prevent recurrence",
-    "All three - accountability, documentation, and prevention"
+    "This is a blameless post-mortem - we focus on systems, not individuals",
+    "We need to understand who made which decisions that led to this",
+    "Our goal is to document what happened for regulatory compliance",
+    "We're here to understand why our systems allowed this and how we prevent it"
   ],
-  "correctAnswers": [2],
+  "correctAnswers": [3],
   "multipleCorrect": false,
-  "hint": "Framework: Blameless post-mortems maximize learning. Focus on systems, not individuals.",
-  "explanation": "Option C is correct. Effective post-mortems are blameless and focus on: (1) Timeline - what happened when? (2) Root causes - what systemic failures enabled this? (3) Prevention - what changes (process, tooling, testing) prevent recurrence? (4) Action items - who owns what by when? Option A creates blame culture that hides problems. Option B is bureaucratic box-checking. Option D sounds comprehensive but accountability focus undermines learning. The hint guides you: AI incidents are usually systems failures, not individual failures - blameless culture that focuses on systemic improvements prevents future incidents better than punishment."
+  "hint": "Framework: Post-mortems need psychological safety AND accountability. Frame around system improvements, not blame OR tolerance.",
+  "explanation": "Option D is correct. Here's why each framing works or doesn't:
+
+A) 'Blameless post-mortem' - Wrong for this context because: 'blameless' has become tech mantra but can enable poor accountability. This was medical advice that went viral - stakes are high enough that understanding decision-making matters. 'Blameless' sometimes means 'no one owns outcomes.' For high-stakes failures, you need psychological safety (people share information) AND accountability (people own decisions). Framing as 'blameless' can signal 'no consequences for bad judgment' which is wrong message. Shows cargo-culting SRE practices without context.
+
+B) 'Understand who made decisions' - Wrong because: this frames post-mortem as fault-finding, not learning. Even if specific people made poor calls, system allowed those calls to ship. Focusing on 'who' makes people defensive and hides information. However, this is better than A for high-stakes incidents - accountability matters, just frame it around decisions not blame.
+
+C) 'Document for compliance' - Wrong because: this is CYA thinking, not learning culture. Yes, you need documentation, but leading with compliance turns post-mortem into legal exercise. People will lawyer their statements instead of sharing truth. Also insults the seriousness - this isn't box-checking, it's fixing broken systems.
+
+D) 'Understand why systems allowed this' - CORRECT. This frames around: (1) System failures (why did data issue reach production? why was safety guardrail missing? why did UX not prevent misuse?). (2) Prevention focus (how do we change systems to catch this class of failures?). (3) Ownership (people own systems, so accountability is built in without blame). (4) Learning (extract maximum value from painful incident). The hint guides you: high-stakes post-mortems need balance - psychological safety to share truth AND accountability for system improvements. 'Blameless' can mean 'toothless' - focus on system accountability instead."
 },
 {
   "id": 121,
@@ -2126,18 +2182,26 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "Staff+",
   "salaryRange": "$350K+",
-  "question": "You're advising a startup on whether to build AI-first vs. add AI to existing product. What's the key decision framework?",
+  "question": "You're advising a Series A startup with great domain expertise in legal tech. They're deciding: build AI-first case research product or add AI to their existing contract management tool. Which creates more value?",
   "options": [
-    "Market timing - is market ready for AI-first?",
-    "Competitive moat - does AI create defensible advantage?",
-    "Distribution strategy - how does AI affect go-to-market?",
-    "All three - AI-first is strategic decision across market, moat, and distribution"
+    "AI-first case research - greenfield lets you design optimal AI experience without legacy constraints",
+    "Add AI to existing product - faster time to market, existing customers will adopt, lower risk",
+    "Depends on competitive dynamics - if incumbents are adding AI to existing products, go AI-first to differentiate",
+    "Depends on existing product's strategic value - if contract tool is defensible moat, double down; if not, go AI-first"
   ],
   "correctAnswers": [3],
   "multipleCorrect": false,
-  "hint": "Framework: AI-first vs. AI-feature is strategic positioning requiring market, competitive, and distribution analysis.",
-  "explanation": "Option D is correct. AI-first decision requires: (1) Market timing - are buyers ready for AI-native experience or do they want familiar tools + AI? (2) Competitive moat - does AI-first architecture create advantage incumbents can't match? (3) Distribution - does AI-first enable new go-to-market (product-led growth, viral) or require expensive education? (4) Talent - can you attract AI-first talent vs. domain experts? All four together determine AI-first vs. AI-enhanced strategy. The hint guides you: AI-first isn't always better - it's strategic bet requiring alignment across market readiness, competitive positioning, distribution economics, and talent availability. Evaluate holistically, not just on technology capabilities."
-},
+  "hint": "Framework: Strategic decisions depend on your moat, not AI architecture. Protect what's defensible, reinvent what's not.",
+  "explanation": "Option D is correct. Here's why each approach works or doesn't:
+
+A) 'AI-first case research - no legacy constraints' - Wrong because: 'no legacy constraints' is engineer thinking, not strategic thinking. Constraints don't determine value - competitive position does. AI-first might let you build cooler product, but if you're abandoning defensible contract management position to chase competitive case research market, you're trading moat for novelty. Also assumes customers care about 'AI-first' architecture - they care about outcomes. Shows tech-first thinking.
+
+B) 'Add AI to existing - faster, safer' - Wrong because: assumes existing product is worth doubling down on. What if contract management is commoditizing? What if AI makes your current product obsolete? 'Faster and lower risk' is not strategy - it's optimization of potentially wrong direction. Also, if existing product is strong moat, this might be RIGHT answer, but you can't know without assessing strategic position first.
+
+C) 'Depends on competitive dynamics' - Wrong framing because: competitive dynamics matter but this puts competition first, your moat second. If your contract tool is deeply entrenched with customers and switching costs, you defend it even if incumbents are going AI-first elsewhere. If your product is weak, you might need AI-first even if competition is weak. The question is your defensibility, not their actions. Shows reactive not proactive strategy.
+
+D) 'Depends on existing product's strategic value' - CORRECT. The decision tree: (1) Is contract management tool defensible? (proprietary data, network effects, high switching costs, market leadership). If YES → double down with AI, expand moat. If NO → go AI-first in case research, build new moat. (2) Strategic value determined by: customer retention, pricing power, competitive position, data moats. Not by revenue or growth alone. Example: If your contract tool has proprietary clause library and 80% retention, add AI to it. If you're #4 player with 40% churn, build AI-first case research and leapfrog. The hint guides you: protect defensible positions, reinvent weak positions. AI architecture follows from strategic assessment, not vice versa."
+}
 ];
 
 export const salaryTiers = [
