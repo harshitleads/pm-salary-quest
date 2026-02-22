@@ -4,6 +4,14 @@ import { questions, salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
+import QuizTimer from "@/components/QuizTimer";
+import QuizResults from "@/components/QuizResults";
+
+interface QuestionResult {
+  id: number;
+  category: string;
+  correct: boolean;
+}
 
 const Quiz = () => {
   const { tier } = useParams<{ tier: string }>();
@@ -11,7 +19,6 @@ const Quiz = () => {
   const location = useLocation();
   const decodedTier = decodeURIComponent(tier || "");
 
-  // Support custom question sets passed via location state (shuffle/category modes)
   const customQuestions = (location.state as any)?.questions as typeof questions | undefined;
   const customLabel = (location.state as any)?.label as string | undefined;
 
@@ -34,6 +41,10 @@ const Quiz = () => {
   const [flagText, setFlagText] = useState("");
   const [flagSubmitted, setFlagSubmitted] = useState(false);
 
+  // Results tracking
+  const [questionResults, setQuestionResults] = useState<QuestionResult[]>([]);
+  const [showResults, setShowResults] = useState(false);
+
   const q = tierQuestions[currentIdx];
 
   const toggleSelect = (idx: number) => {
@@ -45,6 +56,17 @@ const Quiz = () => {
     }
   };
 
+  const recordResult = useCallback(
+    (correct: boolean) => {
+      setQuestionResults((prev) => {
+        const existing = prev.find((r) => r.id === q.id);
+        if (existing) return prev;
+        return [...prev, { id: q.id, category: q.category, correct }];
+      });
+    },
+    [q]
+  );
+
   const handleSubmit = useCallback(() => {
     if (selected.length === 0 || submitted) return;
     setSubmitted(true);
@@ -54,6 +76,7 @@ const Quiz = () => {
       selected.every((s) => q.correctAnswers.includes(s));
 
     setIsCorrect(correct);
+    recordResult(correct);
 
     if (correct && !attemptedFirst[q.id]) {
       setPoints((p) => p + 10);
@@ -63,7 +86,7 @@ const Quiz = () => {
     }
 
     setAttemptedFirst((prev) => ({ ...prev, [q.id]: true }));
-  }, [selected, submitted, q, attemptedFirst]);
+  }, [selected, submitted, q, attemptedFirst, recordResult]);
 
   const goTo = (dir: number) => {
     const next = currentIdx + dir;
@@ -74,6 +97,33 @@ const Quiz = () => {
     setIsCorrect(false);
     setShowHint(false);
     setShowExplanation(false);
+    setFlagOpen(false);
+    setFlagText("");
+    setFlagSubmitted(false);
+  };
+
+  const handleEndQuiz = () => {
+    // Record unanswered questions as incorrect
+    tierQuestions.forEach((tq) => {
+      const alreadyRecorded = questionResults.find((r) => r.id === tq.id);
+      if (!alreadyRecorded) {
+        setQuestionResults((prev) => [...prev, { id: tq.id, category: tq.category, correct: false }]);
+      }
+    });
+    setShowResults(true);
+  };
+
+  const handleRetry = () => {
+    setCurrentIdx(0);
+    setSelected([]);
+    setSubmitted(false);
+    setIsCorrect(false);
+    setPoints(0);
+    setShowHint(false);
+    setShowExplanation(false);
+    setAttemptedFirst({});
+    setQuestionResults([]);
+    setShowResults(false);
     setFlagOpen(false);
     setFlagText("");
     setFlagSubmitted(false);
@@ -108,6 +158,17 @@ const Quiz = () => {
   const headerLabel = customLabel || (tierInfo ? `${tierInfo.label} • ${tierInfo.salary.replace(" ", "")}` : decodedTier);
   const headerGradient = tierInfo?.gradient || "gradient-tier-junior";
 
+  if (showResults) {
+    return (
+      <QuizResults
+        results={questionResults}
+        totalPoints={points}
+        tierLabel={headerLabel}
+        onRetry={handleRetry}
+      />
+    );
+  }
+
   const optionLabel = (i: number) => String.fromCharCode(65 + i);
 
   const optionClass = (i: number) => {
@@ -120,13 +181,11 @@ const Quiz = () => {
           : "border-border bg-card hover:border-primary/40 hover:shadow-sm"
       } cursor-pointer`;
     }
-    // If correct, highlight correct answers
     if (isCorrect) {
       const isCorrectAnswer = q.correctAnswers.includes(i);
       if (isCorrectAnswer) return `${base} border-success bg-success/10 text-foreground`;
       return `${base} border-border bg-card opacity-60`;
     }
-    // If wrong, only highlight user's wrong selections in red
     const wasSelected = selected.includes(i);
     if (wasSelected) return `${base} border-destructive bg-destructive/10 text-foreground`;
     return `${base} border-border bg-card opacity-60`;
@@ -145,9 +204,20 @@ const Quiz = () => {
               {headerLabel}
             </span>
           </div>
-          <span className={`text-quiz-option font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
-            Points: {points}
-          </span>
+          <div className="flex items-center gap-4">
+            <QuizTimer questionId={q.id} duration={45} />
+            <span className={`text-quiz-option font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
+              {points} pts
+            </span>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={handleEndQuiz}
+              className="text-sm"
+            >
+              End Quiz
+            </Button>
+          </div>
         </div>
       </header>
 
