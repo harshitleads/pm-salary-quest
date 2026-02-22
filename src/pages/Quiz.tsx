@@ -303,20 +303,40 @@ const Quiz = () => {
                   )}
                 </>
               ) : (
-                <>
+              <>
                   <p className="text-base font-semibold text-destructive">❌ Not quite. Try again!</p>
-                  <Button
-                    variant="secondary"
-                    onClick={() => {
-                      setSubmitted(false);
-                      setSelected([]);
-                      setIsCorrect(false);
-                      setShowExplanation(false);
-                    }}
-                    className="text-base"
-                  >
-                    Retry Question
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="secondary"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setSelected([]);
+                        setIsCorrect(false);
+                        setShowExplanation(false);
+                      }}
+                      className="text-base"
+                    >
+                      Retry Question
+                    </Button>
+                    {attemptedFirst[q.id] && (
+                      <Button
+                        variant="outline"
+                        onClick={() => setShowExplanation(true)}
+                        className="text-base"
+                      >
+                        Show Answer 📚
+                      </Button>
+                    )}
+                  </div>
+                  {showExplanation && (
+                    <div className="rounded-lg border border-border bg-muted/50 p-4 text-base text-foreground/90">
+                      <p className="mb-1 font-semibold">
+                        Correct Answer{q.correctAnswers.length > 1 ? "s" : ""}:{" "}
+                        {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
+                      </p>
+                      <p>{q.explanation}</p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
