@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 const FeedbackModal = () => {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState("Bug Report");
   const [description, setDescription] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    if (!description.trim()) return;
-    const key = `feedback-${Date.now()}`;
-    localStorage.setItem(key, JSON.stringify({ type, description, timestamp: new Date().toISOString(), shared: true }));
+  const handleSubmit = async () => {
+    if (!description.trim() || loading) return;
+    setLoading(true);
+    await supabase.from("feedback").insert({
+      feedback_type: type,
+      description: description.trim(),
+    } as any);
+    setLoading(false);
     setSubmitted(true);
     setTimeout(() => {
       setOpen(false);
@@ -61,8 +67,8 @@ const FeedbackModal = () => {
                 className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
-            <Button onClick={handleSubmit} disabled={!description.trim()} size="lg" className="w-full text-quiz-option">
-              Submit Feedback
+            <Button onClick={handleSubmit} disabled={!description.trim() || loading} size="lg" className="w-full text-quiz-option">
+              {loading ? "Submitting..." : "Submit Feedback"}
             </Button>
           </div>
         )}

@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { questions, salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 
 const Quiz = () => {
@@ -78,15 +79,13 @@ const Quiz = () => {
     setFlagSubmitted(false);
   };
 
-  const handleFlag = () => {
+  const handleFlag = async () => {
     if (!flagText.trim()) return;
-    const key = `flag-${q.id}-${Date.now()}`;
-    localStorage.setItem(key, JSON.stringify({
-      questionId: q.id,
-      question: q.question,
-      feedback: flagText,
-      timestamp: new Date().toISOString(),
-    }));
+    await supabase.from("feedback").insert({
+      question_id: q.id,
+      feedback_type: "Question Flag",
+      description: flagText.trim(),
+    } as any);
     setFlagSubmitted(true);
     setTimeout(() => {
       setFlagOpen(false);
