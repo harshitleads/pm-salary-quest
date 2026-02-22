@@ -1623,18 +1623,26 @@ D) 'Progressive disclosure' - Wrong because: this maintains two UX surfaces (sim
   "category": "Product Design",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Design version control for AI-generated content. What's the key UX challenge?",
+  "question": "You're designing version control for AI-generated content (like ChatGPT conversation branches or Midjourney variations). Traditional git-style versioning doesn't fit. What's the core UX innovation needed?",
   "options": [
-    "AI generates different outputs each time - how do you 'version' non-deterministic content?",
-    "Users need to see edit history but AI outputs are long",
-    "Branching narratives - user might want to explore multiple AI generations",
-    "All three - AI version control is fundamentally different from code version control"
+    "Tree visualization - show conversation branches visually like a mind map, not linear history",
+    "Semantic versioning - label versions by meaning ('optimistic tone' vs 'formal tone') not just timestamps",
+    "Automatic branching - every AI regeneration creates new branch, preserving all alternatives automatically",
+    "Merge affordances - let users combine parts from different AI generations into final output"
   ],
-  "correctAnswers": [3],
+  "correctAnswers": [2],
   "multipleCorrect": false,
-  "hint": "Framework: AI content is non-deterministic, long-form, and inherently branching - version control needs new paradigms.",
-  "explanation": "Option D is correct. AI version control challenges: (A) Non-determinism - same input → different outputs, so 'versions' aren't sequential edits, they're parallel generations. (B) Content length - traditional diff views don't work for multi-paragraph AI outputs. (C) Exploration - users want to try multiple AI approaches, not just linear history. This requires tree-based version control (like git branches) not linear history (like Google Docs). The hint guides you: AI content creation is fundamentally different from human editing - version control must embrace non-determinism and parallel exploration."
-},
+  "hint": "Framework: AI content is non-deterministic and parallel by nature. Version control must embrace exploration, not linear editing.",
+  "explanation": "Option C is correct. Here's why each innovation works or doesn't:
+
+A) 'Tree visualization' - Wrong because: visualization is presentation layer, not core UX innovation. You can visualize versions as tree, timeline, or cards - but if you don't capture them properly, visualization of nothing doesn't help. Also, tree viz gets overwhelming fast (10+ branches is unreadable). This is UI polish on top of real solution, not the solution itself.
+
+B) 'Semantic versioning' - Wrong because: who labels versions? If user must label ('optimistic tone'), that's friction on every regeneration. If AI auto-labels, labels are often wrong (AI guesses intention). Semantic labels help discovery later but don't solve core problem: how do you capture and navigate explorations? This is metadata, not mechanism.
+
+C) 'Automatic branching' - CORRECT. This is the core innovation: (1) Every 'regenerate' creates branch automatically, no user action needed. (2) Preserves all alternatives - user can explore 5 different AI approaches without losing any. (3) Removes 'commit' concept - every output is auto-saved as branch. (4) Users navigate branches to compare, not replay prompts. Example: ChatGPT regenerates 4 times → 4 branches exist → user picks best or combines. This matches AI workflow (generate many, pick best) vs. code workflow (edit one, save versions). The hint guides you: AI content generation is inherently exploratory - version control must capture all explorations automatically, not require users to 'save' each one.
+
+D) 'Merge affordances' - Wrong because: merging AI generations is useful feature but not the foundational UX innovation. You can't merge before you've captured versions properly. Also, merging AI content is hard (how do you merge two different essays? combine two images?). This is advanced feature after basic versioning works, not the core solution."
+}
 {
   "id": 94,
   "category": "Metrics",
