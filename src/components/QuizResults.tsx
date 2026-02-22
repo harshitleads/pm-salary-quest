@@ -70,9 +70,9 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
         {/* Spider Chart */}
         <div className="animate-fade-in-up rounded-2xl border border-border bg-card p-6 shadow-xl">
           <h2 className="text-quiz-question text-foreground mb-4 text-center">Performance by Category</h2>
-          <div className="h-72 w-full">
+          <div className="h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="55%" data={radarData}>
                 <PolarGrid stroke="hsl(var(--border))" />
                 <PolarAngleAxis
                   dataKey="subject"
