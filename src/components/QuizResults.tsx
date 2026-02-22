@@ -30,7 +30,7 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
   const dx = x - cx;
   const dy = y - cy;
   const len = Math.sqrt(dx * dx + dy * dy);
-  const offset = 18;
+  const offset = 12;
   const nx = x + (dx / len) * offset;
   const ny = y + (dy / len) * offset;
   const anchor = Math.abs(dx) < 5 ? "middle" : dx > 0 ? "start" : "end";
@@ -41,7 +41,7 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
       textAnchor={anchor}
       dominantBaseline="central"
       fill="hsl(var(--muted-foreground))"
-      fontSize={13}
+      fontSize={11}
       fontWeight={600}
     >
       {label}
@@ -94,9 +94,9 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
         {/* Spider Chart */}
         <div className="animate-fade-in-up rounded-2xl border border-border bg-card p-6 shadow-xl">
           <h2 className="text-quiz-question text-foreground mb-4 text-center">Performance by Category</h2>
-          <div className="h-96 w-full">
+          <div className="h-72 sm:h-96 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="60%" data={radarData}>
+              <RadarChart cx="50%" cy="50%" outerRadius="50%" data={radarData}>
                 <PolarGrid stroke="hsl(var(--border))" />
                 <PolarAngleAxis
                   dataKey="subject"
