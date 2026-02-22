@@ -14,6 +14,13 @@ interface FeedbackRow {
   created_at: string;
 }
 
+interface DifficultyRow {
+  id: string;
+  salary_tier: string | null;
+  difficulty_rating: string;
+  created_at: string;
+}
+
 const ALLOWED_EMAILS = ["harshitsharma@berkeley.edu"];
 
 const Admin = () => {
@@ -24,6 +31,7 @@ const Admin = () => {
   const [authError, setAuthError] = useState("");
   
   const [feedback, setFeedback] = useState<FeedbackRow[]>([]);
+  const [difficulty, setDifficulty] = useState<DifficultyRow[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -64,18 +72,18 @@ const Admin = () => {
     setUser(null);
   };
 
-  // Fetch feedback when authorized
+  // Fetch feedback and difficulty survey when authorized
   useEffect(() => {
     if (!isAuthorized) return;
     setLoading(true);
-    supabase
-      .from("feedback")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .then(({ data }) => {
-        setFeedback((data as any as FeedbackRow[]) || []);
-        setLoading(false);
-      });
+    Promise.all([
+      supabase.from("feedback").select("*").order("created_at", { ascending: false }),
+      supabase.from("difficulty_survey").select("*").order("created_at", { ascending: false }),
+    ]).then(([feedbackRes, difficultyRes]) => {
+      setFeedback((feedbackRes.data as any as FeedbackRow[]) || []);
+      setDifficulty((difficultyRes.data as any as DifficultyRow[]) || []);
+      setLoading(false);
+    });
   }, [isAuthorized]);
 
   const toggleResolved = async (id: string, current: boolean) => {
@@ -218,6 +226,44 @@ const Admin = () => {
                       >
                         {f.resolved ? "✅ Resolved" : "Mark Resolved"}
                       </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Difficulty Feedback */}
+        <h2 className="mt-10 mb-4 text-lg font-semibold text-foreground">Difficulty Feedback</h2>
+        {difficulty.length === 0 ? (
+          <p className="text-center text-muted-foreground">No difficulty feedback yet.</p>
+        ) : (
+          <div className="overflow-x-auto rounded-xl border border-border">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-muted/50">
+                <tr>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground">Tier</th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground">Rating</th>
+                  <th className="px-4 py-3 font-semibold text-muted-foreground">Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                {difficulty.map((d) => (
+                  <tr key={d.id} className="border-b border-border last:border-0">
+                    <td className="px-4 py-3 text-foreground">{d.salary_tier ?? "—"}</td>
+                    <td className="px-4 py-3">
+                      <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                        d.difficulty_rating === "too_easy" ? "bg-green-500/10 text-green-600" :
+                        d.difficulty_rating === "just_right" ? "bg-primary/10 text-primary" :
+                        "bg-destructive/10 text-destructive"
+                      }`}>
+                        {d.difficulty_rating === "too_easy" ? "Too Easy" :
+                         d.difficulty_rating === "just_right" ? "Just Right" : "Too Hard"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">
+                      {new Date(d.created_at).toLocaleString()}
                     </td>
                   </tr>
                 ))}
