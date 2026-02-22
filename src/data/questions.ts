@@ -1538,25 +1538,17 @@ D) 'Progressive disclosure' - Wrong because: this maintains two UX surfaces (sim
   "category": "Product Sense",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Perplexity is competing with Google Search using AI answers. Google could copy this feature instantly. What's Perplexity's only sustainable moat?",
+  "question": "Perplexity is competing with Google Search. What's their sustainable competitive advantage?",
   "options": [
-    "Speed - AI answers are faster than clicking through links, Google can't match without cannibalizing ads",
-    "Trust - users trust Perplexity's answers more because there's no ad incentive to bias results",
-    "Privacy - no tracking or personalization creates differentiated positioning Google can't match",
-    "Product focus - Perplexity can evolve answer quality faster as focused startup vs. Google's bureaucracy"
+    "Better AI models than Google",
+    "Faster, more direct answers (skip the links)",
+    "Privacy-focused (no tracking)",
+    "None - Google can copy any feature and win with distribution"
   ],
-  "correctAnswers": [0],
+  "correctAnswers": [1],
   "multipleCorrect": false,
-  "hint": "Framework: Sustainable moats against incumbents come from structural advantages they can't replicate without business model change.",
-  "explanation": "Option A is correct. Here's why each moat works or doesn't:
-
-A) 'Speed via no ads' - CORRECT. This is structural business model advantage: (1) Perplexity shows direct answer immediately (no click to website needed). (2) Google can't do this without destroying ad revenue (ads require clicks to publisher sites). (3) If Google gave direct answers, publishers would revolt and cut Google off from content. (4) Perplexity has no legacy ad business to protect. This is classic innovator's dilemma - incumbent can build feature technically but can't deploy it strategically. The hint guides you: sustainable moat = Google could copy feature but economically can't - business model prevents it.
-
-B) 'Trust from no ads' - Wrong because: users don't actually know if Perplexity has ad incentives or not (they could add sponsored answers). Also, Google could launch ad-free search product (Google One subscribers?) if they wanted. Trust differential isn't structural - it's current state that Google could match with product changes. Not a sustainable moat.
-
-C) 'Privacy positioning' - Wrong because: Google could launch privacy-focused search (they've tried with Incognito). Privacy is marketing position, not structural advantage. Users don't switch search engines primarily for privacy (DuckDuckGo exists but has 2% market share). Also, Perplexity could add tracking/personalization and users wouldn't notice. Not defensible.
-
-D) 'Product focus speed' - Wrong because: startup speed advantage is temporary, not sustainable moat. Google has 1000+ AI researchers and could match Perplexity's answer quality in 6-12 months if they chose to. Also, Google has way more data, compute, and talent than Perplexity - if anything, they should evolve faster once they commit. Startup speed is execution advantage, not strategic moat."
+  "hint": "Framework: Sustainable moats come from business model differences, not feature advantages.",
+  "explanation": "Option B is correct, but the real moat is the business model: Perplexity can give direct answers because it doesn't need clicks for ad revenue. Google's business model (ads) requires users to click through to websites. This creates product constraint Google can't easily escape without cannibalizing revenue. Options A, C are defensible but copiable. Option D is too pessimistic. The hint guides you: sustainable competition against incumbents requires business model differentiation - Perplexity's advantage isn't better AI, it's freedom from ads enabling better UX that Google structurally can't match."
 },
 {
   "id": 89,
