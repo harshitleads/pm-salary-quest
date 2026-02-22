@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      difficulty_survey: {
+        Row: {
+          created_at: string
+          difficulty_rating: string
+          id: string
+          salary_tier: string | null
+          score: number | null
+          total_questions: number | null
+        }
+        Insert: {
+          created_at?: string
+          difficulty_rating: string
+          id?: string
+          salary_tier?: string | null
+          score?: number | null
+          total_questions?: number | null
+        }
+        Update: {
+          created_at?: string
+          difficulty_rating?: string
+          id?: string
+          salary_tier?: string | null
+          score?: number | null
+          total_questions?: number | null
+        }
+        Relationships: []
+      }
       feedback: {
         Row: {
           created_at: string
