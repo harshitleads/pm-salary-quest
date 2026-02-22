@@ -1642,7 +1642,7 @@ B) 'Semantic versioning' - Wrong because: who labels versions? If user must labe
 C) 'Automatic branching' - CORRECT. This is the core innovation: (1) Every 'regenerate' creates branch automatically, no user action needed. (2) Preserves all alternatives - user can explore 5 different AI approaches without losing any. (3) Removes 'commit' concept - every output is auto-saved as branch. (4) Users navigate branches to compare, not replay prompts. Example: ChatGPT regenerates 4 times → 4 branches exist → user picks best or combines. This matches AI workflow (generate many, pick best) vs. code workflow (edit one, save versions). The hint guides you: AI content generation is inherently exploratory - version control must capture all explorations automatically, not require users to 'save' each one.
 
 D) 'Merge affordances' - Wrong because: merging AI generations is useful feature but not the foundational UX innovation. You can't merge before you've captured versions properly. Also, merging AI content is hard (how do you merge two different essays? combine two images?). This is advanced feature after basic versioning works, not the core solution."
-}
+},
 {
   "id": 94,
   "category": "Metrics",
