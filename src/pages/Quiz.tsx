@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { questions, salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,11 @@ const Quiz = () => {
   }, [decodedTier, customQuestions]);
 
   const [currentIdx, setCurrentIdx] = useState(0);
+
+  // Scroll to top on mount to prevent landing mid-page on mobile
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [selected, setSelected] = useState<number[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -195,28 +200,20 @@ const Quiz = () => {
     <div className="min-h-screen bg-background">
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b border-border bg-card/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button onClick={() => navigate("/")} className="text-muted-foreground transition-colors hover:text-foreground">
+        <div className="mx-auto flex max-w-3xl px-4 py-3">
+          <div className="flex w-full items-center justify-between">
+            <button onClick={() => navigate("/")} className="text-muted-foreground transition-colors hover:text-foreground text-sm shrink-0">
               ← Back
             </button>
-            <span className={`${headerGradient} rounded-full px-3 py-1 text-xs font-bold tracking-wide text-white`}>
+            <span className={`${headerGradient} rounded-full px-3 py-1 text-xs font-bold tracking-wide text-white truncate max-w-[180px]`}>
               {headerLabel}
             </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <QuizTimer questionId={q.id} duration={45} />
-            <span className={`text-quiz-option font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
-              {points} pts
-            </span>
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={handleEndQuiz}
-              className="text-sm"
-            >
-              End Quiz
-            </Button>
+            <div className="flex items-center gap-3 shrink-0">
+              <QuizTimer questionId={q.id} duration={45} />
+              <span className={`text-sm font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
+                {points} pts
+              </span>
+            </div>
           </div>
         </div>
       </header>
@@ -374,9 +371,17 @@ const Quiz = () => {
         </div>
 
         {/* Navigation */}
-        <div className="mt-6 flex justify-between gap-4">
+        <div className="mt-6 flex items-center justify-between gap-3">
           <Button variant="outline" size="lg" disabled={currentIdx === 0} onClick={() => goTo(-1)} className="text-quiz-option">
             ← Previous
+          </Button>
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={handleEndQuiz}
+            className="text-sm"
+          >
+            End Quiz
           </Button>
           <Button variant="outline" size="lg" disabled={currentIdx === tierQuestions.length - 1} onClick={() => goTo(1)} className="text-quiz-option">
             Next →
