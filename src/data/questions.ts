@@ -1479,17 +1479,25 @@ D) 'Better task definitions' - CORRECT. Most labeling errors at scale come from:
   "category": "Product Design",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Design a prompt engineering interface for non-technical users. What's the core UX challenge?",
+  "question": "You're building prompt engineering interface for enterprise users who want to customize AI behavior. Power users want full control, but most users don't understand prompting. What's your UX strategy?",
   "options": [
-    "Users don't know how to write effective prompts",
-    "Users don't have mental model of how LLMs work",
-    "Users want outcomes, not to learn prompting",
-    "All three - prompting is inherently too technical for most users"
+    "Structured forms that generate prompts - users fill in fields, system creates optimized prompt behind the scenes",
+    "Template library with customization - provide proven prompts users can tweak without starting from scratch",
+    "AI-assisted prompt writing - users write natural language, AI suggests improvements and optimizations",
+    "Progressive disclosure - simple mode for most users, advanced mode unlocks prompt editing for power users"
   ],
-  "correctAnswers": [2],
+  "correctAnswers": [0],
   "multipleCorrect": false,
-  "hint": "Framework: The goal isn't teaching prompting - it's achieving outcomes without requiring prompting expertise.",
-  "explanation": "Option C is correct and drives product philosophy. Users don't want to learn prompting - they want to accomplish tasks. Product should either: (1) Guide prompting (templates, suggestions, autocomplete), (2) Remove prompting (structured inputs → AI generates prompts), (3) Learn from usage (AI improves prompts based on user edits). Options A, B are problems but not the strategic insight. Option D accepts defeat. The hint guides you: exposing LLM complexity to end users is product failure - abstract it away through better UX, don't teach users to work around it."
+  "hint": "Framework: Don't expose complexity users don't need. Abstract prompting into structured inputs that compile to prompts.",
+  "explanation": "Option A is correct. Here's why each approach works or doesn't:
+
+A) 'Structured forms generate prompts' - CORRECT. This is how successful enterprise AI products work (Jasper, Copy.ai): (1) Users select: tone (professional/casual), length (short/long), audience (executives/engineers), constraints (must include X, avoid Y). (2) System compiles this into optimized prompt users never see. (3) Users get control without complexity - they understand 'tone' even if they don't understand prompt engineering. This scales because you can improve prompt generation without user retraining. The hint guides you: prompting is implementation detail - expose business-level controls (tone, length, style) not technical controls (temperature, system prompts).
+
+B) 'Template library' - Wrong because: templates teach prompting through examples, but most users won't understand how to adapt them. Changing 'write formal email' template to 'write casual email' requires understanding which parts to modify. Also creates template explosion (need template for every use case). This is better than blank slate but still requires prompt literacy.
+
+C) 'AI-assisted prompt writing' - Wrong because: this assumes users want to write prompts at all. Most don't - they want outcomes, not to learn meta-skill. Also, 'AI helping you prompt AI' is recursive complexity. Users must still understand prompting basics to evaluate AI suggestions. This is clever technical solution to wrong problem.
+
+D) 'Progressive disclosure' - Wrong because: this maintains two UX surfaces (simple and advanced) that diverge over time. Simple mode users who need advanced feature must learn entirely new interface. Power users avoid simple mode even when it would work. Creates maintenance burden (two experiences to design/test/support) and confused users (am I ready for advanced mode?). Progressive disclosure works when advanced features extend simple ones naturally - doesn't apply when simple mode hides fundamental mechanism (prompts)."
 },
 {
   "id": 86,
@@ -1530,17 +1538,25 @@ D) 'Better task definitions' - CORRECT. Most labeling errors at scale come from:
   "category": "Product Sense",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Perplexity is competing with Google Search. What's their sustainable competitive advantage?",
+  "question": "Perplexity is competing with Google Search using AI answers. Google could copy this feature instantly. What's Perplexity's only sustainable moat?",
   "options": [
-    "Better AI models than Google",
-    "Faster, more direct answers (skip the links)",
-    "Privacy-focused (no tracking)",
-    "None - Google can copy any feature and win with distribution"
+    "Speed - AI answers are faster than clicking through links, Google can't match without cannibalizing ads",
+    "Trust - users trust Perplexity's answers more because there's no ad incentive to bias results",
+    "Privacy - no tracking or personalization creates differentiated positioning Google can't match",
+    "Product focus - Perplexity can evolve answer quality faster as focused startup vs. Google's bureaucracy"
   ],
-  "correctAnswers": [1],
+  "correctAnswers": [0],
   "multipleCorrect": false,
-  "hint": "Framework: Sustainable moats come from business model differences, not feature advantages.",
-  "explanation": "Option B is correct, but the real moat is the business model: Perplexity can give direct answers because it doesn't need clicks for ad revenue. Google's business model (ads) requires users to click through to websites. This creates product constraint Google can't easily escape without cannibalizing revenue. Options A, C are defensible but copiable. Option D is too pessimistic. The hint guides you: sustainable competition against incumbents requires business model differentiation - Perplexity's advantage isn't better AI, it's freedom from ads enabling better UX that Google structurally can't match."
+  "hint": "Framework: Sustainable moats against incumbents come from structural advantages they can't replicate without business model change.",
+  "explanation": "Option A is correct. Here's why each moat works or doesn't:
+
+A) 'Speed via no ads' - CORRECT. This is structural business model advantage: (1) Perplexity shows direct answer immediately (no click to website needed). (2) Google can't do this without destroying ad revenue (ads require clicks to publisher sites). (3) If Google gave direct answers, publishers would revolt and cut Google off from content. (4) Perplexity has no legacy ad business to protect. This is classic innovator's dilemma - incumbent can build feature technically but can't deploy it strategically. The hint guides you: sustainable moat = Google could copy feature but economically can't - business model prevents it.
+
+B) 'Trust from no ads' - Wrong because: users don't actually know if Perplexity has ad incentives or not (they could add sponsored answers). Also, Google could launch ad-free search product (Google One subscribers?) if they wanted. Trust differential isn't structural - it's current state that Google could match with product changes. Not a sustainable moat.
+
+C) 'Privacy positioning' - Wrong because: Google could launch privacy-focused search (they've tried with Incognito). Privacy is marketing position, not structural advantage. Users don't switch search engines primarily for privacy (DuckDuckGo exists but has 2% market share). Also, Perplexity could add tracking/personalization and users wouldn't notice. Not defensible.
+
+D) 'Product focus speed' - Wrong because: startup speed advantage is temporary, not sustainable moat. Google has 1000+ AI researchers and could match Perplexity's answer quality in 6-12 months if they chose to. Also, Google has way more data, compute, and talent than Perplexity - if anything, they should evolve faster once they commit. Startup speed is execution advantage, not strategic moat."
 },
 {
   "id": 89,
