@@ -22,7 +22,7 @@ const Admin = () => {
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [authError, setAuthError] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
+  
   const [feedback, setFeedback] = useState<FeedbackRow[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -53,24 +53,9 @@ const Admin = () => {
       return;
     }
 
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: window.location.origin + "/admin" },
-      });
-      if (error) {
-        setAuthError(error.message);
-      } else {
-        setAuthError("");
-        setIsSignUp(false);
-        alert("Check your email for a confirmation link, then log in.");
-      }
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        setAuthError(error.message);
-      }
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setAuthError(error.message);
     }
   };
 
@@ -114,7 +99,7 @@ const Admin = () => {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-xl">
           <h1 className="mb-2 text-center text-quiz-heading text-foreground">
-            Admin {isSignUp ? "Sign Up" : "Login"}
+            Admin Login
           </h1>
           <p className="mb-6 text-center text-sm text-muted-foreground">
             Authorized admins only
@@ -143,15 +128,12 @@ const Admin = () => {
           />
 
           <Button onClick={handleAuth} size="lg" className="w-full">
-            {isSignUp ? "Sign Up" : "Login"}
+            Login
           </Button>
 
-          <button
-            onClick={() => { setIsSignUp(!isSignUp); setAuthError(""); }}
-            className="mt-3 block w-full text-center text-sm text-muted-foreground hover:text-foreground"
-          >
-            {isSignUp ? "Already have an account? Login" : "Need an account? Sign Up"}
-          </button>
+          <p className="mt-4 text-center text-sm text-muted-foreground">
+            Need access? Contact Harshit.
+          </p>
 
           <button
             onClick={() => navigate("/")}
