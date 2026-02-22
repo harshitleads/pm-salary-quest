@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DifficultySurvey from "@/components/DifficultySurvey";
 import { Button } from "@/components/ui/button";
 import {
   RadarChart,
@@ -51,6 +52,7 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
 
 const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsProps) => {
   const navigate = useNavigate();
+  const [surveyDone, setSurveyDone] = useState(false);
 
   const categoryStats = useMemo(() => {
     return CATEGORIES.map((cat) => {
@@ -90,6 +92,16 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
             {totalCorrect} / {results.length} correct ({overallPct}%)
           </p>
         </div>
+
+        {/* Difficulty Survey */}
+        {!surveyDone && (
+          <DifficultySurvey
+            salaryTier={tierLabel}
+            score={totalCorrect}
+            totalQuestions={results.length}
+            onComplete={() => setSurveyDone(true)}
+          />
+        )}
 
         {/* Spider Chart */}
         <div className="animate-fade-in-up rounded-2xl border border-border bg-card p-6 shadow-xl">
