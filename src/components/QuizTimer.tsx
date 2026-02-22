@@ -37,15 +37,8 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
   const percentage = Math.max(0, (timeLeft / duration) * 100);
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="relative h-2 w-24 overflow-hidden rounded-full bg-muted">
-        <div
-          className={`absolute left-0 top-0 h-full rounded-full transition-all duration-1000 ${
-            timeLeft > 10 ? "bg-success" : timeLeft > 0 ? "bg-secondary" : "bg-destructive"
-          }`}
-          style={{ width: `${percentage}%` }}
-        />
-      </div>
+    <div className="flex items-center gap-1.5">
+      <span className="text-muted-foreground text-sm">⏱</span>
       <span
         className={`font-display text-sm font-bold tabular-nums ${
           isNegative ? "text-destructive" : timeLeft <= 10 ? "text-secondary" : "text-muted-foreground"
