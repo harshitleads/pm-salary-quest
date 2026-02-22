@@ -1293,34 +1293,50 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Anthropic is designing Constitutional AI. What's the core product challenge in making AI values learnable and auditable?",
+  "question": "Anthropic is designing Constitutional AI. Users complain that harmlessness makes Claude refuse helpful requests. What's the core product tension you're navigating?",
   "options": [
-    "Values are subjective - no universal set exists",
-    "Training for values might degrade capability",
-    "Users can't easily verify if AI is following stated values",
-    "All three challenges must be solved for Constitutional AI to work"
+    "Safety vs. capability - making AI harmless reduces its usefulness for edge cases",
+    "Universal values vs. user autonomy - whose definition of 'harmful' should the AI follow?",
+    "Transparency vs. simplicity - explaining Constitutional AI's reasoning adds friction to every response",
+    "Short-term satisfaction vs. long-term trust - users want immediate help, society needs reliable AI"
   ],
-  "correctAnswers": [3],
+  "correctAnswers": [0],
   "multipleCorrect": false,
-  "hint": "Framework: Constitutional AI requires defining values, training them in, and making them verifiable.",
-  "explanation": "Option D is correct. Constitutional AI faces: (A) Values definition - whose values? How do you handle conflicts? (B) Capability-values tradeoff - making AI harmless might make it less useful. (C) Auditability - users need to verify AI is actually following values, not just claiming to. All three are active research problems. The hint guides you: building 'aligned AI' isn't just technical - it requires philosophical clarity (what values?), engineering tradeoffs (capability vs. safety), and product transparency (how do users trust it?)."
+  "hint": "Framework: Constitutional AI creates fundamental capability-safety tradeoff. Which matters most for product adoption?",
+  "explanation": "Option A is correct. Here's why each tension differs:
+
+A) 'Safety vs. capability' - CORRECT. This is the core Constitutional AI product challenge: harmlessness training makes models refuse edge cases that might be legitimate (creative writing with violence, security research, medical edge cases). Every safety filter creates false positives. Product must balance: (1) Harm prevention (refuse truly dangerous requests), (2) Usefulness (allow legitimate edge cases). This directly affects user retention - overly cautious AI drives users to less safe competitors. The hint guides you: capability-safety is the operational tradeoff you manage daily through eval tuning, not philosophical debate.
+
+B) 'Universal values vs. user autonomy' - Wrong because: while this is philosophically interesting, it's not the day-to-day product tension. Constitutional AI already made this choice (Anthropic defines values, users can't customize core safety). The product challenge isn't 'whose values' but 'how strict.' This is research paper territory, not product management.
+
+C) 'Transparency vs. simplicity' - Wrong because: Constitutional AI's reasoning is mostly invisible to users. Claude doesn't explain 'I refused this because of Constitutional principle 3.' Users just see refusal. Transparency would actually help product (users understand why), but isn't current implementation. This conflates research approach with user experience.
+
+D) 'Short-term satisfaction vs. long-term trust' - Wrong because: this frames users as short-sighted and society as long-term, but users also want trustworthy AI. Also, 'long-term trust' is vague - trust from whom? Regulators? Users? This is marketing language, not operational product tradeoff. The real tension is immediate (this specific refusal) vs. systematic (overall safety posture)."
 },
 {
   "id": 77,
   "category": "Product Design",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Design an evaluation framework for a coding agent that can modify large codebases. What matters most?",
+  "question": "You're designing eval framework for Cursor/Copilot coding agent. Engineers propose measuring: test pass rate, code review approval rate, or time-to-completion. Which is your North Star metric?",
   "options": [
-    "Code correctness - does it compile and run?",
-    "Code quality - is it maintainable, secure, performant?",
-    "Task completion - did it achieve the user's goal?",
-    "All three, plus: didn't break existing functionality"
+    "Test pass rate - code must be functionally correct above all else",
+    "Code review approval rate - human developers are the ultimate judges of quality",
+    "Time-to-completion - developers use agents to move faster, measure what they care about",
+    "Developer retention of generated code - how often do they keep vs. rewrite it"
   ],
   "correctAnswers": [3],
   "multipleCorrect": false,
-  "hint": "Framework: Agent evals must measure correctness, quality, goal achievement, and safety.",
-  "explanation": "Option D is correct. Comprehensive agent evaluation needs: (1) Correctness (does code run without errors?). (2) Quality (is it readable, secure, efficient?). (3) Task completion (did it solve the user's problem?). (4) Safety (did it break existing tests or introduce bugs?). Options A, B, C are each necessary but insufficient - code can be correct but insecure, achieve goals but be unmaintainable, or work but break other features. The hint guides you: agent evaluation is multi-dimensional - you need deterministic checks (tests) + quality metrics (linters) + goal alignment + regression detection."
+  "hint": "Framework: North Star metrics measure actual user value, not intermediate quality signals. What indicates adoption?",
+  "explanation": "Option D is correct. Here's why each metric works or doesn't:
+
+A) 'Test pass rate' - Wrong because: this is necessary but not sufficient. Agent could generate code that passes tests but is unmaintainable, insecure, or doesn't match developer intent. Also, test coverage varies wildly - 100% pass rate on sparse tests means little. This measures correctness floor, not user value. Shows inexperience with real-world code quality.
+
+B) 'Code review approval rate' - Wrong because: code review is noisy signal - approvals depend on reviewer strictness, team culture, time pressure. Also, this requires human-in-loop for every eval (doesn't scale). Developers might approve code they plan to rewrite later (approval ≠ quality). Confuses process metric with outcome.
+
+C) 'Time-to-completion' - Wrong because: agent might complete tasks fast by generating poor code. Time saved that creates future tech debt is negative value. Also, 'completion' is ambiguous - when agent says done? When tests pass? When code ships? This optimizes speed without quality constraint, leading to problematic agent behavior.
+
+D) 'Developer retention of generated code' - CORRECT. This reveals true value: (1) Developer keeps code → agent saved them time with acceptable quality. (2) Developer rewrites → agent wasted their time. (3) Retention % indicates: quality (code worth keeping), alignment (matched intent), efficiency (saved real work). Captures both speed AND quality in one metric that reflects developer behavior, not agent claims. The hint guides you: retention is revealed preference - developers vote with their actions (keep vs. delete) not surveys. This is your adoption signal."
 },
 {
   "id": 78,
@@ -1395,17 +1411,25 @@ export const questions: Question[] = [
   "category": "Metrics",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Your AI product has 90% task success rate. Users say it's unreliable. What metric are you missing?",
+  "question": "Your AI agent has 90% task success rate but users report it 'feels unreliable.' You dig into the data and find successful tasks take 2-30 seconds (high variance). What's the actual problem?",
   "options": [
-    "Time to completion - successes might be too slow",
-    "Consistency - same inputs giving different outputs",
-    "Partial failures - tasks 'succeeded' but output quality was poor",
-    "All of these could explain the perception gap"
+    "Latency variance - users can't predict how long tasks will take, destroying mental model of reliability",
+    "Hidden partial failures - tasks 'succeed' but output quality is inconsistent, requiring user cleanup",
+    "Success definition mismatch - your metric says success, but users have different quality bar",
+    "User expectations - 90% isn't good enough for tasks they consider 'should always work'"
   ],
-  "correctAnswers": [3],
+  "correctAnswers": [0],
   "multipleCorrect": false,
-  "hint": "Framework: Task success is binary, but user experience is multi-dimensional.",
-  "explanation": "Option D is correct. 90% task success can feel unreliable if: (A) Takes too long - technically succeeds but feels broken. (B) Inconsistent - same request works sometimes, fails others (users can't predict). (C) Poor quality 'successes' - completed task but output needed heavy editing. All three create reliability perception gaps. The hint guides you: binary success metrics hide important quality signals - latency variance, consistency, and output quality all affect perceived reliability independent of success rate."
+  "hint": "Framework: Reliability perception comes from predictability, not just success rate. Variance kills trust.",
+  "explanation": "Option A is correct. Here's why each explains the perception gap:
+
+A) 'Latency variance' - CORRECT given the data point (2-30 seconds). When users can't predict performance, they can't trust the system: (1) Same task takes 3 seconds sometimes, 25 seconds others - users don't know if it's working or hung. (2) Unpredictability feels like unreliability even with 90% success. (3) Users abandon tasks before completion because they don't know if agent is stuck. High variance latency is worse than consistent slower performance - predictability enables trust. The hint guides you: reliability isn't just success rate, it's predictable success. 5 seconds ±1s feels reliable, 15 seconds ±15s feels broken even if both succeed 90%.
+
+B) 'Hidden partial failures' - Wrong because: the question specifically gives you latency variance data as the clue. While partial failures are a real issue (task succeeds but output needs editing), that's not what the data reveals. This assumes facts not in evidence - we know about latency, not output quality. Answer what you're asked.
+
+C) 'Success definition mismatch' - Wrong because: again, latency variance is the smoking gun provided. Definitional mismatch is plausible general explanation but ignores the specific data point. You're given the answer (high variance latency) and asked to explain it - don't invent alternative explanations.
+
+D) 'User expectations' - Wrong because: 90% is actually very good for many agent tasks. Research, analysis, draft generation don't require 99% success rates. Also, this doesn't explain why it 'feels unreliable' - if tasks succeeded 90% of the time predictably, users would calibrate. The 'feels unreliable' comes from unpredictability (variance), not absolute success rate."
 },
 {
   "id": 83,
@@ -1429,18 +1453,27 @@ export const questions: Question[] = [
   "category": "Product Sense",
   "salaryTier": "AI Frontier",
   "salaryRange": "$280K-$350K",
-  "question": "Scale AI is building human-in-the-loop data labeling. What's the key product insight for quality?",
+  "question": "Scale AI's data labeling quality is dropping as they scale to 100K labelers. The CEO asks: should we invest in better tooling, more expert labelers, or stricter quality validation? Budget for one.",
   "options": [
-    "More labelers = higher quality through consensus",
-    "Expert labelers = higher quality through skill",
-    "Better tooling = higher quality through reducing labeler errors",
-    "Quality comes from: clear task definition + skilled labelers + good tools + validation"
+    "Better tooling - reduce labeler errors through improved UI, auto-checks, and guided workflows",
+    "Expert labelers - pay 3x more for domain experts who make fewer mistakes",
+    "Stricter validation - add more review layers, consensus requirements, and spot checks",
+    "Better task definitions - most errors come from ambiguous instructions, not labeler skill"
   ],
   "correctAnswers": [3],
   "multipleCorrect": false,
-  "hint": "Framework: Data quality is a system property - task clarity, labeler skill, tooling, and validation all matter.",
-  "explanation": "Option D is correct. High-quality labeled data requires: (1) Clear task definitions (what is this label? when to use it?). (2) Skilled labelers (domain expertise, training). (3) Good tooling (intuitive UI reduces errors). (4) Validation (spot checks, consensus, test questions). Remove any one element and quality degrades. Options A, B, C each address one factor but miss the system view. The hint guides you: data quality isn't about one lever - it's about designing the entire system (task → labeler → tool → validation) to minimize error at each stage."
+  "hint": "Framework: Quality problems as you scale usually come from task ambiguity, not labeler capability. Fix the root.",
+  "explanation": "Option D is correct. Here's why each investment works or doesn't:
+
+A) 'Better tooling' - Wrong because: while tooling helps, 100K labelers facing ambiguous tasks will make inconsistent choices even with great UI. Tooling can catch obvious errors (missing labels) but can't resolve judgment calls ('is this image professional quality?'). If task definition is ambiguous, labelers interpret differently - no UI prevents this. Tooling is force multiplier on clear tasks, not solution for ambiguous ones.
+
+B) 'Expert labelers' - Wrong because: at 100K scale, you can't hire only experts - they don't exist in sufficient numbers. Also, experts are 3x cost but maybe 1.3x quality (diminishing returns on expertise for many labeling tasks). If task definitions are ambiguous, even experts disagree. This is expensive and doesn't scale. Shows lack of data labeling operational experience.
+
+C) 'Stricter validation' - Wrong because: adding review layers increases cost and latency without fixing root cause. If task definition is 'label professional quality images' without defining 'professional quality,' reviewers will disagree with labelers, and senior reviewers will disagree with reviewers. Consensus on ambiguous tasks just means 'three people made same interpretation' not 'correct answer.' Validation catches errors in well-defined tasks, not definitional ambiguity.
+
+D) 'Better task definitions' - CORRECT. Most labeling errors at scale come from: (1) Ambiguous instructions ('professional quality' means different things to different labelers). (2) Missing edge case guidance (what if image is cropped?). (3) Inconsistent examples (positive examples don't match negative examples). Fix by: detailed rubrics, edge case playbooks, calibration sets, regular labeler training on new definitions. The hint guides you: when quality drops at scale, first check if labelers even know what 'correct' means. Task clarity scales better than expert hiring or validation overhead."
 },
+
 {
   "id": 85,
   "category": "Product Design",
