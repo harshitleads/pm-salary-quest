@@ -25,7 +25,7 @@ const Quiz = () => {
   const tierInfo = salaryTiers.find((t) => t.key === decodedTier);
   const tierQuestions = useMemo(() => {
     if (customQuestions) return customQuestions;
-    return questions.filter((q) => q.salaryTier === decodedTier);
+    return [...questions.filter((q) => q.salaryTier === decodedTier)].sort(() => Math.random() - 0.5);
   }, [decodedTier, customQuestions]);
 
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -205,7 +205,7 @@ const Quiz = () => {
             <button onClick={() => navigate("/")} className="text-muted-foreground transition-colors hover:text-foreground text-sm shrink-0">
               ← Back
             </button>
-            <span className={`${headerGradient} rounded-full px-3 py-1 text-xs font-bold tracking-wide text-white truncate max-w-[180px]`}>
+            <span className={`${headerGradient} rounded-full px-3 py-1 text-xs font-bold tracking-wide text-white max-w-[180px] truncate md:max-w-none md:whitespace-nowrap md:overflow-visible`}>
               {headerLabel}
             </span>
             <div className="flex items-center gap-3 shrink-0">

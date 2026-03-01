@@ -32,7 +32,7 @@ const Index = () => {
         <h2 className="mb-8 text-center text-quiz-heading text-foreground md:text-4xl">
           Choose Your Target Tier
         </h2>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {salaryTiers.map((tier, i) => (
             <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
               <SalaryTierCard tier={tier} />
