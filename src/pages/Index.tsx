@@ -32,16 +32,16 @@ const Index = () => {
         <h2 className="mb-8 text-center text-quiz-heading text-foreground md:text-4xl">
           Choose Your Target Tier
         </h2>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 justify-center">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {salaryTiers.slice(0, 3).map((tier, i) => (
             <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
               <SalaryTierCard tier={tier} />
             </div>
           ))}
         </div>
-        <div className="mt-5 flex justify-center gap-5">
+        <div className="mt-5 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:max-w-[calc(66.666%+0.42rem)] lg:mx-auto">
           {salaryTiers.slice(3).map((tier, i) => (
-            <div key={tier.key} className="animate-fade-in-up w-full sm:w-auto sm:flex-1 lg:max-w-[calc(33.333%-0.42rem)]" style={{ animationDelay: `${(i + 3) * 80}ms` }}>
+            <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${(i + 3) * 80}ms` }}>
               <SalaryTierCard tier={tier} />
             </div>
           ))}
