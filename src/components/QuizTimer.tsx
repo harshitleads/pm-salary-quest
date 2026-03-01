@@ -38,7 +38,7 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
 
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-muted-foreground text-base md:text-lg">⏱</span>
+      <span className="text-muted-foreground text-lg md:text-xl">⏱</span>
       <span
         className={`font-display text-sm font-bold tabular-nums ${
           isNegative ? "text-destructive" : timeLeft <= 10 ? "text-secondary" : "text-muted-foreground"
