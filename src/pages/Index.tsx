@@ -32,16 +32,13 @@ const Index = () => {
         <h2 className="mb-8 text-center text-quiz-heading text-foreground md:text-4xl">
           Choose Your Target Tier
         </h2>
-        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {salaryTiers.slice(0, 3).map((tier, i) => (
-            <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
-              <SalaryTierCard tier={tier} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-5 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:max-w-[calc(66.666%+0.42rem)] lg:mx-auto">
-          {salaryTiers.slice(3).map((tier, i) => (
-            <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${(i + 3) * 80}ms` }}>
+        <div className="tier-grid grid gap-5 grid-cols-1 sm:grid-cols-2">
+          {salaryTiers.map((tier, i) => (
+            <div
+              key={tier.key}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
               <SalaryTierCard tier={tier} />
             </div>
           ))}
@@ -53,11 +50,11 @@ const Index = () => {
         <h2 className="mb-6 text-center text-quiz-heading text-foreground md:text-4xl">
           Or Practice By Mode
         </h2>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
           <Button
             size="lg"
             onClick={shuffleAndGo}
-            className="text-quiz-option bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            className="w-full sm:w-auto text-quiz-option bg-secondary text-secondary-foreground hover:bg-secondary/90"
           >
             🔀 Shuffle All Questions
           </Button>
@@ -67,7 +64,7 @@ const Index = () => {
               size="lg"
               variant="outline"
               onClick={() => categoryGo(cat)}
-              className="text-quiz-option"
+              className="w-full sm:w-auto text-quiz-option"
             >
               📂 {cat}
             </Button>
