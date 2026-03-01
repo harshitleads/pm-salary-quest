@@ -15,7 +15,7 @@ const SalaryTierCard = ({ tier }: { tier: typeof salaryTiers[number] }) => {
   return (
     <button
       onClick={() => navigate(`/quiz/${encodeURIComponent(tier.key)}`)}
-      className={`${tier.gradient} group relative w-full h-full overflow-hidden rounded-2xl p-6 text-left shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] flex flex-col`}
+      className={`${tier.gradient} group relative w-full h-full min-h-[200px] overflow-hidden rounded-2xl p-6 text-left shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] flex flex-col`}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="relative z-10 flex flex-col gap-3 flex-1">
