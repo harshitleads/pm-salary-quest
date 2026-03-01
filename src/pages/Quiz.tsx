@@ -37,6 +37,7 @@ const Quiz = () => {
   const [selected, setSelected] = useState<number[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [earnedPoints, setEarnedPoints] = useState(false);
   const [points, setPoints] = useState(0);
   const [pointsBump, setPointsBump] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -75,6 +76,7 @@ const Quiz = () => {
   const handleSubmit = useCallback(() => {
     if (selected.length === 0 || submitted) return;
     setSubmitted(true);
+    setEarnedPoints(false);
 
     const correct =
       selected.length === q.correctAnswers.length &&
@@ -83,8 +85,10 @@ const Quiz = () => {
     setIsCorrect(correct);
     recordResult(correct);
 
-    if (correct && !attemptedFirst[q.id]) {
+    const firstAttempt = !attemptedFirst[q.id];
+    if (correct && firstAttempt) {
       setPoints((p) => p + 10);
+      setEarnedPoints(true);
       setPointsBump(true);
       setTimeout(() => setPointsBump(false), 400);
       confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
@@ -283,7 +287,7 @@ const Quiz = () => {
             <div className="mt-6 space-y-3">
               {isCorrect ? (
                 <>
-                  <p className="text-base font-semibold text-success">✅ Correct! +10 points</p>
+                  <p className="text-base font-semibold text-success">✅ Correct! {earnedPoints ? "+10 points" : "+0 points"}</p>
                   {!showExplanation && (
                     <Button variant="outline" onClick={() => setShowExplanation(true)} className="text-base">
                       View Explanation 📚
