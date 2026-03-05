@@ -147,7 +147,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
                       style={{ width: `${s.pct}%` }}
                     />
                   </div>
-                  <span className="text-sm font-bold text-muted-foreground w-20 text-right">
+                  <span className="text-sm font-bold text-foreground/70 w-20 text-right">
                     {s.correct}/{s.total} ({s.pct}%)
                   </span>
                 </div>

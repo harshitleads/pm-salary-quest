@@ -47,15 +47,15 @@ const FeedbackModal = () => {
           <div className="flex flex-col gap-4 pt-2">
             <div>
               <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Type of Feedback</label>
-              <select
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-base font-medium focus:outline-none focus:ring-2 focus:ring-ring"
-              >
-                <option value="Bug Report">🐛 Bug Report</option>
-                <option value="Feature Request">💡 Feature Request</option>
-                <option value="Question / Other">❓ Question / Other</option>
-              </select>
+                <select
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  className="w-full rounded-lg border border-border bg-muted px-3 py-2.5 text-base font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-ring [&>option]:bg-card [&>option]:text-foreground"
+                >
+                  <option value="Bug Report">🐛 Bug Report</option>
+                  <option value="Feature Request">💡 Feature Request</option>
+                  <option value="Question / Other">❓ Question / Other</option>
+                </select>
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Description</label>
@@ -64,7 +64,7 @@ const FeedbackModal = () => {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={5}
                 placeholder="Tell us what happened or what you'd like to see..."
-                className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full resize-none rounded-lg border border-border bg-muted px-3 py-2.5 text-base text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <Button onClick={handleSubmit} disabled={!description.trim() || loading} size="lg" className="w-full text-quiz-option">

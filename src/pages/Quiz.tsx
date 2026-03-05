@@ -219,7 +219,7 @@ const Quiz = () => {
       <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl px-4 py-3">
           <div className="flex w-full items-center justify-between">
-            <button onClick={() => navigate("/")} className="text-muted-foreground transition-colors hover:text-foreground text-sm shrink-0">
+            <button onClick={() => navigate("/")} className="text-foreground/70 transition-colors hover:text-foreground text-sm font-medium shrink-0">
               ← Back
             </button>
             <span className={`${headerGradient} rounded-full px-4 py-1.5 text-xs font-bold tracking-wide text-white max-w-[200px] truncate md:max-w-none md:whitespace-nowrap md:overflow-visible`}>
@@ -260,7 +260,7 @@ const Quiz = () => {
           <div className="flex flex-col gap-3">
             {q.options.map((opt, i) => (
               <button key={i} onClick={() => toggleSelect(i)} className={`${optionClass(i)} ${timeExpired ? "opacity-60 pointer-events-none" : ""}`}>
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted text-sm font-bold text-muted-foreground">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted/80 text-sm font-bold text-foreground/70">
                   {optionLabel(i)}
                 </span>
                 <span>{opt}</span>
@@ -329,7 +329,7 @@ const Quiz = () => {
                     </Button>
                   )}
                   {showExplanation && (
-                    <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-muted-foreground">
+                     <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-foreground/80">
                       <p className="mb-1 font-semibold text-foreground">
                         Correct Answer{q.correctAnswers.length > 1 ? "s" : ""}:{" "}
                         {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
@@ -365,7 +365,7 @@ const Quiz = () => {
                     )}
                   </div>
                   {showExplanation && (
-                    <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-muted-foreground">
+                    <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-foreground/80">
                       <p className="mb-1 font-semibold text-foreground">
                         Correct Answer{q.correctAnswers.length > 1 ? "s" : ""}:{" "}
                         {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
@@ -397,7 +397,7 @@ const Quiz = () => {
                       onChange={(e) => setFlagText(e.target.value)}
                       rows={3}
                       placeholder="What's wrong? (e.g., answer is incorrect, question is unclear...)"
-                      className="w-full resize-none rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full resize-none rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <Button size="sm" variant="destructive" onClick={handleFlag} disabled={!flagText.trim()}>
                       Submit Flag
