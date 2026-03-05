@@ -33,16 +33,40 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
   }, [timeLeft, onTimerValue]);
 
   const expired = timeLeft === 0;
+  const pct = timeLeft / duration;
+  const radius = 20;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference * (1 - pct);
+
+  // Color: green → yellow → red
+  let strokeColor = "hsl(160, 84%, 39%)"; // green
+  if (pct <= 0.22) strokeColor = "hsl(0, 84%, 60%)"; // red
+  else if (pct <= 0.5) strokeColor = "hsl(45, 97%, 54%)"; // yellow
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   const display = `${minutes}:${seconds.toString().padStart(2, "0")}`;
 
   return (
-    <div className="flex items-center gap-1.5">
-      <span className="text-muted-foreground text-2xl leading-none">⏱</span>
+    <div className="relative flex items-center justify-center" style={{ width: 52, height: 52 }}>
+      <svg width="52" height="52" className="absolute inset-0 -rotate-90">
+        <circle cx="26" cy="26" r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="3" />
+        <circle
+          cx="26"
+          cy="26"
+          r={radius}
+          fill="none"
+          stroke={strokeColor}
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          style={{ transition: "stroke-dashoffset 1s linear, stroke 0.5s ease" }}
+        />
+      </svg>
       <span
-        className={`font-display text-base font-bold tabular-nums ${
-          expired ? "text-destructive" : timeLeft <= 10 ? "text-secondary" : "text-muted-foreground"
+        className={`relative z-10 font-body text-xs font-bold tabular-nums ${
+          expired ? "text-destructive" : "text-foreground"
         }`}
       >
         {display}

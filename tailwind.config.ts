@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
+        display: ["Inter", "system-ui", "sans-serif"],
         body: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
@@ -62,6 +62,10 @@ export default {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
         },
+        violet: {
+          DEFAULT: "hsl(var(--violet))",
+          hover: "hsl(var(--violet-hover))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -88,17 +92,17 @@ export default {
           to: { height: "0" },
         },
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(20px)", "-webkit-transform": "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)", "-webkit-transform": "translateY(0)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in": {
-          "0%": { opacity: "0", transform: "translateX(30px)", "-webkit-transform": "translateX(30px)" },
-          "100%": { opacity: "1", transform: "translateX(0)", "-webkit-transform": "translateX(0)" },
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
         "scale-pop": {
-          "0%": { transform: "scale(0.9)", "-webkit-transform": "scale(0.9)", opacity: "0" },
-          "50%": { transform: "scale(1.02)", "-webkit-transform": "scale(1.02)" },
-          "100%": { transform: "scale(1)", "-webkit-transform": "scale(1)", opacity: "1" },
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "50%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
         "points-bump": {
           "0%": { transform: "scale(1)" },

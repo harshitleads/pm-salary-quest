@@ -30,7 +30,6 @@ const Quiz = () => {
 
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // Scroll to top on mount to prevent landing mid-page on mobile
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -48,7 +47,6 @@ const Quiz = () => {
   const [flagText, setFlagText] = useState("");
   const [flagSubmitted, setFlagSubmitted] = useState(false);
 
-  // Results tracking
   const [questionResults, setQuestionResults] = useState<QuestionResult[]>([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -66,7 +64,6 @@ const Quiz = () => {
   const handleTimerValue = useCallback((seconds: number) => {
     if (seconds === 0 && !submitted) {
       setTimeExpired(true);
-      // Record as incorrect
       setQuestionResults((prev) => {
         const existing = prev.find((r) => r.id === q.id);
         if (existing) return prev;
@@ -126,7 +123,6 @@ const Quiz = () => {
   };
 
   const handleEndQuiz = () => {
-    // Record unanswered questions as incorrect
     tierQuestions.forEach((tq) => {
       const alreadyRecorded = questionResults.find((r) => r.id === tq.id);
       if (!alreadyRecorded) {
@@ -195,36 +191,38 @@ const Quiz = () => {
 
   const optionLabel = (i: number) => String.fromCharCode(65 + i);
 
+  const progressPct = ((currentIdx + 1) / tierQuestions.length) * 100;
+
   const optionClass = (i: number) => {
     const base =
-      "flex w-full items-start gap-3 rounded-xl border-2 px-5 py-4 text-left text-quiz-option transition-all duration-200";
+      "flex w-full items-start gap-3 rounded-xl border px-5 py-4 text-left text-quiz-option transition-all duration-200";
     if (!submitted) {
       return `${base} ${
         selected.includes(i)
-          ? "border-primary bg-primary/5 shadow-md"
-          : "border-border bg-card hover:border-primary/40 hover:shadow-sm"
+          ? "border-primary bg-primary/10 shadow-md"
+          : "border-border bg-muted/50 hover:bg-primary/5 hover:border-primary/30"
       } cursor-pointer`;
     }
     if (isCorrect) {
       const isCorrectAnswer = q.correctAnswers.includes(i);
       if (isCorrectAnswer) return `${base} border-success bg-success/10 text-foreground`;
-      return `${base} border-border bg-card opacity-60`;
+      return `${base} border-border bg-muted/30 opacity-60`;
     }
     const wasSelected = selected.includes(i);
     if (wasSelected) return `${base} border-destructive bg-destructive/10 text-foreground`;
-    return `${base} border-border bg-card opacity-60`;
+    return `${base} border-border bg-muted/30 opacity-60`;
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-24">
       {/* Top bar */}
-      <header className="sticky top-0 z-30 border-b border-border bg-card/80 backdrop-blur-md">
+      <header className="sticky top-0 z-30 border-b border-border bg-card/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl px-4 py-3">
           <div className="flex w-full items-center justify-between">
             <button onClick={() => navigate("/")} className="text-muted-foreground transition-colors hover:text-foreground text-sm shrink-0">
               ← Back
             </button>
-            <span className={`${headerGradient} rounded-full px-3 py-1 text-xs font-bold tracking-wide text-white max-w-[180px] truncate md:max-w-none md:whitespace-nowrap md:overflow-visible`}>
+            <span className={`${headerGradient} rounded-full px-4 py-1.5 text-xs font-bold tracking-wide text-white max-w-[200px] truncate md:max-w-none md:whitespace-nowrap md:overflow-visible`}>
               {headerLabel}
             </span>
             <div className="flex items-center gap-3 shrink-0">
@@ -245,11 +243,11 @@ const Quiz = () => {
             <span className="text-sm font-semibold text-muted-foreground">
               Question {currentIdx + 1} of {tierQuestions.length}
             </span>
-            <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
+            <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-bold text-primary">
               {q.category}
             </span>
             {q.multipleCorrect && (
-              <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-bold text-secondary-foreground">
+              <span className="rounded-full bg-secondary/20 px-2.5 py-0.5 text-xs font-bold text-secondary">
                 SELECT ALL THAT APPLY
               </span>
             )}
@@ -274,12 +272,12 @@ const Quiz = () => {
           <div className="mt-5">
             <button
               onClick={() => setShowHint((v) => !v)}
-              className="text-sm font-semibold text-secondary-foreground transition-colors hover:text-primary"
+              className="text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
             >
               {showHint ? "Hide Hint" : "Show Hint 💡"}
             </button>
             {showHint && (
-              <div className="mt-2 rounded-lg border border-[hsl(var(--hint-border))] bg-[hsl(var(--hint-bg))] px-4 py-3 text-base italic text-foreground/80">
+              <div className="mt-2 rounded-lg border border-border bg-muted/50 px-4 py-3 text-base italic text-muted-foreground">
                 💡 {q.hint}
               </div>
             )}
@@ -293,7 +291,7 @@ const Quiz = () => {
               </div>
               <Button
                 size="lg"
-                className="w-full text-quiz-option"
+                className="w-full text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90"
                 onClick={() => {
                   if (currentIdx < tierQuestions.length - 1) {
                     goTo(1);
@@ -313,7 +311,7 @@ const Quiz = () => {
               onClick={handleSubmit}
               disabled={selected.length === 0}
               size="lg"
-              className="mt-6 w-full text-quiz-option bg-secondary text-secondary-foreground hover:bg-secondary/90"
+              className="mt-6 w-full text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Submit Answer
             </Button>
@@ -331,8 +329,8 @@ const Quiz = () => {
                     </Button>
                   )}
                   {showExplanation && (
-                    <div className="rounded-lg border border-border bg-muted/50 p-4 text-base text-foreground/90">
-                      <p className="mb-1 font-semibold">
+                    <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-muted-foreground">
+                      <p className="mb-1 font-semibold text-foreground">
                         Correct Answer{q.correctAnswers.length > 1 ? "s" : ""}:{" "}
                         {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
                       </p>
@@ -367,8 +365,8 @@ const Quiz = () => {
                     )}
                   </div>
                   {showExplanation && (
-                    <div className="rounded-lg border border-border bg-muted/50 p-4 text-base text-foreground/90">
-                      <p className="mb-1 font-semibold">
+                    <div className="rounded-lg border border-border bg-muted/30 p-4 text-base text-muted-foreground">
+                      <p className="mb-1 font-semibold text-foreground">
                         Correct Answer{q.correctAnswers.length > 1 ? "s" : ""}:{" "}
                         {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
                       </p>
@@ -399,7 +397,7 @@ const Quiz = () => {
                       onChange={(e) => setFlagText(e.target.value)}
                       rows={3}
                       placeholder="What's wrong? (e.g., answer is incorrect, question is unclear...)"
-                      className="w-full resize-none rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full resize-none rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                     <Button size="sm" variant="destructive" onClick={handleFlag} disabled={!flagText.trim()}>
                       Submit Flag
@@ -411,6 +409,19 @@ const Quiz = () => {
           </div>
         </div>
 
+        {/* XP Progress Bar */}
+        <div className="mt-6 space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
+            <span>Question {currentIdx + 1} of {tierQuestions.length}</span>
+            <span>{Math.round(progressPct)}%</span>
+          </div>
+          <div className="relative h-3 w-full overflow-hidden rounded-full bg-muted">
+            <div
+              className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-primary to-secondary transition-all duration-500"
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+        </div>
       </main>
 
       {/* Navigation - fixed at bottom */}

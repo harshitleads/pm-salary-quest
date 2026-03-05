@@ -54,7 +54,7 @@ const Index = () => {
           <Button
             size="lg"
             onClick={shuffleAndGo}
-            className="w-full sm:w-auto text-quiz-option bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            className="w-full sm:w-auto text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90"
           >
             🔀 Shuffle All Questions
           </Button>
@@ -72,7 +72,7 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-muted/40 px-4 py-10 text-center">
+      <footer className="border-t border-border bg-card/50 px-4 py-10 text-center">
         <div className="mx-auto flex max-w-md flex-col items-center gap-4">
           <FeedbackModal />
           <p className="text-sm text-muted-foreground">
