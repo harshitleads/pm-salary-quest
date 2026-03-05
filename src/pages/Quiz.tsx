@@ -230,7 +230,8 @@ const Quiz = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* HEADER BAR — fixed */}
       <header className="fixed top-0 left-0 right-0 z-30 border-b border-border bg-card/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[680px] items-center justify-between px-5 py-3">
+        {/* Desktop: single row */}
+        <div className="mx-auto hidden md:flex max-w-[680px] items-center justify-between px-5 py-3">
           <button
             onClick={() => navigate("/")}
             className="text-foreground/70 transition-colors hover:text-foreground text-sm font-medium shrink-0"
@@ -252,6 +253,30 @@ const Quiz = () => {
               size={48}
               fontSize={13}
             />
+          </div>
+        </div>
+        {/* Mobile: two rows */}
+        <div className="mx-auto md:hidden max-w-[680px] px-5 py-2 space-y-1.5">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => navigate("/")}
+              className="text-foreground/70 transition-colors hover:text-foreground text-sm font-medium shrink-0"
+            >
+              ← Back
+            </button>
+            <QuizTimer
+              ref={timerRef}
+              questionId={currentIdx}
+              duration={45}
+              onTimerValue={handleTimerValue}
+              size={48}
+              fontSize={13}
+            />
+          </div>
+          <div className="flex justify-center">
+            <span className={`${headerGradient} rounded-full px-4 py-1 font-bold tracking-wide text-white`} style={{ fontSize: 11 }}>
+              {headerLabel}
+            </span>
           </div>
         </div>
       </header>
@@ -514,7 +539,12 @@ const Quiz = () => {
           <div className="mt-3 space-y-1 pb-4">
             <div className="flex items-center justify-between text-xs text-muted-foreground/50">
               <span>{currentIdx + 1} / {tierQuestions.length}</span>
-              <span>{Math.round(progressPct)}%</span>
+              <span className="md:hidden">
+                <span className={`font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>{points} pts</span>
+                <span className="mx-1.5">·</span>
+                {Math.round(progressPct)}%
+              </span>
+              <span className="hidden md:inline">{Math.round(progressPct)}%</span>
             </div>
             <div className="relative h-1 w-full overflow-hidden rounded-full bg-muted">
               <div
