@@ -43,6 +43,7 @@ const Quiz = () => {
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [attemptedFirst, setAttemptedFirst] = useState<Record<number, boolean>>({});
+  const [timeExpired, setTimeExpired] = useState(false);
   const [flagOpen, setFlagOpen] = useState(false);
   const [flagText, setFlagText] = useState("");
   const [flagSubmitted, setFlagSubmitted] = useState(false);
@@ -54,13 +55,25 @@ const Quiz = () => {
   const q = tierQuestions[currentIdx];
 
   const toggleSelect = (idx: number) => {
-    if (submitted) return;
+    if (submitted || timeExpired) return;
     if (q.multipleCorrect) {
       setSelected((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
     } else {
       setSelected([idx]);
     }
   };
+
+  const handleTimerValue = useCallback((seconds: number) => {
+    if (seconds === 0 && !submitted) {
+      setTimeExpired(true);
+      // Record as incorrect
+      setQuestionResults((prev) => {
+        const existing = prev.find((r) => r.id === q.id);
+        if (existing) return prev;
+        return [...prev, { id: q.id, category: q.category, correct: false }];
+      });
+    }
+  }, [submitted, q]);
 
   const recordResult = useCallback(
     (correct: boolean) => {
@@ -106,6 +119,7 @@ const Quiz = () => {
     setIsCorrect(false);
     setShowHint(false);
     setShowExplanation(false);
+    setTimeExpired(false);
     setFlagOpen(false);
     setFlagText("");
     setFlagSubmitted(false);
@@ -133,6 +147,7 @@ const Quiz = () => {
     setAttemptedFirst({});
     setQuestionResults([]);
     setShowResults(false);
+    setTimeExpired(false);
     setFlagOpen(false);
     setFlagText("");
     setFlagSubmitted(false);
