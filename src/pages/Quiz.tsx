@@ -43,6 +43,7 @@ const Quiz = () => {
   const [showHint, setShowHint] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [attemptedFirst, setAttemptedFirst] = useState<Record<number, boolean>>({});
+  const [timeExpired, setTimeExpired] = useState(false);
   const [flagOpen, setFlagOpen] = useState(false);
   const [flagText, setFlagText] = useState("");
   const [flagSubmitted, setFlagSubmitted] = useState(false);
@@ -54,13 +55,25 @@ const Quiz = () => {
   const q = tierQuestions[currentIdx];
 
   const toggleSelect = (idx: number) => {
-    if (submitted) return;
+    if (submitted || timeExpired) return;
     if (q.multipleCorrect) {
       setSelected((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
     } else {
       setSelected([idx]);
     }
   };
+
+  const handleTimerValue = useCallback((seconds: number) => {
+    if (seconds === 0 && !submitted) {
+      setTimeExpired(true);
+      // Record as incorrect
+      setQuestionResults((prev) => {
+        const existing = prev.find((r) => r.id === q.id);
+        if (existing) return prev;
+        return [...prev, { id: q.id, category: q.category, correct: false }];
+      });
+    }
+  }, [submitted, q]);
 
   const recordResult = useCallback(
     (correct: boolean) => {
@@ -106,6 +119,7 @@ const Quiz = () => {
     setIsCorrect(false);
     setShowHint(false);
     setShowExplanation(false);
+    setTimeExpired(false);
     setFlagOpen(false);
     setFlagText("");
     setFlagSubmitted(false);
@@ -133,6 +147,7 @@ const Quiz = () => {
     setAttemptedFirst({});
     setQuestionResults([]);
     setShowResults(false);
+    setTimeExpired(false);
     setFlagOpen(false);
     setFlagText("");
     setFlagSubmitted(false);
@@ -213,7 +228,7 @@ const Quiz = () => {
               {headerLabel}
             </span>
             <div className="flex items-center gap-3 shrink-0">
-              <QuizTimer questionId={q.id} duration={45} />
+              <QuizTimer questionId={q.id} duration={45} onTimerValue={handleTimerValue} />
               <span className={`text-sm font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
                 {points} pts
               </span>
@@ -246,7 +261,7 @@ const Quiz = () => {
           {/* Options */}
           <div className="flex flex-col gap-3">
             {q.options.map((opt, i) => (
-              <button key={i} onClick={() => toggleSelect(i)} className={optionClass(i)}>
+              <button key={i} onClick={() => toggleSelect(i)} className={`${optionClass(i)} ${timeExpired ? "opacity-60 pointer-events-none" : ""}`}>
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted text-sm font-bold text-muted-foreground">
                   {optionLabel(i)}
                 </span>
@@ -270,8 +285,30 @@ const Quiz = () => {
             )}
           </div>
 
+          {/* Time's Up Banner */}
+          {timeExpired && !submitted && (
+            <div className="mt-6 space-y-3">
+              <div className="rounded-lg bg-destructive px-4 py-3 text-center text-base font-bold text-destructive-foreground">
+                ⏰ Time's Up!
+              </div>
+              <Button
+                size="lg"
+                className="w-full text-quiz-option"
+                onClick={() => {
+                  if (currentIdx < tierQuestions.length - 1) {
+                    goTo(1);
+                  } else {
+                    handleEndQuiz();
+                  }
+                }}
+              >
+                {currentIdx < tierQuestions.length - 1 ? "Continue →" : "See Results"}
+              </Button>
+            </div>
+          )}
+
           {/* Submit */}
-          {!submitted && (
+          {!submitted && !timeExpired && (
             <Button
               onClick={handleSubmit}
               disabled={selected.length === 0}
