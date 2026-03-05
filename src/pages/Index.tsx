@@ -1,18 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SalaryTierCard from "@/components/SalaryTierCard";
 import FeedbackModal from "@/components/FeedbackModal";
 import CustomQuizModal from "@/components/CustomQuizModal";
+import AuthModal from "@/components/AuthModal";
 import { salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
 import { useQuestions } from "@/hooks/useQuestions";
+import { useAuth } from "@/contexts/AuthContext";
 import { useMemo } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   const { questions, loading } = useQuestions({ shuffle: false });
   const [customOpen, setCustomOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authHeading, setAuthHeading] = useState<string | undefined>();
+  const dismissedRef = useRef(false);
+
+  // Trigger 1: show auth modal after 1.5s for unauthenticated users
+  useEffect(() => {
+    if (authLoading || user || dismissedRef.current) return;
+    const timer = setTimeout(() => {
+      if (!dismissedRef.current) setAuthOpen(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [authLoading, user]);
+
+  const handleAuthClose = () => {
+    setAuthOpen(false);
+    setAuthHeading(undefined);
+    dismissedRef.current = true;
+  };
+
+  const handleTierAuthRequired = () => {
+    setAuthHeading("Sign In to Access This Tier");
+    setAuthOpen(true);
+  };
 
   const categories = useMemo(() => {
     const cats = new Set(questions.map((q) => q.category));
@@ -39,12 +65,8 @@ const Index = () => {
         </h2>
         <div className="tier-grid grid gap-5 grid-cols-1 sm:grid-cols-2">
           {salaryTiers.map((tier, i) => (
-            <div
-              key={tier.key}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
-              <SalaryTierCard tier={tier} />
+            <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+              <SalaryTierCard tier={tier} onAuthRequired={handleTierAuthRequired} />
             </div>
           ))}
         </div>
@@ -54,10 +76,7 @@ const Index = () => {
           <button
             onClick={() => setCustomOpen(true)}
             className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 hover:bg-primary/5"
-            style={{
-              borderColor: "hsl(263, 70%, 50%)",
-              color: "hsl(263, 70%, 50%)",
-            }}
+            style={{ borderColor: "hsl(263, 70%, 50%)", color: "hsl(263, 70%, 50%)" }}
           >
             ⚙️ Build Custom Quiz
           </button>
@@ -102,6 +121,7 @@ const Index = () => {
       </footer>
 
       <CustomQuizModal open={customOpen} onClose={() => setCustomOpen(false)} />
+      <AuthModal open={authOpen} onClose={handleAuthClose} heading={authHeading} />
     </div>
   );
 };

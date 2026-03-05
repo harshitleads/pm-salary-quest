@@ -1,7 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DifficultySurvey from "@/components/DifficultySurvey";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import AuthModal from "@/components/AuthModal";
+import { supabase } from "@/integrations/supabase/client";
 import {
   RadarChart,
   PolarGrid,
@@ -36,15 +39,7 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
   const ny = y + (dy / len) * offset;
   const anchor = Math.abs(dx) < 5 ? "middle" : dx > 0 ? "start" : "end";
   return (
-    <text
-      x={nx}
-      y={ny}
-      textAnchor={anchor}
-      dominantBaseline="central"
-      fill="hsl(215, 20%, 65%)"
-      fontSize={11}
-      fontWeight={600}
-    >
+    <text x={nx} y={ny} textAnchor={anchor} dominantBaseline="central" fill="hsl(215, 20%, 65%)" fontSize={11} fontWeight={600}>
       {label}
     </text>
   );
@@ -52,7 +47,10 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
 
 const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsProps) => {
   const navigate = useNavigate();
+  const { user, refreshProfile } = useAuth();
   const [surveyDone, setSurveyDone] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [sessionSaved, setSessionSaved] = useState(false);
 
   const categoryStats = useMemo(() => {
     return CATEGORIES.map((cat) => {
@@ -75,6 +73,23 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
   const totalCorrect = results.filter((r) => r.correct).length;
   const overallPct = results.length > 0 ? Math.round((totalCorrect / results.length) * 100) : 0;
 
+  // Auto-save session for authenticated users
+  useEffect(() => {
+    if (!user || sessionSaved) return;
+    const saveSession = async () => {
+      const categories = [...new Set(results.map((r) => r.category))];
+      await (supabase.rpc as any)("record_quiz_session", {
+        p_tier: tierLabel,
+        p_categories: categories,
+        p_score: totalCorrect,
+        p_total_questions: results.length,
+      });
+      setSessionSaved(true);
+      refreshProfile();
+    };
+    saveSession();
+  }, [user, sessionSaved, results, totalCorrect, tierLabel, refreshProfile]);
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card/90 backdrop-blur-md">
@@ -93,6 +108,25 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
           </p>
         </div>
 
+        {/* Sign-in prompt for unauthenticated */}
+        {!user && (
+          <div className="animate-fade-in-up rounded-2xl border border-primary/30 bg-primary/5 p-6 shadow-xl text-center space-y-3">
+            <h3 className="text-lg font-bold text-foreground">Save Your Results</h3>
+            <p className="text-sm text-muted-foreground">
+              You scored {totalCorrect}/{results.length}. Sign in to track this session and see your improvement over time.
+            </p>
+            <Button
+              onClick={() => setAuthOpen(true)}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Save My Progress
+            </Button>
+            <button className="text-xs text-muted-foreground/60 hover:text-muted-foreground">
+              Continue without saving →
+            </button>
+          </div>
+        )}
+
         {/* Difficulty Survey */}
         {!surveyDone && (
           <DifficultySurvey
@@ -110,24 +144,9 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="50%" data={radarData}>
                 <PolarGrid stroke="hsl(240, 12%, 20%)" />
-                <PolarAngleAxis
-                  dataKey="subject"
-                  tick={<CustomAngleTick />}
-                  tickLine={false}
-                />
-                <PolarRadiusAxis
-                  angle={90}
-                  domain={[0, 100]}
-                  tick={{ fill: "hsl(215, 20%, 65%)", fontSize: 10 }}
-                />
-                <Radar
-                  name="Score"
-                  dataKey="score"
-                  stroke="hsl(263, 70%, 50%)"
-                  fill="hsl(263, 70%, 50%)"
-                  fillOpacity={0.25}
-                  strokeWidth={2}
-                />
+                <PolarAngleAxis dataKey="subject" tick={<CustomAngleTick />} tickLine={false} />
+                <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: "hsl(215, 20%, 65%)", fontSize: 10 }} />
+                <Radar name="Score" dataKey="score" stroke="hsl(263, 70%, 50%)" fill="hsl(263, 70%, 50%)" fillOpacity={0.25} strokeWidth={2} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -142,10 +161,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
                 <span className="text-quiz-option text-foreground">{s.category}</span>
                 <div className="flex items-center gap-3">
                   <div className="relative h-2.5 w-32 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className="absolute left-0 top-0 h-full rounded-full bg-primary transition-all"
-                      style={{ width: `${s.pct}%` }}
-                    />
+                    <div className="absolute left-0 top-0 h-full rounded-full bg-primary transition-all" style={{ width: `${s.pct}%` }} />
                   </div>
                   <span className="text-sm font-bold text-foreground/70 w-20 text-right">
                     {s.correct}/{s.total} ({s.pct}%)
@@ -166,6 +182,8 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
           </Button>
         </div>
       </main>
+
+      <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   );
 };
