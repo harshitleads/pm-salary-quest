@@ -71,6 +71,39 @@ export type Database = {
         }
         Relationships: []
       }
+      question_feedback: {
+        Row: {
+          category: string | null
+          created_at: string
+          feedback_type: string
+          flagged_for_review: boolean
+          id: string
+          question_id: number
+          session_id: string
+          tier: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          feedback_type: string
+          flagged_for_review?: boolean
+          id?: string
+          question_id: number
+          session_id: string
+          tier?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          feedback_type?: string
+          flagged_for_review?: boolean
+          id?: string
+          question_id?: number
+          session_id?: string
+          tier?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
