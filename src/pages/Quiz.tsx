@@ -230,9 +230,15 @@ const Quiz = () => {
             <span className={`${headerGradient} rounded-full px-4 py-1.5 text-xs font-bold tracking-wide text-white max-w-[200px] truncate md:max-w-none md:whitespace-nowrap md:overflow-visible`}>
               {headerLabel}
             </span>
-            <span className={`text-sm font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
-              {points} pts
-            </span>
+            <div className="flex items-center gap-3">
+              <span className={`text-sm font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
+                {points} pts
+              </span>
+              {/* Mobile timer */}
+              <div className="md:hidden">
+                <QuizTimer questionId={q.id} duration={45} onTimerValue={handleTimerValue} size={40} />
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -276,7 +282,7 @@ const Quiz = () => {
             {/* Two-column layout */}
             <div className="flex flex-col md:flex-row min-h-[520px]">
               {/* LEFT COLUMN — Question + Options (65%) */}
-              <div className="flex-1 md:w-[65%] p-6 md:p-8 md:pr-0">
+              <div className="flex-1 md:w-[65%] p-6 md:p-8 md:pr-6">
                 {/* Meta */}
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className="text-sm font-semibold text-foreground/70">
@@ -340,9 +346,9 @@ const Quiz = () => {
               </div>
 
               {/* RIGHT COLUMN — Actions/Feedback (35%) */}
-              <div className="md:w-[35%] border-t md:border-t-0 md:border-l border-border p-6 md:p-6 flex flex-col gap-5">
-                {/* 1. Timer */}
-                <div className="flex items-center justify-center">
+              <div className="md:w-[35%] border-t md:border-t-0 md:border-l border-border p-6 md:pl-6 flex flex-col gap-5">
+                {/* 1. Timer — hidden on mobile (shown in header instead) */}
+                <div className="hidden md:flex items-center justify-center">
                   <QuizTimer questionId={q.id} duration={45} onTimerValue={handleTimerValue} />
                 </div>
 
@@ -354,89 +360,72 @@ const Quiz = () => {
                   >
                     💡 {showHint ? "Hide Hint" : "Hint"}
                   </button>
-                  {showHint && (
-                    <div className="mt-2 rounded-lg border border-border bg-muted/50 px-3 py-2.5 text-sm italic text-foreground/70">
-                      {q.hint}
-                    </div>
-                  )}
+                  <div className={`mt-2 rounded-lg border border-border bg-muted/50 px-3 py-2.5 text-sm italic text-foreground/70 transition-opacity duration-200 ${showHint ? "visible opacity-100" : "invisible h-0 mt-0 overflow-hidden"}`}>
+                    {q.hint}
+                  </div>
                 </div>
 
-                {/* 3. Feedback zone — fixed height */}
+                {/* 3. Feedback zone — fixed height, visibility-controlled */}
                 <div className="min-h-[60px] flex flex-col justify-center">
-                  {submitted && isCorrect && (
-                    <p className="text-base font-semibold text-success text-center md:text-left">
-                      ✅ Correct! {earnedPoints ? "+10 pts" : "+0 pts"}
-                    </p>
-                  )}
-                  {submitted && !isCorrect && (
-                    <p className="text-base font-semibold text-destructive text-center md:text-left">
-                      ❌ Not quite!
-                    </p>
-                  )}
-                  {!submitted && !timeExpired && (
-                    <p className="text-sm text-muted-foreground/50 text-center md:text-left">
-                      Submit to see result
-                    </p>
-                  )}
-                  {timeExpired && !submitted && (
-                    <p className="text-base font-semibold text-destructive text-center md:text-left">
-                      ⏰ Time expired
-                    </p>
-                  )}
+                  <p className={`text-base font-semibold text-success text-center md:text-left transition-opacity duration-200 ${submitted && isCorrect ? "visible opacity-100" : "invisible h-0 overflow-hidden"}`}>
+                    ✅ Correct! {earnedPoints ? "+10 pts" : "+0 pts"}
+                  </p>
+                  <p className={`text-base font-semibold text-destructive text-center md:text-left transition-opacity duration-200 ${submitted && !isCorrect ? "visible opacity-100" : "invisible h-0 overflow-hidden"}`}>
+                    ❌ Not quite!
+                  </p>
+                  <p className={`text-sm text-muted-foreground/50 text-center md:text-left transition-opacity duration-200 ${!submitted && !timeExpired ? "visible opacity-100" : "invisible h-0 overflow-hidden"}`}>
+                    Submit to see result
+                  </p>
+                  <p className={`text-base font-semibold text-destructive text-center md:text-left transition-opacity duration-200 ${timeExpired && !submitted ? "visible opacity-100" : "invisible h-0 overflow-hidden"}`}>
+                    ⏰ Time expired
+                  </p>
                 </div>
 
-                {/* 4. Retry + Show Answer + Explanation */}
-                {submitted && (
-                  <div className="space-y-2">
-                    {!isCorrect && (
-                      <div className="flex flex-col gap-2">
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={() => {
-                            setSubmitted(false);
-                            setSelected([]);
-                            setIsCorrect(false);
-                            setShowExplanation(false);
-                          }}
-                          className="w-full text-sm"
-                        >
-                          Retry Question
-                        </Button>
-                        {attemptedFirst[q.id] && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setShowExplanation(true)}
-                            className="w-full text-sm"
-                          >
-                            Show Answer 📚
-                          </Button>
-                        )}
-                      </div>
-                    )}
-                    {isCorrect && !showExplanation && (
-                      <Button variant="outline" size="sm" onClick={() => setShowExplanation(true)} className="w-full text-sm">
-                        View Explanation 📚
-                      </Button>
-                    )}
-                    {showExplanation && (
-                      <div className="rounded-lg border border-border bg-muted/30 p-3 text-sm text-foreground/80">
-                        <p className="mb-1 font-semibold text-foreground">
-                          Answer: {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
-                        </p>
-                        <p>{q.explanation}</p>
-                      </div>
-                    )}
+                {/* 4. Retry + Show Answer + Explanation — visibility-controlled */}
+                <div className="space-y-2">
+                  <div className={`flex flex-col gap-2 ${submitted && !isCorrect ? "visible" : "invisible h-0 overflow-hidden"}`}>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setSelected([]);
+                        setIsCorrect(false);
+                        setShowExplanation(false);
+                      }}
+                      className="w-full text-sm"
+                    >
+                      Retry Question
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowExplanation(true)}
+                      className={`w-full text-sm ${submitted && !isCorrect && attemptedFirst[q.id] ? "visible" : "invisible h-0 overflow-hidden"}`}
+                    >
+                      Show Answer 📚
+                    </Button>
                   </div>
-                )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowExplanation(true)}
+                    className={`w-full text-sm ${submitted && isCorrect && !showExplanation ? "visible" : "invisible h-0 overflow-hidden"}`}
+                  >
+                    View Explanation 📚
+                  </Button>
+                  <div className={`max-h-[160px] overflow-y-auto rounded-lg border border-border bg-muted/30 p-3 text-sm text-foreground/80 ${showExplanation ? "visible opacity-100" : "invisible h-0 overflow-hidden"}`}>
+                    <p className="mb-1 font-semibold text-foreground">
+                      Answer: {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
+                    </p>
+                    <p>{q.explanation}</p>
+                  </div>
+                </div>
 
-                {/* 5. Difficulty feedback — large pill buttons */}
-                {submitted && (
-                  <div className="mt-auto">
-                    <QuestionVote questionId={q.id} tier={decodedTier} category={q.category} />
-                  </div>
-                )}
+                {/* 5. Difficulty feedback — visibility-controlled */}
+                <div className={`mt-auto ${submitted ? "visible" : "invisible"}`}>
+                  <QuestionVote questionId={q.id} tier={decodedTier} category={q.category} />
+                </div>
               </div>
             </div>
           </div>
