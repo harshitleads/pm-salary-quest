@@ -4,9 +4,10 @@ interface QuizTimerProps {
   questionId: number;
   duration?: number;
   onTimerValue?: (seconds: number) => void;
+  size?: number;
 }
 
-const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) => {
+const QuizTimer = ({ questionId, duration = 45, onTimerValue, size = 52 }: QuizTimerProps) => {
   const [timeLeft, setTimeLeft] = useState(duration);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -34,7 +35,7 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
 
   const expired = timeLeft === 0;
   const pct = timeLeft / duration;
-  const radius = 20;
+  const radius = (size - 12) / 2;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference * (1 - pct);
 
@@ -47,13 +48,15 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
   const seconds = timeLeft % 60;
   const display = `${minutes}:${seconds.toString().padStart(2, "0")}`;
 
+  const center = size / 2;
+
   return (
-    <div className="relative flex items-center justify-center" style={{ width: 52, height: 52 }}>
-      <svg width="52" height="52" className="absolute inset-0 -rotate-90">
-        <circle cx="26" cy="26" r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="3" />
+    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="absolute inset-0 -rotate-90">
+        <circle cx={center} cy={center} r={radius} fill="none" stroke="hsl(var(--border))" strokeWidth="3" />
         <circle
-          cx="26"
-          cy="26"
+          cx={center}
+          cy={center}
           r={radius}
           fill="none"
           stroke={strokeColor}
