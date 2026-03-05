@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 interface QuestionVoteProps {
   questionId: number;
@@ -23,25 +22,38 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
   const [showThanks, setShowThanks] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Reset per question
   useEffect(() => {
     setVoted(null);
     setShowThanks(false);
   }, [questionId]);
 
   const handleVote = async (type: "up" | "down") => {
-    if (voted || loading) return;
-    setLoading(true);
+    if (loading) return;
 
+    // If switching vote, delete old one first
+    if (voted && voted !== type) {
+      const sessionId = getSessionId();
+      await (supabase.from("question_feedback" as any) as any)
+        .delete()
+        .eq("question_id", questionId)
+        .eq("session_id", sessionId);
+    }
+
+    setLoading(true);
     const sessionId = getSessionId();
-    await supabase.from("question_feedback" as any).insert({
-      question_id: questionId,
-      session_id: sessionId,
-      feedback_type: type,
-      tier,
-      category,
-      flagged_for_review: type === "down",
-    } as any);
+
+    // Upsert the vote
+    await (supabase.from("question_feedback" as any) as any).upsert(
+      {
+        question_id: questionId,
+        session_id: sessionId,
+        feedback_type: type,
+        tier,
+        category,
+        flagged_for_review: type === "down",
+      } as any,
+      { onConflict: "question_id,session_id" }
+    );
 
     setVoted(type);
     setShowThanks(true);
@@ -51,34 +63,30 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
   };
 
   return (
-    <div className="flex items-center gap-2 mt-3">
+    <div className="flex items-center gap-3 mt-3">
       <button
         onClick={() => handleVote("up")}
-        disabled={voted !== null || loading}
-        className={`p-1.5 rounded-md transition-all duration-200 ${
+        disabled={loading}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
           voted === "up"
-            ? "text-green-400 bg-green-400/15"
-            : voted !== null
-            ? "text-muted-foreground/30 cursor-not-allowed"
-            : "text-muted-foreground hover:text-green-400 hover:bg-green-400/10"
+            ? "border-green-500/40 bg-green-500/15 text-green-400"
+            : "border-border text-muted-foreground hover:text-green-400 hover:border-green-500/30 hover:bg-green-500/10"
         }`}
-        aria-label="Thumbs up"
       >
-        <ThumbsUp className="h-4 w-4" fill={voted === "up" ? "currentColor" : "none"} />
+        <span className="text-sm">😎</span>
+        Too Easy
       </button>
       <button
         onClick={() => handleVote("down")}
-        disabled={voted !== null || loading}
-        className={`p-1.5 rounded-md transition-all duration-200 ${
+        disabled={loading}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
           voted === "down"
-            ? "text-red-400 bg-red-400/15"
-            : voted !== null
-            ? "text-muted-foreground/30 cursor-not-allowed"
-            : "text-muted-foreground hover:text-red-400 hover:bg-red-400/10"
+            ? "border-red-500/40 bg-red-500/15 text-red-400"
+            : "border-border text-muted-foreground hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10"
         }`}
-        aria-label="Thumbs down"
       >
-        <ThumbsDown className="h-4 w-4" fill={voted === "down" ? "currentColor" : "none"} />
+        <span className="text-sm">🤯</span>
+        Too Hard
       </button>
       <span
         className={`text-xs text-muted-foreground transition-opacity duration-500 ${

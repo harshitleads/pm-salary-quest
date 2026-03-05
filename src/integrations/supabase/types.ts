@@ -104,6 +104,24 @@ export type Database = {
         }
         Relationships: []
       }
+      question_overrides: {
+        Row: {
+          active: boolean
+          question_id: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          question_id: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          question_id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
