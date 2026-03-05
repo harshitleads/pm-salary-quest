@@ -16,6 +16,10 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
         const next = prev - 1;
+        if (next <= 0) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
+          return 0;
+        }
         return next;
       });
     }, 1000);
@@ -28,20 +32,17 @@ const QuizTimer = ({ questionId, duration = 45, onTimerValue }: QuizTimerProps) 
     onTimerValue?.(timeLeft);
   }, [timeLeft, onTimerValue]);
 
-  const isNegative = timeLeft < 0;
-  const absTime = Math.abs(timeLeft);
-  const minutes = Math.floor(absTime / 60);
-  const seconds = absTime % 60;
-  const display = `${isNegative ? "-" : ""}${minutes}:${seconds.toString().padStart(2, "0")}`;
-
-  const percentage = Math.max(0, (timeLeft / duration) * 100);
+  const expired = timeLeft === 0;
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const display = `${minutes}:${seconds.toString().padStart(2, "0")}`;
 
   return (
     <div className="flex items-center gap-1.5">
       <span className="text-muted-foreground text-2xl leading-none">⏱</span>
       <span
         className={`font-display text-base font-bold tabular-nums ${
-          isNegative ? "text-destructive" : timeLeft <= 10 ? "text-secondary" : "text-muted-foreground"
+          expired ? "text-destructive" : timeLeft <= 10 ? "text-secondary" : "text-muted-foreground"
         }`}
       >
         {display}
