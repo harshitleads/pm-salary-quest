@@ -55,10 +55,10 @@ const QuizTimer = forwardRef<QuizTimerHandle, QuizTimerProps>(
     const pct = timeLeft / duration;
     const radius = (size - 8) / 2;
     const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = circumference * (1 - pct);
+    const strokeDashoffset = expired ? 0 : circumference * (1 - pct);
 
     let strokeColor = "hsl(160, 84%, 39%)";
-    if (pct <= 0.22) strokeColor = "hsl(0, 84%, 60%)";
+    if (expired || pct <= 0.22) strokeColor = "hsl(0, 84%, 60%)";
     else if (pct <= 0.5) strokeColor = "hsl(45, 97%, 54%)";
 
     const minutes = Math.floor(timeLeft / 60);
