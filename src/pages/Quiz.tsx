@@ -237,7 +237,7 @@ const Quiz = () => {
           >
             ← Back
           </button>
-          <span className={`${headerGradient} rounded-full px-4 py-1.5 text-xs font-bold tracking-wide text-white max-w-[180px] truncate`}>
+          <span className={`${headerGradient} rounded-full px-4 py-1.5 font-bold tracking-wide text-white whitespace-nowrap`} style={{ fontSize: 11 }}>
             {headerLabel}
           </span>
           <div className="flex items-center gap-3">
@@ -250,7 +250,7 @@ const Quiz = () => {
               duration={45}
               onTimerValue={handleTimerValue}
               size={48}
-              fontSize={18}
+              fontSize={13}
             />
           </div>
         </div>
@@ -267,7 +267,23 @@ const Quiz = () => {
                 <span className="text-sm font-semibold text-foreground/70">
                   Question {currentIdx + 1} of {tierQuestions.length}
                 </span>
-                <span className="rounded-full bg-primary/25 px-2.5 py-0.5 text-xs font-bold text-primary-foreground">
+                <span
+                  className="rounded-full px-2.5 py-0.5 text-xs font-bold"
+                  style={{
+                    backgroundColor:
+                      q.category === "Product Sense" ? "hsla(263, 70%, 50%, 0.2)" :
+                      q.category === "Metrics" ? "hsla(199, 89%, 48%, 0.2)" :
+                      q.category === "Product Design" ? "hsla(38, 92%, 50%, 0.2)" :
+                      q.category === "Behavioral" ? "hsla(160, 84%, 39%, 0.2)" :
+                      "hsla(263, 70%, 50%, 0.2)",
+                    color:
+                      q.category === "Product Sense" ? "#7C3AED" :
+                      q.category === "Metrics" ? "#0EA5E9" :
+                      q.category === "Product Design" ? "#F59E0B" :
+                      q.category === "Behavioral" ? "#10B981" :
+                      "#7C3AED",
+                  }}
+                >
                   {q.category}
                 </span>
                 {q.multipleCorrect && (
@@ -329,6 +345,28 @@ const Quiz = () => {
               ))}
             </div>
 
+            {/* Hint button */}
+            <button
+              onClick={() => setShowHint((v) => !v)}
+              className="flex items-center gap-2 w-full text-left text-sm font-medium transition-colors hover:text-foreground rounded-xl"
+              style={{
+                height: 44,
+                paddingLeft: 20,
+                paddingRight: 20,
+                border: "1px solid hsl(220, 13%, 31%)",
+                color: "hsl(215, 20%, 65%)",
+                backgroundColor: "transparent",
+              }}
+            >
+              <span className="text-base">💡</span>
+              <span>{showHint ? "Hide Hint" : "Show Hint"}</span>
+            </button>
+            {showHint && (
+              <p className="rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm italic text-foreground/70" style={{ lineHeight: 1.6 }}>
+                {q.hint}
+              </p>
+            )}
+
             {/* Submit button */}
             {!submitted && !timeExpired && (
               <Button
@@ -361,22 +399,6 @@ const Quiz = () => {
                 </Button>
               </div>
             )}
-
-            {/* Hint */}
-            <div>
-              <button
-                onClick={() => setShowHint((v) => !v)}
-                className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <span className="text-base">💡</span>
-                <span>{showHint ? "Hide Hint" : "Hint"}</span>
-              </button>
-              {showHint && (
-                <p className="mt-2 rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm italic text-foreground/70" style={{ lineHeight: 1.6 }}>
-                  {q.hint}
-                </p>
-              )}
-            </div>
           </div>
 
           {/* BLOCK 2 — Post-submission content, appended below */}
