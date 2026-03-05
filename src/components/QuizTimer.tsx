@@ -51,6 +51,10 @@ const QuizTimer = forwardRef<QuizTimerHandle, QuizTimerProps>(
     }, [questionId, duration]);
 
     useEffect(() => {
+      if (suppressCallbackRef.current) {
+        suppressCallbackRef.current = false;
+        return;
+      }
       onTimerValue?.(timeLeft);
     }, [timeLeft, onTimerValue]);
 
