@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SalaryTierCard from "@/components/SalaryTierCard";
 import FeedbackModal from "@/components/FeedbackModal";
+import CustomQuizModal from "@/components/CustomQuizModal";
 import { salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
 import { useQuestions } from "@/hooks/useQuestions";
@@ -10,6 +12,7 @@ import { useMemo } from "react";
 const Index = () => {
   const navigate = useNavigate();
   const { questions, loading } = useQuestions({ shuffle: false });
+  const [customOpen, setCustomOpen] = useState(false);
 
   const categories = useMemo(() => {
     const cats = new Set(questions.map((q) => q.category));
@@ -17,12 +20,12 @@ const Index = () => {
   }, [questions]);
 
   const shuffleAndGo = () => {
-    const shuffled = [...questions].sort(() => Math.random() - 0.5);
+    const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
     navigate("/quiz/shuffle", { state: { questions: shuffled, label: "🔀 Shuffle • All Tiers" } });
   };
 
   const categoryGo = (cat: string) => {
-    const filtered = [...questions.filter((q) => q.category === cat)].sort(() => Math.random() - 0.5);
+    const filtered = [...questions.filter((q) => q.category === cat)].sort(() => Math.random() - 0.5).slice(0, 10);
     navigate(`/quiz/category-${cat}`, { state: { questions: filtered, label: `📂 ${cat}` } });
   };
 
@@ -44,6 +47,20 @@ const Index = () => {
               <SalaryTierCard tier={tier} />
             </div>
           ))}
+        </div>
+
+        {/* Custom Quiz Button */}
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setCustomOpen(true)}
+            className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 hover:bg-primary/5"
+            style={{
+              borderColor: "hsl(263, 70%, 50%)",
+              color: "hsl(263, 70%, 50%)",
+            }}
+          >
+            ⚙️ Build Custom Quiz
+          </button>
         </div>
       </section>
 
@@ -83,6 +100,8 @@ const Index = () => {
           </p>
         </div>
       </footer>
+
+      <CustomQuizModal open={customOpen} onClose={() => setCustomOpen(false)} />
     </div>
   );
 };

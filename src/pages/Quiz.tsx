@@ -31,7 +31,7 @@ const Quiz = () => {
   // Fetch from DB only when no custom questions are passed via state
   const { questions: dbQuestions, loading: dbLoading } = useQuestions({
     salaryTier: decodedTier,
-    limit: 25,
+    limit: 10,
     shuffle: true,
     enabled: !customQuestions,
   });
