@@ -32,7 +32,7 @@ const DifficultySurvey = ({ salaryTier, score, totalQuestions, onComplete }: Dif
 
   return (
     <div className="animate-scale-pop rounded-2xl border border-border bg-card p-6 shadow-xl text-center space-y-4">
-      <p className="text-lg font-semibold text-foreground">How was the difficulty?</p>
+      <p className="text-lg font-semibold text-foreground">How was the overall difficulty?</p>
       <div className="flex justify-center gap-3">
         {options.map((opt) => (
           <button
@@ -50,9 +50,7 @@ const DifficultySurvey = ({ salaryTier, score, totalQuestions, onComplete }: Dif
           </button>
         ))}
       </div>
-      {selected && (
-        <p className="text-sm text-muted-foreground animate-fade-in-up">Thanks for your feedback!</p>
-      )}
+      {selected && <p className="text-sm text-muted-foreground animate-fade-in-up">Thanks for your feedback!</p>}
     </div>
   );
 };
