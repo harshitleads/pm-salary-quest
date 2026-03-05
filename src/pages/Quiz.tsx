@@ -348,12 +348,8 @@ const Quiz = () => {
             {/* Hint button */}
             <button
               onClick={() => setShowHint((v) => !v)}
-              className="flex items-center gap-2 w-full text-left text-sm font-medium transition-colors hover:text-foreground rounded-xl"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-foreground rounded-lg px-4 py-2 self-start"
               style={{
-                height: 44,
-                paddingLeft: 20,
-                paddingRight: 20,
-                border: "1px solid hsl(220, 13%, 31%)",
                 color: "hsl(215, 20%, 65%)",
                 backgroundColor: "transparent",
               }}
