@@ -261,12 +261,50 @@ const Quiz = () => {
         <div className="mx-auto max-w-[680px] px-5" key={q.id}>
           {/* BLOCK 1 — Question + Options */}
           <div className="space-y-6 pt-6">
-            {/* Meta row */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            {/* Meta row — responsive */}
+            <div className="flex flex-col gap-2">
+              {/* Line 1: Question X of Y ... Flag */}
+              <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-foreground/70">
                   Question {currentIdx + 1} of {tierQuestions.length}
                 </span>
+                {/* Flag */}
+                <div className="relative">
+                  <button
+                    onClick={() => setFlagOpen((v) => !v)}
+                    className={`p-2 rounded-lg transition-colors ${
+                      flagOpen
+                        ? "text-destructive bg-destructive/10"
+                        : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/50"
+                    }`}
+                    title="Flag this question"
+                  >
+                    <Flag className="w-4 h-4" />
+                  </button>
+                  {flagOpen && (
+                    <div className="absolute right-0 top-10 w-72 rounded-xl border border-border bg-card p-4 shadow-2xl z-20">
+                      {flagSubmitted ? (
+                        <p className="text-sm font-semibold text-success">Thanks! Flag recorded.</p>
+                      ) : (
+                        <div className="space-y-2">
+                          <textarea
+                            value={flagText}
+                            onChange={(e) => setFlagText(e.target.value)}
+                            rows={3}
+                            placeholder="What's wrong with this question?"
+                            className="w-full resize-none rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring"
+                          />
+                          <Button size="sm" variant="destructive" onClick={handleFlag} disabled={!flagText.trim()} className="w-full">
+                            Submit Flag
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+              {/* Line 2: Skill tag + multi-select badge */}
+              <div className="flex items-center gap-2">
                 <span
                   className="rounded-full px-2.5 py-0.5 text-xs font-bold"
                   style={{
@@ -287,43 +325,12 @@ const Quiz = () => {
                   {q.category}
                 </span>
                 {q.multipleCorrect && (
-                  <span className="rounded-full bg-secondary/20 px-2.5 py-0.5 text-xs font-bold text-secondary">
+                  <span
+                    className="rounded-full px-2.5 py-0.5 font-semibold"
+                    style={{ fontSize: 11, backgroundColor: "hsl(220, 13%, 31%)", color: "white" }}
+                  >
                     Select all that apply
                   </span>
-                )}
-              </div>
-              {/* Flag */}
-              <div className="relative">
-                <button
-                  onClick={() => setFlagOpen((v) => !v)}
-                  className={`p-2 rounded-lg transition-colors ${
-                    flagOpen
-                      ? "text-destructive bg-destructive/10"
-                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/50"
-                  }`}
-                  title="Flag this question"
-                >
-                  <Flag className="w-4 h-4" />
-                </button>
-                {flagOpen && (
-                  <div className="absolute right-0 top-10 w-72 rounded-xl border border-border bg-card p-4 shadow-2xl z-20">
-                    {flagSubmitted ? (
-                      <p className="text-sm font-semibold text-success">Thanks! Flag recorded.</p>
-                    ) : (
-                      <div className="space-y-2">
-                        <textarea
-                          value={flagText}
-                          onChange={(e) => setFlagText(e.target.value)}
-                          rows={3}
-                          placeholder="What's wrong with this question?"
-                          className="w-full resize-none rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-ring"
-                        />
-                        <Button size="sm" variant="destructive" onClick={handleFlag} disabled={!flagText.trim()} className="w-full">
-                          Submit Flag
-                        </Button>
-                      </div>
-                    )}
-                  </div>
                 )}
               </div>
             </div>
@@ -391,15 +398,16 @@ const Quiz = () => {
             {/* Time's Up banner */}
             {timeExpired && !submitted && (
               <div className="space-y-3">
-                <div className="rounded-lg bg-destructive px-4 py-3 text-center text-base font-bold text-destructive-foreground">
-                  Time's Up!
+                <div className="rounded-lg px-4 py-3 text-center text-base font-bold" style={{ backgroundColor: "hsl(0, 84%, 60%)", color: "white" }}>
+                  ⏱ Time's Up!
                 </div>
                 <Button
                   size="lg"
-                  className="w-full text-base font-semibold h-12 bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="w-full text-base font-semibold h-12"
+                  style={{ backgroundColor: "hsl(263, 70%, 50%)", color: "white" }}
                   onClick={handleContinueAfterTimeout}
                 >
-                  {currentIdx < tierQuestions.length - 1 ? "Continue" : "See Results"}
+                  Continue →
                 </Button>
               </div>
             )}
