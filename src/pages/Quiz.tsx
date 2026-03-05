@@ -413,18 +413,18 @@ const Quiz = () => {
 
         {/* Navigation */}
         <div className="mt-6 flex items-center justify-between gap-3">
-          <Button variant="outline" size="lg" disabled={currentIdx === 0} onClick={() => goTo(-1)} className="text-quiz-option">
+          <Button variant="outline" size="lg" disabled={currentIdx === 0} onClick={() => goTo(-1)} className="flex-1 text-quiz-option">
             ← Previous
           </Button>
           <Button
             variant="destructive"
             size="sm"
             onClick={handleEndQuiz}
-            className="text-sm"
+            className="text-sm shrink-0"
           >
             End Quiz
           </Button>
-          <Button variant="outline" size="lg" disabled={currentIdx === tierQuestions.length - 1} onClick={() => goTo(1)} className="text-quiz-option">
+          <Button variant="outline" size="lg" disabled={currentIdx === tierQuestions.length - 1} onClick={() => goTo(1)} className="flex-1 text-quiz-option">
             Next →
           </Button>
         </div>
