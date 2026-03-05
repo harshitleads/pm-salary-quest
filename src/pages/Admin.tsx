@@ -23,15 +23,24 @@ const Admin = () => {
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+      const u = session?.user ?? null;
+      setUser(u);
       setAuthLoading(false);
+      // Redirect unauthorized users silently
+      if (u && u.email && !ALLOWED_EMAILS.includes(u.email)) {
+        navigate("/", { replace: true });
+      }
     });
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
+      const u = session?.user ?? null;
+      setUser(u);
       setAuthLoading(false);
+      if (u && u.email && !ALLOWED_EMAILS.includes(u.email)) {
+        navigate("/", { replace: true });
+      }
     });
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate]);
 
   const isAuthorized = user?.email ? ALLOWED_EMAILS.includes(user.email) : false;
 
@@ -82,15 +91,9 @@ const Admin = () => {
   }
 
   if (!isAuthorized) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-xl text-center">
-          <h1 className="mb-4 text-quiz-heading text-foreground">Unauthorized</h1>
-          <p className="mb-6 text-muted-foreground">Admin access restricted. Contact Harshit for access.</p>
-          <Button onClick={handleLogout} variant="outline" className="w-full">Sign Out</Button>
-        </div>
-      </div>
-    );
+    // Should have been redirected, but fallback
+    navigate("/", { replace: true });
+    return null;
   }
 
   const navItems: { key: Panel; label: string; icon: string }[] = [
@@ -110,7 +113,6 @@ const Admin = () => {
             <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground text-sm">← Home</button>
           </div>
         </div>
-        {/* Panel nav */}
         <div className="mx-auto max-w-7xl px-4 pb-3">
           <div className="flex gap-1 rounded-lg bg-muted/30 p-1">
             {navItems.map((item) => (

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { salaryTiers } from "@/data/questions";
 import { Lock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const tierButtonLabels: Record<string, string> = {
   Junior: "Practice Junior Questions →",
@@ -18,23 +19,35 @@ const tierGlowColors: Record<string, string> = {
   "Staff+": "hsl(38 92% 50%)",
 };
 
-const lockedTiers = new Set(["Senior", "AI Frontier", "Staff+"]);
+const lockedTiers = new Set(["AI Frontier", "Staff+"]);
 
-const SalaryTierCard = ({ tier }: { tier: typeof salaryTiers[number] }) => {
+interface SalaryTierCardProps {
+  tier: typeof salaryTiers[number];
+  onAuthRequired?: () => void;
+}
+
+const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const isStaff = tier.key === "Staff+";
-  const isLocked = lockedTiers.has(tier.key);
+  const isLocked = !user && lockedTiers.has(tier.key);
   const glowColor = tierGlowColors[tier.key] || "hsl(263 70% 50%)";
+
+  const handleClick = () => {
+    if (isLocked && onAuthRequired) {
+      onAuthRequired();
+      return;
+    }
+    navigate(`/quiz/${encodeURIComponent(tier.key)}`);
+  };
 
   return (
     <button
-      onClick={() => navigate(`/quiz/${encodeURIComponent(tier.key)}`)}
+      onClick={handleClick}
       className={`${tier.gradient} group relative w-full h-full overflow-hidden rounded-2xl p-6 text-left shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] flex flex-col ${
         isStaff ? "min-h-[220px] ring-2 ring-secondary/50" : "min-h-[200px]"
       }`}
-      style={{
-        boxShadow: `0 0 0 1px transparent`,
-      }}
+      style={{ boxShadow: `0 0 0 1px transparent` }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${glowColor}40, 0 0 0 1px ${glowColor}60`;
       }}
@@ -43,10 +56,9 @@ const SalaryTierCard = ({ tier }: { tier: typeof salaryTiers[number] }) => {
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-      {/* Lock icon for locked tiers */}
       {isLocked && (
         <div className="absolute top-3 right-3 z-20 rounded-full bg-black/30 p-1.5 backdrop-blur-sm">
-          <Lock className="h-4 w-4 text-white/50" />
+          <Lock className="h-4 w-4 text-white/70" />
         </div>
       )}
       <div className="relative z-10 flex flex-col gap-3 flex-1">
@@ -56,7 +68,7 @@ const SalaryTierCard = ({ tier }: { tier: typeof salaryTiers[number] }) => {
         <p className="text-hero-title text-white drop-shadow-md">{tier.salary}</p>
         <p className="text-base font-medium text-white/75">{tier.companies}</p>
         <span className="mt-auto inline-flex items-center gap-1 text-quiz-option font-semibold text-white/90 underline-offset-4 group-hover:underline">
-          {tierButtonLabels[tier.key]}
+          {isLocked ? "🔒 Sign in to access" : tierButtonLabels[tier.key]}
         </span>
       </div>
     </button>
