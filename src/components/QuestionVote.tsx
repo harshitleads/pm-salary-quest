@@ -61,29 +61,31 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-3 w-full">
       <button
         onClick={() => handleVote("up")}
         disabled={loading}
-        className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border ${
+        className={`flex items-center justify-center gap-2 w-full rounded-xl text-base font-semibold transition-all duration-200 border ${
           voted === "up"
             ? "border-success/40 bg-success/15 text-success"
             : "border-border bg-muted/30 text-muted-foreground hover:text-success hover:border-success/30 hover:bg-success/10"
         }`}
+        style={{ height: 56 }}
       >
-        <span className="text-lg">😎</span>
+        <span className="text-xl">😎</span>
         Too Easy
       </button>
       <button
         onClick={() => handleVote("down")}
         disabled={loading}
-        className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border ${
+        className={`flex items-center justify-center gap-2 w-full rounded-xl text-base font-semibold transition-all duration-200 border ${
           voted === "down"
             ? "border-destructive/40 bg-destructive/15 text-destructive"
             : "border-border bg-muted/30 text-muted-foreground hover:text-destructive hover:border-destructive/30 hover:bg-destructive/10"
         }`}
+        style={{ height: 56 }}
       >
-        <span className="text-lg">🤯</span>
+        <span className="text-xl">🤯</span>
         Too Hard
       </button>
       <span
