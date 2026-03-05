@@ -228,7 +228,7 @@ const Quiz = () => {
               {headerLabel}
             </span>
             <div className="flex items-center gap-3 shrink-0">
-              <QuizTimer questionId={q.id} duration={45} />
+              <QuizTimer questionId={q.id} duration={45} onTimerValue={handleTimerValue} />
               <span className={`text-sm font-bold text-points ${pointsBump ? "animate-points-bump" : ""}`}>
                 {points} pts
               </span>
