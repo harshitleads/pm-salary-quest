@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { questions } from "@/data/questions";
+import { useAllQuestions } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -16,6 +16,7 @@ interface OverrideRow {
 }
 
 const AdminFlaggedQuestions = () => {
+  const { questions, loading: questionsLoading } = useAllQuestions();
   const [feedbackAgg, setFeedbackAgg] = useState<FeedbackAgg[]>([]);
   const [overrides, setOverrides] = useState<Map<number, boolean>>(new Map());
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -28,7 +29,6 @@ const AdminFlaggedQuestions = () => {
       (supabase.from("question_overrides" as any) as any).select("question_id, active"),
     ]);
 
-    // Aggregate feedback
     const agg: Record<number, { up: number; down: number }> = {};
     ((fbRes.data || []) as any[]).forEach((row: any) => {
       if (!agg[row.question_id]) agg[row.question_id] = { up: 0, down: 0 };
@@ -72,7 +72,7 @@ const AdminFlaggedQuestions = () => {
     fetchData();
   };
 
-  if (loading) return <p className="text-center text-muted-foreground py-8">Loading...</p>;
+  if (loading || questionsLoading) return <p className="text-center text-muted-foreground py-8">Loading...</p>;
 
   if (flaggedQuestions.length === 0) {
     return <p className="text-center text-muted-foreground py-8">No flagged questions 🎉</p>;
@@ -97,9 +97,7 @@ const AdminFlaggedQuestions = () => {
             <>
               <tr
                 key={f.question_id}
-                className={`border-b border-border last:border-0 ${
-                  f.down >= 3 ? "bg-red-500/10" : ""
-                }`}
+                className={`border-b border-border last:border-0 ${f.down >= 3 ? "bg-red-500/10" : ""}`}
               >
                 <td className="max-w-[200px] truncate px-4 py-3 text-foreground">
                   <button
@@ -115,28 +113,16 @@ const AdminFlaggedQuestions = () => {
                 <td className="px-4 py-3 text-center font-bold text-red-400">{f.down}</td>
                 <td className="px-4 py-3 text-center font-bold text-green-400">{f.up}</td>
                 <td className="px-4 py-3">
-                  <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${
-                    f.active ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"
-                  }`}>
+                  <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${f.active ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"}`}>
                     {f.active ? "Active" : "Disabled"}
                   </span>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant={f.active ? "destructive" : "default"}
-                      onClick={() => toggleActive(f.question_id, f.active)}
-                      className="text-xs"
-                    >
+                    <Button size="sm" variant={f.active ? "destructive" : "default"} onClick={() => toggleActive(f.question_id, f.active)} className="text-xs">
                       {f.active ? "Disable" : "Enable"}
                     </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => clearFlags(f.question_id)}
-                      className="text-xs"
-                    >
+                    <Button size="sm" variant="outline" onClick={() => clearFlags(f.question_id)} className="text-xs">
                       Clear Flags
                     </Button>
                   </div>

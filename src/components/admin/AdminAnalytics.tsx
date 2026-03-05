@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { questions } from "@/data/questions";
+import { useAllQuestions } from "@/hooks/useQuestions";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend
@@ -9,6 +9,7 @@ import {
 const COLORS = ["#7C3AED", "#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
 
 const AdminAnalytics = () => {
+  const { questions, loading: questionsLoading } = useAllQuestions();
   const [feedback, setFeedback] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,9 +22,8 @@ const AdminAnalytics = () => {
     fetchAll();
   }, []);
 
-  if (loading) return <p className="text-center text-muted-foreground py-8">Loading analytics...</p>;
+  if (loading || questionsLoading) return <p className="text-center text-muted-foreground py-8">Loading analytics...</p>;
 
-  // Thumbs down rate per tier
   const tiers = ["Junior", "Mid", "Senior", "AI Frontier", "Staff+"];
   const downRateByTier = tiers.map((tier) => {
     const tierFb = feedback.filter((f: any) => f.tier === tier);
@@ -32,7 +32,6 @@ const AdminAnalytics = () => {
     return { tier, rate: total ? Math.round((downs / total) * 100) : 0, total };
   });
 
-  // Thumbs down rate per category
   const categories = [...new Set(questions.map((q) => q.category))];
   const downRateByCat = categories.map((cat) => {
     const catFb = feedback.filter((f: any) => f.category === cat);
@@ -41,7 +40,6 @@ const AdminAnalytics = () => {
     return { category: cat, rate: total ? Math.round((downs / total) * 100) : 0, total };
   }).sort((a, b) => b.rate - a.rate);
 
-  // Top 10 most flagged
   const flagCounts: Record<number, { down: number; up: number }> = {};
   feedback.forEach((f: any) => {
     if (!flagCounts[f.question_id]) flagCounts[f.question_id] = { down: 0, up: 0 };
@@ -65,7 +63,6 @@ const AdminAnalytics = () => {
       return { id: Number(id), ...counts, question: q?.question?.slice(0, 60) || `Q#${id}`, tier: q?.salaryTier || "—" };
     });
 
-  // Questions per tier (from questions data)
   const questionsPerTier = tiers.map((tier) => ({
     tier,
     count: questions.filter((q) => q.salaryTier === tier).length,
@@ -75,7 +72,6 @@ const AdminAnalytics = () => {
 
   return (
     <div className="space-y-10">
-      {/* Thumbs Down Rate by Tier */}
       <section>
         <h3 className="text-lg font-semibold text-foreground mb-4">👎 "Too Hard" Rate by Tier</h3>
         <div className="h-64 w-full">
@@ -83,16 +79,13 @@ const AdminAnalytics = () => {
             <BarChart data={downRateByTier}>
               <XAxis dataKey="tier" tick={chartStyle} />
               <YAxis tick={chartStyle} unit="%" />
-              <Tooltip
-                contentStyle={{ backgroundColor: "#16161F", border: "1px solid #2D2D3A", color: "#F1F5F9" }}
-              />
+              <Tooltip contentStyle={{ backgroundColor: "#16161F", border: "1px solid #2D2D3A", color: "#F1F5F9" }} />
               <Bar dataKey="rate" fill="#EF4444" radius={[4, 4, 0, 0]} name="Too Hard %" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </section>
 
-      {/* Thumbs Down Rate by Category */}
       <section>
         <h3 className="text-lg font-semibold text-foreground mb-4">👎 "Too Hard" Rate by Category</h3>
         <div className="h-64 w-full">
@@ -100,16 +93,13 @@ const AdminAnalytics = () => {
             <BarChart data={downRateByCat} layout="vertical">
               <XAxis type="number" tick={chartStyle} unit="%" />
               <YAxis type="category" dataKey="category" tick={chartStyle} width={120} />
-              <Tooltip
-                contentStyle={{ backgroundColor: "#16161F", border: "1px solid #2D2D3A", color: "#F1F5F9" }}
-              />
+              <Tooltip contentStyle={{ backgroundColor: "#16161F", border: "1px solid #2D2D3A", color: "#F1F5F9" }} />
               <Bar dataKey="rate" fill="#F59E0B" radius={[0, 4, 4, 0]} name="Too Hard %" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </section>
 
-      {/* Questions per Tier pie */}
       <section>
         <h3 className="text-lg font-semibold text-foreground mb-4">📊 Questions per Tier</h3>
         <div className="h-72 w-full">
@@ -127,7 +117,6 @@ const AdminAnalytics = () => {
         </div>
       </section>
 
-      {/* Top 10 Most Flagged */}
       <section>
         <h3 className="text-lg font-semibold text-foreground mb-4">🚩 Top 10 Most Flagged Questions</h3>
         {topFlagged.length === 0 ? (
@@ -158,7 +147,6 @@ const AdminAnalytics = () => {
         )}
       </section>
 
-      {/* Top 10 Highest Rated */}
       <section>
         <h3 className="text-lg font-semibold text-foreground mb-4">⭐ Top 10 Highest Rated Questions</h3>
         {topRated.length === 0 ? (

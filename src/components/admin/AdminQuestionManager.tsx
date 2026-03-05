@@ -1,19 +1,24 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { questions } from "@/data/questions";
+import { useAllQuestions } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
 
 const TIERS = ["All", "Junior", "Mid", "Senior", "AI Frontier", "Staff+"];
-const CATEGORIES = ["All", ...new Set(questions.map((q) => q.category))];
 const STATUSES = ["All", "Active", "Disabled"];
 
 const AdminQuestionManager = () => {
+  const { questions, loading: questionsLoading } = useAllQuestions();
   const [overrides, setOverrides] = useState<Map<number, boolean>>(new Map());
   const [feedbackCounts, setFeedbackCounts] = useState<Map<number, { up: number; down: number }>>(new Map());
   const [filterTier, setFilterTier] = useState("All");
   const [filterCat, setFilterCat] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
   const [loading, setLoading] = useState(true);
+
+  const categories = useMemo(() => {
+    const cats = new Set(questions.map((q) => q.category));
+    return ["All", ...Array.from(cats).sort()];
+  }, [questions]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -48,7 +53,7 @@ const AdminQuestionManager = () => {
       if (filterStatus === "Disabled" && active) return false;
       return true;
     });
-  }, [filterTier, filterCat, filterStatus, overrides]);
+  }, [filterTier, filterCat, filterStatus, overrides, questions]);
 
   const toggleActive = async (questionId: number, currentActive: boolean) => {
     await (supabase.from("question_overrides" as any) as any).upsert(
@@ -58,37 +63,23 @@ const AdminQuestionManager = () => {
     setOverrides((prev) => new Map(prev).set(questionId, !currentActive));
   };
 
-  if (loading) return <p className="text-center text-muted-foreground py-8">Loading...</p>;
+  if (loading || questionsLoading) return <p className="text-center text-muted-foreground py-8">Loading...</p>;
 
   return (
     <div className="space-y-4">
-      {/* Filters */}
       <div className="flex flex-wrap gap-3">
-        <select
-          value={filterTier}
-          onChange={(e) => setFilterTier(e.target.value)}
-          className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground"
-        >
+        <select value={filterTier} onChange={(e) => setFilterTier(e.target.value)} className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground">
           {TIERS.map((t) => <option key={t} value={t}>{t === "All" ? "All Tiers" : t}</option>)}
         </select>
-        <select
-          value={filterCat}
-          onChange={(e) => setFilterCat(e.target.value)}
-          className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground"
-        >
-          {CATEGORIES.map((c) => <option key={c} value={c}>{c === "All" ? "All Categories" : c}</option>)}
+        <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)} className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground">
+          {categories.map((c) => <option key={c} value={c}>{c === "All" ? "All Categories" : c}</option>)}
         </select>
-        <select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-          className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground"
-        >
+        <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground [&>option]:bg-card [&>option]:text-foreground">
           {STATUSES.map((s) => <option key={s} value={s}>{s === "All" ? "All Statuses" : s}</option>)}
         </select>
         <span className="self-center text-sm text-muted-foreground">{filtered.length} questions</span>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-border">
         <table className="w-full text-left text-sm">
           <thead className="border-b border-border bg-muted/30">
@@ -116,19 +107,12 @@ const AdminQuestionManager = () => {
                   <td className="px-4 py-2 text-center text-green-400 font-bold">{fb.up}</td>
                   <td className="px-4 py-2 text-center text-red-400 font-bold">{fb.down}</td>
                   <td className="px-4 py-2">
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${
-                      active ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"
-                    }`}>
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${active ? "bg-green-500/15 text-green-400" : "bg-red-500/15 text-red-400"}`}>
                       {active ? "Active" : "Disabled"}
                     </span>
                   </td>
                   <td className="px-4 py-2">
-                    <Button
-                      size="sm"
-                      variant={active ? "destructive" : "default"}
-                      onClick={() => toggleActive(q.id, active)}
-                      className="text-xs"
-                    >
+                    <Button size="sm" variant={active ? "destructive" : "default"} onClick={() => toggleActive(q.id, active)} className="text-xs">
                       {active ? "Disable" : "Enable"}
                     </Button>
                   </td>
