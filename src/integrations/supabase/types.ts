@@ -122,6 +122,60 @@ export type Database = {
         }
         Relationships: []
       }
+      questions: {
+        Row: {
+          active: boolean
+          category: string
+          correctAnswers: Json
+          difficulty: number
+          explanation: string
+          flagCount: number
+          hint: string
+          id: number
+          multipleCorrect: boolean
+          options: Json
+          question: string
+          salaryRange: string
+          salaryTier: string
+          source: string
+          tier: number
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          correctAnswers: Json
+          difficulty?: number
+          explanation: string
+          flagCount?: number
+          hint: string
+          id?: number
+          multipleCorrect?: boolean
+          options: Json
+          question: string
+          salaryRange: string
+          salaryTier: string
+          source?: string
+          tier?: number
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          correctAnswers?: Json
+          difficulty?: number
+          explanation?: string
+          flagCount?: number
+          hint?: string
+          id?: number
+          multipleCorrect?: boolean
+          options?: Json
+          question?: string
+          salaryRange?: string
+          salaryTier?: string
+          source?: string
+          tier?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
