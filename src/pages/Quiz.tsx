@@ -288,7 +288,7 @@ const Quiz = () => {
                 </span>
                 {q.multipleCorrect && (
                   <span className="rounded-full bg-secondary/20 px-2.5 py-0.5 text-xs font-bold text-secondary">
-                    SELECT ALL
+                    Select all that apply
                   </span>
                 )}
               </div>
@@ -335,14 +335,22 @@ const Quiz = () => {
 
             {/* Options */}
             <div className="flex flex-col gap-3">
-              {q.options.map((opt, i) => (
-                <button key={i} onClick={() => toggleSelect(i)} className={optionClass(i)} style={{ fontSize: 16 }}>
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted/80 text-sm font-bold text-foreground/70">
-                    {optionLabel(i)}
-                  </span>
-                  <span>{opt}</span>
-                </button>
-              ))}
+              {q.options.map((opt, i) => {
+                const selectionOrder = q.multipleCorrect && selected.includes(i) ? selected.indexOf(i) + 1 : null;
+                return (
+                  <button key={i} onClick={() => toggleSelect(i)} className={optionClass(i)} style={{ fontSize: 16 }}>
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted/80 text-sm font-bold text-foreground/70 relative">
+                      {optionLabel(i)}
+                      {selectionOrder && !submitted && !timeExpired && (
+                        <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                          {selectionOrder}
+                        </span>
+                      )}
+                    </span>
+                    <span>{opt}</span>
+                  </button>
+                );
+              })}
             </div>
 
             {/* Hint button */}
