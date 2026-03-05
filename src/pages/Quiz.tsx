@@ -263,13 +263,46 @@ const Quiz = () => {
           <div className="space-y-6 pt-6">
             {/* Meta row — responsive */}
             <div className="flex flex-col gap-2">
-              {/* Line 1: Question X of Y ... Flag */}
+              {/* Mobile: Line 1 = Question X of Y + Flag; Line 2 = Skill tag + multi badge */}
+              {/* Desktop: All on one line */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-foreground/70">
-                  Question {currentIdx + 1} of {tierQuestions.length}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-sm font-semibold text-foreground/70">
+                    Question {currentIdx + 1} of {tierQuestions.length}
+                  </span>
+                  {/* Skill tag + multi badge — hidden on mobile, shown inline on desktop */}
+                  <div className="hidden md:flex items-center gap-2">
+                    <span
+                      className="rounded-full px-2.5 py-0.5 text-xs font-bold"
+                      style={{
+                        backgroundColor:
+                          q.category === "Product Sense" ? "hsla(263, 70%, 50%, 0.2)" :
+                          q.category === "Metrics" ? "hsla(199, 89%, 48%, 0.2)" :
+                          q.category === "Product Design" ? "hsla(38, 92%, 50%, 0.2)" :
+                          q.category === "Behavioral" ? "hsla(160, 84%, 39%, 0.2)" :
+                          "hsla(263, 70%, 50%, 0.2)",
+                        color:
+                          q.category === "Product Sense" ? "#7C3AED" :
+                          q.category === "Metrics" ? "#0EA5E9" :
+                          q.category === "Product Design" ? "#F59E0B" :
+                          q.category === "Behavioral" ? "#10B981" :
+                          "#7C3AED",
+                      }}
+                    >
+                      {q.category}
+                    </span>
+                    {q.multipleCorrect && (
+                      <span
+                        className="rounded-full px-2.5 py-0.5 font-semibold"
+                        style={{ fontSize: 11, backgroundColor: "hsl(215, 14%, 34%)", color: "white" }}
+                      >
+                        Select all that apply
+                      </span>
+                    )}
+                  </div>
+                </div>
                 {/* Flag */}
-                <div className="relative">
+                <div className="relative shrink-0">
                   <button
                     onClick={() => setFlagOpen((v) => !v)}
                     className={`p-2 rounded-lg transition-colors ${
@@ -303,8 +336,8 @@ const Quiz = () => {
                   )}
                 </div>
               </div>
-              {/* Line 2: Skill tag + multi-select badge */}
-              <div className="flex items-center gap-2">
+              {/* Mobile-only: Line 2 = Skill tag + multi badge */}
+              <div className="flex md:hidden items-center gap-2">
                 <span
                   className="rounded-full px-2.5 py-0.5 text-xs font-bold"
                   style={{
@@ -327,7 +360,7 @@ const Quiz = () => {
                 {q.multipleCorrect && (
                   <span
                     className="rounded-full px-2.5 py-0.5 font-semibold"
-                    style={{ fontSize: 11, backgroundColor: "hsl(220, 13%, 31%)", color: "white" }}
+                    style={{ fontSize: 11, backgroundColor: "hsl(215, 14%, 34%)", color: "white" }}
                   >
                     Select all that apply
                   </span>
