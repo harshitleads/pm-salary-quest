@@ -41,6 +41,7 @@ const QuizTimer = forwardRef<QuizTimerHandle, QuizTimerProps>(
     }));
 
     useEffect(() => {
+      setTimeLeft(duration);
       startTimer();
       return () => {
         if (intervalRef.current) clearInterval(intervalRef.current);
