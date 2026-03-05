@@ -1,13 +1,14 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { questions, salaryTiers } from "@/data/questions";
+import { salaryTiers } from "@/data/questions";
+import { useQuestions, Question } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 import QuizTimer, { QuizTimerHandle } from "@/components/QuizTimer";
 import QuizResults from "@/components/QuizResults";
 import QuestionVote from "@/components/QuestionVote";
-import { Flag } from "lucide-react";
+import { Flag, Loader2 } from "lucide-react";
 
 interface QuestionResult {
   id: number;
@@ -22,14 +23,23 @@ const Quiz = () => {
   const decodedTier = decodeURIComponent(tier || "");
   const timerRef = useRef<QuizTimerHandle>(null);
 
-  const customQuestions = (location.state as any)?.questions as typeof questions | undefined;
+  const customQuestions = (location.state as any)?.questions as Question[] | undefined;
   const customLabel = (location.state as any)?.label as string | undefined;
 
   const tierInfo = salaryTiers.find((t) => t.key === decodedTier);
+
+  // Fetch from DB only when no custom questions are passed via state
+  const { questions: dbQuestions, loading: dbLoading } = useQuestions({
+    salaryTier: decodedTier,
+    limit: 25,
+    shuffle: true,
+    enabled: !customQuestions,
+  });
+
   const tierQuestions = useMemo(() => {
     if (customQuestions) return customQuestions;
-    return [...questions.filter((q) => q.salaryTier === decodedTier)].sort(() => Math.random() - 0.5);
-  }, [decodedTier, customQuestions]);
+    return dbQuestions;
+  }, [customQuestions, dbQuestions]);
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selected, setSelected] = useState<number[]>([]);
@@ -180,11 +190,23 @@ const Quiz = () => {
     }, 1500);
   };
 
+  // Loading state
+  if (!customQuestions && dbLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-sm text-muted-foreground">Loading questions...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!tierQuestions || tierQuestions.length === 0) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <p className="text-lg font-semibold text-foreground">No questions found</p>
+          <p className="text-lg font-semibold text-foreground">No questions found for this filter</p>
           <Button className="mt-4" onClick={() => navigate("/")}>Go Home</Button>
         </div>
       </div>
@@ -286,14 +308,12 @@ const Quiz = () => {
         <div className="mx-auto max-w-[680px] px-5" key={q.id}>
           {/* BLOCK 1 — Question + Options */}
           <div className="space-y-6 pt-6">
-            {/* Meta row — responsive */}
+            {/* Meta row */}
             <div className="flex flex-col gap-2">
-              {/* Line 1: Question X of Y ... Flag */}
               <div className="flex items-center justify-between">
                 <span className="text-sm font-semibold text-foreground/70">
                   Question {currentIdx + 1} of {tierQuestions.length}
                 </span>
-                {/* Flag */}
                 <div className="relative">
                   <button
                     onClick={() => setFlagOpen((v) => !v)}
@@ -328,7 +348,6 @@ const Quiz = () => {
                   )}
                 </div>
               </div>
-              {/* Line 2: Skill tag + multi-select badge */}
               <div className="flex items-center gap-2">
                 <span
                   className="rounded-full px-2.5 py-0.5 text-xs font-bold"
@@ -360,12 +379,10 @@ const Quiz = () => {
               </div>
             </div>
 
-            {/* Question text */}
             <h2 className="text-foreground font-bold" style={{ fontSize: 22, lineHeight: 1.4 }}>
               {q.question}
             </h2>
 
-            {/* Options */}
             <div className="flex flex-col gap-3">
               {q.options.map((opt, i) => {
                 const selectionOrder = q.multipleCorrect && selected.includes(i) ? selected.indexOf(i) + 1 : null;
@@ -385,14 +402,10 @@ const Quiz = () => {
               })}
             </div>
 
-            {/* Hint button */}
             <button
               onClick={() => setShowHint((v) => !v)}
               className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-foreground rounded-lg px-4 py-2 self-start"
-              style={{
-                color: "hsl(215, 20%, 65%)",
-                backgroundColor: "transparent",
-              }}
+              style={{ color: "hsl(215, 20%, 65%)", backgroundColor: "transparent" }}
             >
               <span className="text-base">💡</span>
               <span>{showHint ? "Hide Hint" : "Show Hint"}</span>
@@ -403,7 +416,6 @@ const Quiz = () => {
               </p>
             )}
 
-            {/* Submit button */}
             {!submitted && !timeExpired && (
               <Button
                 onClick={handleSubmit}
@@ -420,7 +432,6 @@ const Quiz = () => {
               </Button>
             )}
 
-            {/* Time's Up banner */}
             {timeExpired && !submitted && (
               <div className="space-y-3">
                 <div className="rounded-lg px-4 py-3 text-center text-base font-bold" style={{ backgroundColor: "hsl(0, 84%, 60%)", color: "white" }}>
@@ -438,10 +449,8 @@ const Quiz = () => {
             )}
           </div>
 
-          {/* BLOCK 2 — Post-submission content, appended below */}
           {submitted && (
             <div className="mt-6 space-y-4">
-              {/* Feedback line */}
               <p className="font-semibold" style={{ fontSize: 15 }}>
                 {isCorrect ? (
                   <span className="text-success">✓ Correct! {earnedPoints ? "+10 pts" : "+0 pts"}</span>
@@ -450,7 +459,6 @@ const Quiz = () => {
                 )}
               </p>
 
-              {/* Wrong answer actions */}
               {!isCorrect && (
                 <div className="space-y-3">
                   <Button
@@ -474,7 +482,6 @@ const Quiz = () => {
                 </div>
               )}
 
-              {/* Correct — view explanation */}
               {isCorrect && !showExplanation && (
                 <Button
                   onClick={() => setShowExplanation(true)}
@@ -486,7 +493,6 @@ const Quiz = () => {
                 </Button>
               )}
 
-              {/* Explanation text — natural height, no scroll box */}
               {showExplanation && (
                 <div className="space-y-2">
                   <p className="font-semibold text-foreground" style={{ fontSize: 15 }}>
@@ -498,44 +504,24 @@ const Quiz = () => {
                 </div>
               )}
 
-              {/* Too Easy / Too Hard */}
               <div className="pt-2">
                 <QuestionVote questionId={q.id} tier={decodedTier} category={q.category} />
               </div>
             </div>
           )}
 
-          {/* NAVIGATION — 16px below last content */}
           <div className="flex items-center justify-between gap-3 mt-4">
-            <Button
-              variant="outline"
-              size="lg"
-              disabled={currentIdx === 0}
-              onClick={() => goTo(-1)}
-              className="flex-1 text-base"
-            >
+            <Button variant="outline" size="lg" disabled={currentIdx === 0} onClick={() => goTo(-1)} className="flex-1 text-base">
               Previous
             </Button>
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={handleEndQuiz}
-              className="text-sm shrink-0"
-            >
+            <Button variant="destructive" size="sm" onClick={handleEndQuiz} className="text-sm shrink-0">
               End Quiz
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              disabled={currentIdx === tierQuestions.length - 1}
-              onClick={() => goTo(1)}
-              className="flex-1 text-base"
-            >
+            <Button variant="outline" size="lg" disabled={currentIdx === tierQuestions.length - 1} onClick={() => goTo(1)} className="flex-1 text-base">
               Next
             </Button>
           </div>
 
-          {/* PROGRESS BAR */}
           <div className="mt-3 space-y-1 pb-4">
             <div className="flex items-center justify-between text-xs text-muted-foreground/50">
               <span>{currentIdx + 1} / {tierQuestions.length}</span>

@@ -2,17 +2,19 @@ import { useNavigate } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SalaryTierCard from "@/components/SalaryTierCard";
 import FeedbackModal from "@/components/FeedbackModal";
-import { salaryTiers, questions } from "@/data/questions";
+import { salaryTiers } from "@/data/questions";
 import { Button } from "@/components/ui/button";
+import { useQuestions } from "@/hooks/useQuestions";
 import { useMemo } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { questions, loading } = useQuestions({ shuffle: false });
 
   const categories = useMemo(() => {
     const cats = new Set(questions.map((q) => q.category));
     return Array.from(cats).sort();
-  }, []);
+  }, [questions]);
 
   const shuffleAndGo = () => {
     const shuffled = [...questions].sort(() => Math.random() - 0.5);
@@ -54,6 +56,7 @@ const Index = () => {
           <Button
             size="lg"
             onClick={shuffleAndGo}
+            disabled={loading || questions.length === 0}
             className="w-full sm:w-auto text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90"
           >
             🔀 Shuffle All Questions
