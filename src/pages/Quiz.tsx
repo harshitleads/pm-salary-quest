@@ -243,7 +243,7 @@ const Quiz = () => {
             <span className="text-sm font-semibold text-muted-foreground">
               Question {currentIdx + 1} of {tierQuestions.length}
             </span>
-            <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-bold text-primary">
+            <span className="rounded-full bg-primary/25 px-2.5 py-0.5 text-xs font-bold text-primary-foreground">
               {q.category}
             </span>
             {q.multipleCorrect && (
