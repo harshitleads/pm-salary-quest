@@ -41,7 +41,7 @@ const CustomAngleTick = ({ payload, x, y, cx, cy }: any) => {
       y={ny}
       textAnchor={anchor}
       dominantBaseline="central"
-      fill="hsl(var(--muted-foreground))"
+      fill="hsl(215, 20%, 65%)"
       fontSize={11}
       fontWeight={600}
     >
@@ -77,7 +77,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/80 backdrop-blur-md">
+      <header className="border-b border-border bg-card/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl items-center justify-center px-4 py-4">
           <h1 className="text-quiz-heading text-foreground">Quiz Complete!</h1>
         </div>
@@ -87,7 +87,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
         {/* Summary */}
         <div className="animate-scale-pop rounded-2xl border border-border bg-card p-6 shadow-xl text-center space-y-2">
           <p className="text-muted-foreground text-sm font-semibold">{tierLabel}</p>
-          <p className="text-4xl font-bold font-display text-foreground">{totalPoints} pts</p>
+          <p className="text-4xl font-bold text-foreground">{totalPoints} pts</p>
           <p className="text-lg text-muted-foreground">
             {totalCorrect} / {results.length} correct ({overallPct}%)
           </p>
@@ -109,7 +109,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
           <div className="h-72 sm:h-96 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="50%" data={radarData}>
-                <PolarGrid stroke="hsl(var(--border))" />
+                <PolarGrid stroke="hsl(240, 12%, 20%)" />
                 <PolarAngleAxis
                   dataKey="subject"
                   tick={<CustomAngleTick />}
@@ -118,13 +118,13 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
                 <PolarRadiusAxis
                   angle={90}
                   domain={[0, 100]}
-                  tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
+                  tick={{ fill: "hsl(215, 20%, 65%)", fontSize: 10 }}
                 />
                 <Radar
                   name="Score"
                   dataKey="score"
-                  stroke="hsl(var(--primary))"
-                  fill="hsl(var(--primary))"
+                  stroke="hsl(263, 70%, 50%)"
+                  fill="hsl(263, 70%, 50%)"
                   fillOpacity={0.25}
                   strokeWidth={2}
                 />
@@ -161,7 +161,7 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
           <Button variant="outline" size="lg" onClick={() => navigate("/")} className="text-quiz-option">
             Go Home
           </Button>
-          <Button size="lg" onClick={onRetry} className="text-quiz-option bg-secondary text-secondary-foreground hover:bg-secondary/90">
+          <Button size="lg" onClick={onRetry} className="text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90">
             Try Again
           </Button>
         </div>
