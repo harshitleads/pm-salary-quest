@@ -282,7 +282,7 @@ const Quiz = () => {
       </header>
 
       {/* SCROLLABLE CONTENT */}
-      <main className="flex-1 pt-[72px] pb-8">
+      <main className="flex-1 pt-[100px] md:pt-[72px] pb-8">
         <div className="mx-auto max-w-[680px] px-5" key={q.id}>
           {/* BLOCK 1 — Question + Options */}
           <div className="space-y-6 pt-6">
