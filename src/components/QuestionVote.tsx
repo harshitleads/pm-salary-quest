@@ -30,7 +30,6 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
   const handleVote = async (type: "up" | "down") => {
     if (loading) return;
 
-    // If switching vote, delete old one first
     if (voted && voted !== type) {
       const sessionId = getSessionId();
       await (supabase.from("question_feedback" as any) as any)
@@ -42,7 +41,6 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
     setLoading(true);
     const sessionId = getSessionId();
 
-    // Upsert the vote
     await (supabase.from("question_feedback" as any) as any).upsert(
       {
         question_id: questionId,
@@ -63,33 +61,33 @@ const QuestionVote = ({ questionId, tier, category }: QuestionVoteProps) => {
   };
 
   return (
-    <div className="flex items-center gap-3 mt-3">
+    <div className="flex flex-col gap-2 w-full">
       <button
         onClick={() => handleVote("up")}
         disabled={loading}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
+        className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border ${
           voted === "up"
-            ? "border-green-500/40 bg-green-500/15 text-green-400"
-            : "border-border text-muted-foreground hover:text-green-400 hover:border-green-500/30 hover:bg-green-500/10"
+            ? "border-success/40 bg-success/15 text-success"
+            : "border-border bg-muted/30 text-muted-foreground hover:text-success hover:border-success/30 hover:bg-success/10"
         }`}
       >
-        <span className="text-sm">😎</span>
+        <span className="text-lg">😎</span>
         Too Easy
       </button>
       <button
         onClick={() => handleVote("down")}
         disabled={loading}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
+        className={`flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border ${
           voted === "down"
-            ? "border-red-500/40 bg-red-500/15 text-red-400"
-            : "border-border text-muted-foreground hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10"
+            ? "border-destructive/40 bg-destructive/15 text-destructive"
+            : "border-border bg-muted/30 text-muted-foreground hover:text-destructive hover:border-destructive/30 hover:bg-destructive/10"
         }`}
       >
-        <span className="text-sm">🤯</span>
+        <span className="text-lg">🤯</span>
         Too Hard
       </button>
       <span
-        className={`text-xs text-muted-foreground transition-opacity duration-500 ${
+        className={`text-xs text-muted-foreground text-center transition-opacity duration-500 ${
           showThanks ? "opacity-100" : "opacity-0"
         }`}
       >
