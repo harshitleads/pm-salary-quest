@@ -285,8 +285,30 @@ const Quiz = () => {
             )}
           </div>
 
+          {/* Time's Up Banner */}
+          {timeExpired && !submitted && (
+            <div className="mt-6 space-y-3">
+              <div className="rounded-lg bg-destructive px-4 py-3 text-center text-base font-bold text-destructive-foreground">
+                ⏰ Time's Up!
+              </div>
+              <Button
+                size="lg"
+                className="w-full text-quiz-option"
+                onClick={() => {
+                  if (currentIdx < tierQuestions.length - 1) {
+                    goTo(1);
+                  } else {
+                    handleEndQuiz();
+                  }
+                }}
+              >
+                {currentIdx < tierQuestions.length - 1 ? "Continue →" : "See Results"}
+              </Button>
+            </div>
+          )}
+
           {/* Submit */}
-          {!submitted && (
+          {!submitted && !timeExpired && (
             <Button
               onClick={handleSubmit}
               disabled={selected.length === 0}
