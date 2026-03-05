@@ -216,7 +216,7 @@ const Quiz = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20">
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b border-border bg-card/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl px-4 py-3">
@@ -411,8 +411,11 @@ const Quiz = () => {
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="mt-6 flex items-center justify-between gap-3">
+      </main>
+
+      {/* Navigation - fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-border bg-card/95 backdrop-blur-md">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
           <Button variant="outline" size="lg" disabled={currentIdx === 0} onClick={() => goTo(-1)} className="flex-1 text-quiz-option">
             ← Previous
           </Button>
@@ -428,7 +431,7 @@ const Quiz = () => {
             Next →
           </Button>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
