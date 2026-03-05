@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import ImportQuestions from "./pages/ImportQuestions";
 
 const queryClient = new QueryClient();
 
