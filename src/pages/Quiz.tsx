@@ -261,7 +261,7 @@ const Quiz = () => {
           {/* Options */}
           <div className="flex flex-col gap-3">
             {q.options.map((opt, i) => (
-              <button key={i} onClick={() => toggleSelect(i)} className={optionClass(i)}>
+              <button key={i} onClick={() => toggleSelect(i)} className={`${optionClass(i)} ${timeExpired ? "opacity-60 pointer-events-none" : ""}`}>
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-muted text-sm font-bold text-muted-foreground">
                   {optionLabel(i)}
                 </span>
