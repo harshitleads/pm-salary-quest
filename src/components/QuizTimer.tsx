@@ -17,9 +17,11 @@ const QuizTimer = forwardRef<QuizTimerHandle, QuizTimerProps>(
   ({ questionId, duration = 45, onTimerValue, size = 52, fontSize = 13 }, ref) => {
     const [timeLeft, setTimeLeft] = useState(duration);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const suppressCallbackRef = useRef(false);
 
     const startTimer = () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      suppressCallbackRef.current = true;
       setTimeLeft(duration);
       intervalRef.current = setInterval(() => {
         setTimeLeft((prev) => {
