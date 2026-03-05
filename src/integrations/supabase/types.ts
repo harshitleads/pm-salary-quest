@@ -176,6 +176,77 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_sessions: {
+        Row: {
+          categories: Json | null
+          completed_at: string
+          id: string
+          score: number
+          tier: string | null
+          total_questions: number
+          user_id: string
+        }
+        Insert: {
+          categories?: Json | null
+          completed_at?: string
+          id?: string
+          score?: number
+          tier?: string | null
+          total_questions?: number
+          user_id: string
+        }
+        Update: {
+          categories?: Json | null
+          completed_at?: string
+          id?: string
+          score?: number
+          tier?: string | null
+          total_questions?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_sessions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_profiles: {
+        Row: {
+          created_at: string
+          current_streak: number
+          display_name: string | null
+          email: string | null
+          id: string
+          last_session_date: string | null
+          total_correct: number
+          total_questions_answered: number
+        }
+        Insert: {
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          email?: string | null
+          id: string
+          last_session_date?: string | null
+          total_correct?: number
+          total_questions_answered?: number
+        }
+        Update: {
+          created_at?: string
+          current_streak?: number
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          last_session_date?: string | null
+          total_correct?: number
+          total_questions_answered?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -205,6 +276,15 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      record_quiz_session: {
+        Args: {
+          p_categories: Json
+          p_score: number
+          p_tier: string
+          p_total_questions: number
+        }
+        Returns: undefined
       }
     }
     Enums: {
