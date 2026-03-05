@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
 import QuizTimer from "@/components/QuizTimer";
 import QuizResults from "@/components/QuizResults";
+import QuestionVote from "@/components/QuestionVote";
 
 interface QuestionResult {
   id: number;
@@ -407,6 +408,11 @@ const Quiz = () => {
               </div>
             )}
           </div>
+
+          {/* Thumbs up/down vote */}
+          {submitted && (
+            <QuestionVote questionId={q.id} tier={decodedTier} category={q.category} />
+          )}
         </div>
 
         {/* XP Progress Bar */}
