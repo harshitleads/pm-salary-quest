@@ -62,7 +62,7 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
         </div>
       )}
       <div className="relative z-10 flex flex-col justify-between gap-3 flex-1">
-        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-sm font-bold tracking-wide text-white backdrop-blur-sm">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-black/25 px-3 py-1 text-sm font-bold tracking-wide text-white backdrop-blur-sm">
           <Target size={12} /> {tier.label}
         </span>
         <p className="text-hero-title text-white drop-shadow-md">{tier.salary}</p>
