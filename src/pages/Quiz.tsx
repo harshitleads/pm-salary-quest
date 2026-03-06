@@ -440,7 +440,7 @@ const Quiz = () => {
             {!submitted && !timeExpired && (
               <Button
                 onClick={handleSubmit}
-                disabled={selected.length === 0}
+                disabled={selected.length === 0 || submitting}
                 size="lg"
                 className="w-full text-base font-semibold h-12"
                 style={{
