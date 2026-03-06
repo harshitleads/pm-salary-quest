@@ -13,7 +13,7 @@ import { useMemo } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
+  const { user, profile, loading: authLoading } = useAuth();
   const { questions, loading } = useQuestions({ shuffle: false });
   const [customOpen, setCustomOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
