@@ -107,15 +107,21 @@ const Quiz = () => {
     [q]
   );
 
-  const handleSubmit = useCallback(() => {
-    if (selected.length === 0 || submitted) return;
-    setSubmitted(true);
-    setEarnedPoints(false);
+  const handleSubmit = useCallback(async () => {
+    if (selected.length === 0 || submitted || submitting) return;
+    setSubmitting(true);
     timerRef.current?.stop();
 
+    // Fetch correct answers from RPC
+    const correctAnswers = await fetchCorrectAnswers(q.id);
+    setRevealedAnswers((prev) => ({ ...prev, [q.id]: correctAnswers }));
+
+    setSubmitted(true);
+    setEarnedPoints(false);
+
     const correct =
-      selected.length === q.correctAnswers.length &&
-      selected.every((s) => q.correctAnswers.includes(s));
+      selected.length === correctAnswers.length &&
+      selected.every((s) => correctAnswers.includes(s));
 
     setIsCorrect(correct);
     recordResult(correct);
@@ -130,7 +136,8 @@ const Quiz = () => {
     }
 
     setAttemptedFirst((prev) => ({ ...prev, [q.id]: true }));
-  }, [selected, submitted, q, attemptedFirst, recordResult]);
+    setSubmitting(false);
+  }, [selected, submitted, submitting, q, attemptedFirst, recordResult]);
 
   const resetQuestionState = () => {
     setSelected([]);
