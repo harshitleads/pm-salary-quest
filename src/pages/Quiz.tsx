@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { salaryTiers } from "@/data/questions";
-import { useQuestions, Question } from "@/hooks/useQuestions";
+import { useQuestions, Question, fetchCorrectAnswers } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
