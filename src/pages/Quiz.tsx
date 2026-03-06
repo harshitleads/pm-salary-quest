@@ -10,10 +10,12 @@ import QuizResults from "@/components/QuizResults";
 import QuestionVote from "@/components/QuestionVote";
 import { Flag, Loader2 } from "lucide-react";
 
-interface QuestionResult {
+export interface QuestionResult {
   id: number;
   category: string;
   correct: boolean;
+  tier: string;
+  time_taken: number;
 }
 
 const Quiz = () => {
@@ -57,6 +59,7 @@ const Quiz = () => {
   const [flagSubmitted, setFlagSubmitted] = useState(false);
   const [questionResults, setQuestionResults] = useState<QuestionResult[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const questionStartTime = useRef<number>(Date.now());
 
   const q = tierQuestions[currentIdx];
 
@@ -73,23 +76,30 @@ const Quiz = () => {
     }
   };
 
+  // Reset question start time when question changes
+  useEffect(() => {
+    questionStartTime.current = Date.now();
+  }, [currentIdx]);
+
   const handleTimerValue = useCallback((seconds: number) => {
     if (seconds === 0 && !submitted) {
       setTimeExpired(true);
+      const timeTaken = Math.round((Date.now() - questionStartTime.current) / 1000);
       setQuestionResults((prev) => {
         const existing = prev.find((r) => r.id === q.id);
         if (existing) return prev;
-        return [...prev, { id: q.id, category: q.category, correct: false }];
+        return [...prev, { id: q.id, category: q.category, correct: false, tier: q.salaryTier, time_taken: timeTaken }];
       });
     }
   }, [submitted, q]);
 
   const recordResult = useCallback(
     (correct: boolean) => {
+      const timeTaken = Math.round((Date.now() - questionStartTime.current) / 1000);
       setQuestionResults((prev) => {
         const existing = prev.find((r) => r.id === q.id);
         if (existing) return prev;
-        return [...prev, { id: q.id, category: q.category, correct }];
+        return [...prev, { id: q.id, category: q.category, correct, tier: q.salaryTier, time_taken: timeTaken }];
       });
     },
     [q]
@@ -160,7 +170,7 @@ const Quiz = () => {
     tierQuestions.forEach((tq) => {
       const alreadyRecorded = questionResults.find((r) => r.id === tq.id);
       if (!alreadyRecorded) {
-        setQuestionResults((prev) => [...prev, { id: tq.id, category: tq.category, correct: false }]);
+        setQuestionResults((prev) => [...prev, { id: tq.id, category: tq.category, correct: false, tier: tq.salaryTier, time_taken: 0 }]);
       }
     });
     setShowResults(true);
