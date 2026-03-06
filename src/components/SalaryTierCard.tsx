@@ -61,7 +61,7 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
           <Lock className="h-4 w-4 text-white/70" />
         </div>
       )}
-      <div className="relative z-10 flex flex-col gap-3 flex-1">
+      <div className="relative z-10 flex flex-col justify-between gap-3 flex-1">
         <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-sm font-bold tracking-wide text-white backdrop-blur-sm">
           {tier.emoji} {tier.label}
         </span>
