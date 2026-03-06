@@ -32,6 +32,7 @@ const pillInactive =
 
 const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [count, setCount] = useState(10);
   const [selectedTiers, setSelectedTiers] = useState<string[]>([...TIERS]);
   const [selectedCats, setSelectedCats] = useState<string[]>([...CATEGORIES]);
@@ -39,6 +40,14 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
   const [matchCount, setMatchCount] = useState<number | null>(null);
   const [loadingCount, setLoadingCount] = useState(false);
   const [starting, setStarting] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const pendingStartRef = useRef(false);
+
+  // Check if current selections require auth
+  const requiresAuth = !user && (
+    selectedTiers.some((t) => LOCKED_TIERS.has(t)) ||
+    difficulty === 3 // Hard (4-5)
+  );
 
   const toggleMulti = (arr: string[], val: string, setter: (v: string[]) => void) => {
     setter(arr.includes(val) ? arr.filter((v) => v !== val) : [...arr, val]);
@@ -73,8 +82,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
 
   const canStart = selectedTiers.length > 0 && selectedCats.length > 0;
 
-  const handleStart = async () => {
-    if (!canStart) return;
+  const executeStart = async () => {
     setStarting(true);
 
     let query = (supabase.from("questions") as any)
@@ -101,6 +109,24 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
     navigate("/quiz/custom", {
       state: { questions, label: "⚙️ Custom Quiz" },
     });
+  };
+
+  // After auth succeeds, auto-start the quiz
+  useEffect(() => {
+    if (user && pendingStartRef.current) {
+      pendingStartRef.current = false;
+      executeStart();
+    }
+  }, [user]);
+
+  const handleStart = () => {
+    if (!canStart) return;
+    if (requiresAuth) {
+      pendingStartRef.current = true;
+      setAuthOpen(true);
+      return;
+    }
+    executeStart();
   };
 
   if (!open) return null;
