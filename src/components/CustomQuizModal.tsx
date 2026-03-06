@@ -220,6 +220,13 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
           ) : null}
         </p>
 
+        {/* Auth requirement notice */}
+        {requiresAuth && (
+          <p className="text-xs text-amber-500 mb-3 flex items-center gap-1">
+            <Lock className="w-3 h-3" /> Sign in required for selected tiers/difficulty
+          </p>
+        )}
+
         {/* Start */}
         <Button
           onClick={handleStart}
@@ -232,11 +239,22 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
         >
           {starting ? (
             <span className="flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Loading...</span>
+          ) : requiresAuth ? (
+            <span className="flex items-center gap-2"><Lock className="w-4 h-4" /> Sign In & Start Quiz</span>
           ) : (
             "Start Custom Quiz"
           )}
         </Button>
       </div>
+
+      <AuthModal
+        open={authOpen}
+        onClose={() => {
+          setAuthOpen(false);
+          pendingStartRef.current = false;
+        }}
+        heading="Sign In to Start This Quiz"
+      />
     </div>
   );
 };
