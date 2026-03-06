@@ -45,7 +45,7 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
     <button
       onClick={handleClick}
       className={`${tier.gradient} group relative w-full h-full overflow-hidden rounded-2xl p-6 text-left shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] flex flex-col ${
-        isStaff ? "min-h-[220px] ring-2 ring-secondary/50" : "min-h-[200px]"
+        isStaff ? "min-h-[200px] ring-2 ring-secondary/50" : "min-h-[200px]"
       }`}
       style={{ boxShadow: `0 0 0 1px transparent` }}
       onMouseEnter={(e) => {
