@@ -59,6 +59,8 @@ const Quiz = () => {
   const [flagSubmitted, setFlagSubmitted] = useState(false);
   const [questionResults, setQuestionResults] = useState<QuestionResult[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, number[]>>({});
   const questionStartTime = useRef<number>(Date.now());
 
   const q = tierQuestions[currentIdx];
