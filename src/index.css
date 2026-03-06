@@ -170,3 +170,13 @@
     -webkit-transform: none !important;
   }
 }
+
+/* Tablet-only: ensure Staff+ card matches other cards' height */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tier-grid > *:last-child {
+    width: 100%;
+  }
+  .tier-grid > *:last-child > button {
+    min-height: 268px;
+  }
+}
