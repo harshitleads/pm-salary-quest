@@ -279,6 +279,7 @@ export type Database = {
           category: string | null
           difficulty: number | null
           explanation: string | null
+          flagCount: number | null
           hint: string | null
           id: number | null
           multipleCorrect: boolean | null
@@ -294,6 +295,7 @@ export type Database = {
           category?: string | null
           difficulty?: number | null
           explanation?: string | null
+          flagCount?: number | null
           hint?: string | null
           id?: number | null
           multipleCorrect?: boolean | null
@@ -309,6 +311,7 @@ export type Database = {
           category?: string | null
           difficulty?: number | null
           explanation?: string | null
+          flagCount?: number | null
           hint?: string | null
           id?: number | null
           multipleCorrect?: boolean | null
@@ -323,6 +326,7 @@ export type Database = {
       }
     }
     Functions: {
+      get_correct_answers: { Args: { p_question_id: number }; Returns: Json }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { salaryTiers } from "@/data/questions";
-import { useQuestions, Question } from "@/hooks/useQuestions";
+import { useQuestions, Question, fetchCorrectAnswers } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import confetti from "canvas-confetti";
@@ -59,6 +59,8 @@ const Quiz = () => {
   const [flagSubmitted, setFlagSubmitted] = useState(false);
   const [questionResults, setQuestionResults] = useState<QuestionResult[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<number, number[]>>({});
   const questionStartTime = useRef<number>(Date.now());
 
   const q = tierQuestions[currentIdx];
@@ -105,15 +107,21 @@ const Quiz = () => {
     [q]
   );
 
-  const handleSubmit = useCallback(() => {
-    if (selected.length === 0 || submitted) return;
-    setSubmitted(true);
-    setEarnedPoints(false);
+  const handleSubmit = useCallback(async () => {
+    if (selected.length === 0 || submitted || submitting) return;
+    setSubmitting(true);
     timerRef.current?.stop();
 
+    // Fetch correct answers from RPC
+    const correctAnswers = await fetchCorrectAnswers(q.id);
+    setRevealedAnswers((prev) => ({ ...prev, [q.id]: correctAnswers }));
+
+    setSubmitted(true);
+    setEarnedPoints(false);
+
     const correct =
-      selected.length === q.correctAnswers.length &&
-      selected.every((s) => q.correctAnswers.includes(s));
+      selected.length === correctAnswers.length &&
+      selected.every((s) => correctAnswers.includes(s));
 
     setIsCorrect(correct);
     recordResult(correct);
@@ -128,7 +136,8 @@ const Quiz = () => {
     }
 
     setAttemptedFirst((prev) => ({ ...prev, [q.id]: true }));
-  }, [selected, submitted, q, attemptedFirst, recordResult]);
+    setSubmitting(false);
+  }, [selected, submitted, submitting, q, attemptedFirst, recordResult]);
 
   const resetQuestionState = () => {
     setSelected([]);
@@ -240,6 +249,8 @@ const Quiz = () => {
   const optionLabel = (i: number) => String.fromCharCode(65 + i);
   const progressPct = ((currentIdx + 1) / tierQuestions.length) * 100;
 
+  const currentCorrect = revealedAnswers[q.id] || [];
+
   const optionClass = (i: number) => {
     const base = "flex w-full items-start gap-3 rounded-xl border px-5 py-4 text-left transition-all duration-200";
     if (!submitted && !timeExpired) {
@@ -249,7 +260,7 @@ const Quiz = () => {
           : "border-border bg-muted/50 hover:bg-primary/5 hover:border-primary/30"
       } cursor-pointer`;
     }
-    if (submitted && isCorrect && q.correctAnswers.includes(i))
+    if (submitted && isCorrect && currentCorrect.includes(i))
       return `${base} border-success bg-success/10 text-foreground`;
     if (submitted && !isCorrect && selected.includes(i))
       return `${base} border-destructive bg-destructive/10 text-foreground`;
@@ -429,7 +440,7 @@ const Quiz = () => {
             {!submitted && !timeExpired && (
               <Button
                 onClick={handleSubmit}
-                disabled={selected.length === 0}
+                disabled={selected.length === 0 || submitting}
                 size="lg"
                 className="w-full text-base font-semibold h-12"
                 style={{
@@ -506,7 +517,7 @@ const Quiz = () => {
               {showExplanation && (
                 <div className="space-y-2">
                   <p className="font-semibold text-foreground" style={{ fontSize: 15 }}>
-                    Answer: {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
+                    Answer: {currentCorrect.map((c) => optionLabel(c)).join(", ")}
                   </p>
                   <p className="text-foreground/80" style={{ fontSize: 15, lineHeight: 1.6 }}>
                     {q.explanation}
