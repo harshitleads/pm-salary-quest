@@ -13,12 +13,7 @@ import {
   Radar,
   ResponsiveContainer,
 } from "recharts";
-
-interface QuestionResult {
-  id: number;
-  category: string;
-  correct: boolean;
-}
+import type { QuestionResult } from "@/pages/Quiz";
 
 interface QuizResultsProps {
   results: QuestionResult[];
@@ -73,6 +68,27 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
   const totalCorrect = results.filter((r) => r.correct).length;
   const overallPct = results.length > 0 ? Math.round((totalCorrect / results.length) * 100) : 0;
 
+  // Build enriched data for saving
+  const categoryScores = useMemo(() => {
+    const scores: Record<string, { correct: number; total: number }> = {};
+    results.forEach((r) => {
+      if (!scores[r.category]) scores[r.category] = { correct: 0, total: 0 };
+      scores[r.category].total += 1;
+      if (r.correct) scores[r.category].correct += 1;
+    });
+    return scores;
+  }, [results]);
+
+  const correctByQuestion = useMemo(() => {
+    return results.map((r) => ({
+      question_id: r.id,
+      category: r.category,
+      correct: r.correct,
+      tier: r.tier,
+      time_taken: r.time_taken,
+    }));
+  }, [results]);
+
   // Auto-save session for authenticated users
   useEffect(() => {
     if (!user || sessionSaved) return;
@@ -83,12 +99,14 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
         p_categories: categories,
         p_score: totalCorrect,
         p_total_questions: results.length,
+        p_category_scores: categoryScores,
+        p_correct_by_question: correctByQuestion,
       });
       setSessionSaved(true);
       refreshProfile();
     };
     saveSession();
-  }, [user, sessionSaved, results, totalCorrect, tierLabel, refreshProfile]);
+  }, [user, sessionSaved, results, totalCorrect, tierLabel, refreshProfile, categoryScores, correctByQuestion]);
 
   return (
     <div className="min-h-screen bg-background">
