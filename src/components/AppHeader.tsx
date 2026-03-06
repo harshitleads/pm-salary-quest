@@ -32,7 +32,8 @@ const AppHeader = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => { setAuthHeading("Sign in to track your progress"); setAuthOpen(true); }}
-              className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              className="text-xs font-semibold hover:text-foreground transition-colors"
+              style={{ color: "#CBD5E1" }}
             >
               Progress
             </button>
@@ -48,7 +49,8 @@ const AppHeader = () => {
           <div ref={dropdownRef} className="relative flex items-center gap-3">
             <button
               onClick={() => navigate("/progress")}
-              className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+              className="text-xs font-semibold hover:text-foreground transition-colors inline-flex items-center gap-1"
+              style={{ color: "#CBD5E1" }}
             >
               <BarChart2 size={14} /> Progress
             </button>

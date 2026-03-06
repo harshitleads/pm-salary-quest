@@ -91,8 +91,10 @@ const Index = () => {
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setCustomOpen(true)}
-            className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 hover:bg-primary/5 inline-flex items-center justify-center gap-2"
-            style={{ borderColor: "hsl(263, 70%, 50%)", color: "hsl(263, 70%, 50%)" }}
+            className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 inline-flex items-center justify-center gap-2"
+            style={{ borderColor: "#7C3AED", color: "#A78BFA" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(124, 58, 237, 0.15)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}
           >
             <SlidersHorizontal size={16} /> Build Custom Quiz
           </button>
@@ -120,6 +122,7 @@ const Index = () => {
               variant="outline"
               onClick={() => categoryGo(cat)}
               className="w-full sm:w-auto text-quiz-option inline-flex items-center gap-2"
+              style={{ borderColor: "rgba(255, 255, 255, 0.2)", color: "#E2E8F0" }}
             >
               {categoryIcons[cat] || <Lightbulb size={16} />} {cat}
             </Button>
