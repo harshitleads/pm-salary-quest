@@ -8,7 +8,7 @@ export interface Question {
   salaryRange: string;
   question: string;
   options: string[];
-  correctAnswers: number[];
+  correctAnswers?: number[];
   multipleCorrect: boolean;
   hint: string;
   explanation: string;
@@ -34,11 +34,12 @@ export function useQuestions(opts: UseQuestionsOptions = {}) {
       return;
     }
 
-    const fetch = async () => {
+    const fetchData = async () => {
       setLoading(true);
       setError(null);
 
-      let query = (supabase.from("questions") as any).select("id, category, \"salaryTier\", \"salaryRange\", question, options, \"correctAnswers\", \"multipleCorrect\", hint, explanation");
+      // Query from the public_questions view (no correctAnswers)
+      let query = (supabase.from("public_questions") as any).select("id, category, \"salaryTier\", \"salaryRange\", question, options, \"multipleCorrect\", hint, explanation");
 
       if (salaryTier) {
         query = query.eq("salaryTier", salaryTier);
@@ -47,7 +48,6 @@ export function useQuestions(opts: UseQuestionsOptions = {}) {
         query = query.eq("category", category);
       }
 
-      // active = true is enforced by RLS, but we add it for clarity
       query = query.eq("active", true);
 
       if (limit) {
@@ -72,24 +72,36 @@ export function useQuestions(opts: UseQuestionsOptions = {}) {
       setLoading(false);
     };
 
-    fetch();
+    fetchData();
   }, [salaryTier, category, limit, shuffle, enabled]);
 
   return { questions, loading, error };
 }
 
-/** Fetch all questions (for admin views) */
+/** Fetch correct answers for a specific question via RPC */
+export async function fetchCorrectAnswers(questionId: number): Promise<number[]> {
+  const { data, error } = await (supabase.rpc as any)("get_correct_answers", {
+    p_question_id: questionId,
+  });
+  if (error) {
+    console.error("Failed to fetch correct answers:", error.message);
+    return [];
+  }
+  return (data as number[]) || [];
+}
+
+/** Fetch all questions (for admin views) — uses the full questions table */
 export function useAllQuestions() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchData = async () => {
       const { data } = await (supabase.from("questions") as any).select("*");
       setQuestions((data || []) as Question[]);
       setLoading(false);
     };
-    fetch();
+    fetchData();
   }, []);
 
   return { questions, loading };
