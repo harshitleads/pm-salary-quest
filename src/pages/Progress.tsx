@@ -130,7 +130,7 @@ const Progress = () => {
               { label: "Questions", value: profile.total_questions_answered },
               { label: "Correct", value: profile.total_correct },
               { label: "Accuracy", value: profile.total_questions_answered > 0 ? `${Math.round((profile.total_correct / profile.total_questions_answered) * 100)}%` : "—" },
-              { label: "Streak", value: `${profile.current_streak}🔥` },
+              { label: "Streak", value: profile.current_streak, isStreak: true },
             ].map((stat) => (
               <div key={stat.label} className="rounded-xl border border-border bg-card p-4 text-center">
                 <p className="text-2xl font-bold text-foreground">{stat.value}</p>

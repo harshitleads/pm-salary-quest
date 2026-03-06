@@ -417,7 +417,7 @@ const Quiz = () => {
               className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-foreground rounded-lg px-4 py-2 self-start"
               style={{ color: "hsl(215, 20%, 65%)", backgroundColor: "transparent" }}
             >
-              <span className="text-base">💡</span>
+              <Lightbulb size={16} />
               <span>{showHint ? "Hide Hint" : "Show Hint"}</span>
             </button>
             {showHint && (

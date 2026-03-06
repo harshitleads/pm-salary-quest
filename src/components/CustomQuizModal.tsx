@@ -107,7 +107,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
     setStarting(false);
     onClose();
     navigate("/quiz/custom", {
-      state: { questions, label: "⚙️ Custom Quiz" },
+      state: { questions, label: "Custom Quiz" },
     });
   };
 
@@ -145,7 +145,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
           <X className="w-5 h-5" />
         </button>
 
-        <h2 className="text-xl font-bold text-foreground mb-6">⚙️ Build Custom Quiz</h2>
+        <h2 className="text-xl font-bold text-foreground mb-6 inline-flex items-center gap-2"><SlidersHorizontal size={20} /> Build Custom Quiz</h2>
 
         {/* Section 1 — Number of Questions */}
         <div className="mb-5">
