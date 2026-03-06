@@ -190,6 +190,18 @@ const QuizResults = ({ results, totalPoints, tierLabel, onRetry }: QuizResultsPr
           </div>
         </div>
 
+        {/* Progress link for signed-in users */}
+        {user && (
+          <div className="text-center">
+            <button
+              onClick={() => navigate("/progress")}
+              className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              View My Progress →
+            </button>
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex gap-4 justify-center pb-8">
           <Button variant="outline" size="lg" onClick={() => navigate("/")} className="text-quiz-option">

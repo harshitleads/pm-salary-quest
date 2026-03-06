@@ -13,7 +13,7 @@ import { useMemo } from "react";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
+  const { user, profile, loading: authLoading } = useAuth();
   const { questions, loading } = useQuestions({ shuffle: false });
   const [customOpen, setCustomOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
@@ -58,6 +58,27 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <HeroSection />
+
+      {/* Progress summary for signed-in users */}
+      {!authLoading && user && profile && (
+        <section className="mx-auto max-w-5xl px-4 pt-8">
+          <div className="rounded-xl border border-border bg-card/80 px-5 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <span>🔥 {profile.current_streak} day streak</span>
+              <span>•</span>
+              <span>{profile.total_questions_answered} questions answered</span>
+              <span>•</span>
+              <span>{profile.total_questions_answered > 0 ? `${Math.round((profile.total_correct / profile.total_questions_answered) * 100)}%` : "—"} accuracy</span>
+            </div>
+            <button
+              onClick={() => navigate("/progress")}
+              className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
+            >
+              View Full Dashboard →
+            </button>
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
         <h2 className="mb-8 text-center text-quiz-heading text-foreground md:text-4xl">
