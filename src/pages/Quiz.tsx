@@ -8,7 +8,7 @@ import confetti from "canvas-confetti";
 import QuizTimer, { QuizTimerHandle } from "@/components/QuizTimer";
 import QuizResults from "@/components/QuizResults";
 import QuestionVote from "@/components/QuestionVote";
-import { Flag, Loader2 } from "lucide-react";
+import { Flag, Loader2, Lightbulb } from "lucide-react";
 
 export interface QuestionResult {
   id: number;
