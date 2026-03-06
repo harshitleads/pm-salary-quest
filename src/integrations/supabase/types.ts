@@ -273,7 +273,54 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_questions: {
+        Row: {
+          active: boolean | null
+          category: string | null
+          difficulty: number | null
+          explanation: string | null
+          hint: string | null
+          id: number | null
+          multipleCorrect: boolean | null
+          options: Json | null
+          question: string | null
+          salaryRange: string | null
+          salaryTier: string | null
+          source: string | null
+          tier: number | null
+        }
+        Insert: {
+          active?: boolean | null
+          category?: string | null
+          difficulty?: number | null
+          explanation?: string | null
+          hint?: string | null
+          id?: number | null
+          multipleCorrect?: boolean | null
+          options?: Json | null
+          question?: string | null
+          salaryRange?: string | null
+          salaryTier?: string | null
+          source?: string | null
+          tier?: number | null
+        }
+        Update: {
+          active?: boolean | null
+          category?: string | null
+          difficulty?: number | null
+          explanation?: string | null
+          hint?: string | null
+          id?: number | null
+          multipleCorrect?: boolean | null
+          options?: Json | null
+          question?: string | null
+          salaryRange?: string | null
+          salaryTier?: string | null
+          source?: string | null
+          tier?: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
