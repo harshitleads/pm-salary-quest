@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import AppHeader from "@/components/AppHeader";
 import HeroSection from "@/components/HeroSection";
 import SalaryTierCard from "@/components/SalaryTierCard";
 import FeedbackModal from "@/components/FeedbackModal";
