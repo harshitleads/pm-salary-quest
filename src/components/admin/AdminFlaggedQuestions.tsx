@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAllQuestions } from "@/hooks/useQuestions";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, CheckCircle } from "lucide-react";
 
 interface FeedbackAgg {
   question_id: number;
@@ -75,7 +75,7 @@ const AdminFlaggedQuestions = () => {
   if (loading || questionsLoading) return <p className="text-center text-muted-foreground py-8">Loading...</p>;
 
   if (flaggedQuestions.length === 0) {
-    return <p className="text-center text-muted-foreground py-8">No flagged questions 🎉</p>;
+    return <p className="text-center text-muted-foreground py-8 inline-flex items-center justify-center gap-2 w-full"><CheckCircle size={18} /> No flagged questions</p>;
   }
 
   return (

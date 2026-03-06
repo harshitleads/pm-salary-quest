@@ -97,9 +97,9 @@ const Admin = () => {
   }
 
   const navItems: { key: Panel; label: string; icon: string }[] = [
-    { key: "flagged", label: "Flagged Questions", icon: "🚩" },
-    { key: "analytics", label: "Analytics", icon: "📊" },
-    { key: "manager", label: "Question Manager", icon: "📋" },
+    { key: "flagged", label: "Flagged Questions", icon: "" },
+    { key: "analytics", label: "Analytics", icon: "" },
+    { key: "manager", label: "Question Manager", icon: "" },
   ];
 
   return (

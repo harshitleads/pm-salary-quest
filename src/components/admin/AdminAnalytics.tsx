@@ -101,7 +101,7 @@ const AdminAnalytics = () => {
       </section>
 
       <section>
-        <h3 className="text-lg font-semibold text-foreground mb-4">📊 Questions per Tier</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-4">Questions per Tier</h3>
         <div className="h-72 w-full">
           <ResponsiveContainer>
             <PieChart>
@@ -118,7 +118,7 @@ const AdminAnalytics = () => {
       </section>
 
       <section>
-        <h3 className="text-lg font-semibold text-foreground mb-4">🚩 Top 10 Most Flagged Questions</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-4">Top 10 Most Flagged Questions</h3>
         {topFlagged.length === 0 ? (
           <p className="text-muted-foreground">No feedback data yet.</p>
         ) : (

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { salaryTiers } from "@/data/questions";
-import { Lock } from "lucide-react";
+import { Lock, Target } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 const tierButtonLabels: Record<string, string> = {
@@ -63,12 +63,12 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
       )}
       <div className="relative z-10 flex flex-col justify-between gap-3 flex-1">
         <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-sm font-bold tracking-wide text-white backdrop-blur-sm">
-          {tier.emoji} {tier.label}
+          <Target size={12} /> {tier.label}
         </span>
         <p className="text-hero-title text-white drop-shadow-md">{tier.salary}</p>
         <p className="text-base font-medium text-white/75">{tier.companies}</p>
         <span className="mt-auto inline-flex items-center gap-1 text-quiz-option font-semibold text-white/90 underline-offset-4 group-hover:underline">
-          {isLocked ? "🔒 Sign in to access" : tierButtonLabels[tier.key]}
+          {isLocked ? <><Lock size={14} /> Sign in to access</> : tierButtonLabels[tier.key]}
         </span>
       </div>
     </button>

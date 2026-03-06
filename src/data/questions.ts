@@ -15,9 +15,9 @@ export interface Question {
 }
 
 export const salaryTiers = [
-  { key: "Junior", label: "JUNIOR PM", salary: "$130K - $170K", companies: "AI Startups, Series A/B", gradient: "gradient-tier-junior", emoji: "🎯" },
-  { key: "Mid", label: "MID-LEVEL PM", salary: "$170K - $220K", companies: "Scale AI, Notion, Figma", gradient: "gradient-tier-mid", emoji: "🎯" },
-  { key: "Senior", label: "SENIOR PM", salary: "$220K - $280K", companies: "Meta, Google", gradient: "gradient-tier-senior", emoji: "🎯" },
-  { key: "AI Frontier", label: "AI PM (FRONTIER)", salary: "$280K - $350K", companies: "OpenAI, Anthropic, DeepMind", gradient: "gradient-tier-ai", emoji: "🎯" },
-  { key: "Staff+", label: "STAFF+ PM", salary: "$350K+", companies: "Top Companies, IC Leadership", gradient: "gradient-tier-staff", emoji: "🎯" },
+  { key: "Junior", label: "JUNIOR PM", salary: "$130K - $170K", companies: "AI Startups, Series A/B", gradient: "gradient-tier-junior" },
+  { key: "Mid", label: "MID-LEVEL PM", salary: "$170K - $220K", companies: "Scale AI, Notion, Figma", gradient: "gradient-tier-mid" },
+  { key: "Senior", label: "SENIOR PM", salary: "$220K - $280K", companies: "Meta, Google", gradient: "gradient-tier-senior" },
+  { key: "AI Frontier", label: "AI PM (FRONTIER)", salary: "$280K - $350K", companies: "OpenAI, Anthropic, DeepMind", gradient: "gradient-tier-ai" },
+  { key: "Staff+", label: "STAFF+ PM", salary: "$350K+", companies: "Top Companies, IC Leadership", gradient: "gradient-tier-staff" },
 ];

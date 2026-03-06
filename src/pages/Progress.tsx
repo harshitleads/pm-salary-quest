@@ -11,7 +11,7 @@ import {
   Radar,
   ResponsiveContainer,
 } from "recharts";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { Loader2, ArrowLeft, Flame } from "lucide-react";
 
 const CATEGORIES = ["Product Sense", "Product Design", "Metrics", "Behavioral"];
 const MIN_QUESTIONS_THRESHOLD = 5;
@@ -130,10 +130,13 @@ const Progress = () => {
               { label: "Questions", value: profile.total_questions_answered },
               { label: "Correct", value: profile.total_correct },
               { label: "Accuracy", value: profile.total_questions_answered > 0 ? `${Math.round((profile.total_correct / profile.total_questions_answered) * 100)}%` : "—" },
-              { label: "Streak", value: `${profile.current_streak}🔥` },
-            ].map((stat) => (
+              { label: "Streak", value: profile.current_streak, isStreak: true },
+            ].map((stat: any) => (
               <div key={stat.label} className="rounded-xl border border-border bg-card p-4 text-center">
-                <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-2xl font-bold text-foreground inline-flex items-center justify-center gap-1">
+                  {stat.value}
+                  {stat.isStreak && <Flame size={20} className="text-[#7C3AED]" />}
+                </p>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">{stat.label}</p>
               </div>
             ))}

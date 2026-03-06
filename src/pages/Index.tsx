@@ -11,6 +11,14 @@ import { Button } from "@/components/ui/button";
 import { useQuestions } from "@/hooks/useQuestions";
 import { useAuth } from "@/contexts/AuthContext";
 import { useMemo } from "react";
+import { Shuffle, SlidersHorizontal, Lightbulb, BarChart2, Palette, Users } from "lucide-react";
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  "Product Sense": <Lightbulb size={16} />,
+  "Metrics": <BarChart2 size={16} />,
+  "Product Design": <Palette size={16} />,
+  "Behavioral": <Users size={16} />,
+};
 
 const Index = () => {
   const navigate = useNavigate();
@@ -48,12 +56,12 @@ const Index = () => {
 
   const shuffleAndGo = () => {
     const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, 10);
-    navigate("/quiz/shuffle", { state: { questions: shuffled, label: "🔀 Shuffle • All Tiers" } });
+    navigate("/quiz/shuffle", { state: { questions: shuffled, label: "Shuffle \u2022 All Tiers" } });
   };
 
   const categoryGo = (cat: string) => {
     const filtered = [...questions.filter((q) => q.category === cat)].sort(() => Math.random() - 0.5).slice(0, 10);
-    navigate(`/quiz/category-${cat}`, { state: { questions: filtered, label: `📂 ${cat}` } });
+    navigate(`/quiz/category-${cat}`, { state: { questions: filtered, label: cat } });
   };
 
   return (
@@ -83,10 +91,10 @@ const Index = () => {
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setCustomOpen(true)}
-            className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 hover:bg-primary/5"
+            className="w-full max-w-[480px] rounded-xl border px-6 py-3.5 text-base font-semibold transition-all duration-200 hover:bg-primary/5 inline-flex items-center justify-center gap-2"
             style={{ borderColor: "hsl(263, 70%, 50%)", color: "hsl(263, 70%, 50%)" }}
           >
-            ⚙️ Build Custom Quiz
+            <SlidersHorizontal size={16} /> Build Custom Quiz
           </button>
         </div>
       </section>
@@ -101,9 +109,9 @@ const Index = () => {
             size="lg"
             onClick={shuffleAndGo}
             disabled={loading || questions.length === 0}
-            className="w-full sm:w-auto text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90"
+            className="w-full sm:w-auto text-quiz-option bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2"
           >
-            🔀 Shuffle All Questions
+            <Shuffle size={16} /> Shuffle All Questions
           </Button>
           {categories.map((cat) => (
             <Button
@@ -111,9 +119,9 @@ const Index = () => {
               size="lg"
               variant="outline"
               onClick={() => categoryGo(cat)}
-              className="w-full sm:w-auto text-quiz-option"
+              className="w-full sm:w-auto text-quiz-option inline-flex items-center gap-2"
             >
-              📂 {cat}
+              {categoryIcons[cat] || <Lightbulb size={16} />} {cat}
             </Button>
           ))}
         </div>
