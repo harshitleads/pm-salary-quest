@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Quiz from "./pages/Quiz";
 import Admin from "./pages/Admin";
+import Progress from "./pages/Progress";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/quiz/:tier" element={<Quiz />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/progress" element={<Progress />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

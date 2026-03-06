@@ -179,7 +179,9 @@ export type Database = {
       quiz_sessions: {
         Row: {
           categories: Json | null
+          category_scores: Json | null
           completed_at: string
+          correct_by_question: Json | null
           id: string
           score: number
           tier: string | null
@@ -188,7 +190,9 @@ export type Database = {
         }
         Insert: {
           categories?: Json | null
+          category_scores?: Json | null
           completed_at?: string
+          correct_by_question?: Json | null
           id?: string
           score?: number
           tier?: string | null
@@ -197,7 +201,9 @@ export type Database = {
         }
         Update: {
           categories?: Json | null
+          category_scores?: Json | null
           completed_at?: string
+          correct_by_question?: Json | null
           id?: string
           score?: number
           tier?: string | null
@@ -277,15 +283,27 @@ export type Database = {
         }
         Returns: boolean
       }
-      record_quiz_session: {
-        Args: {
-          p_categories: Json
-          p_score: number
-          p_tier: string
-          p_total_questions: number
-        }
-        Returns: undefined
-      }
+      record_quiz_session:
+        | {
+            Args: {
+              p_categories: Json
+              p_score: number
+              p_tier: string
+              p_total_questions: number
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              p_categories: Json
+              p_category_scores?: Json
+              p_correct_by_question?: Json
+              p_score: number
+              p_tier: string
+              p_total_questions: number
+            }
+            Returns: undefined
+          }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
