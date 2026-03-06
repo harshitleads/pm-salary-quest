@@ -59,6 +59,9 @@ const AuthModal = ({ open, onClose, heading }: AuthModalProps) => {
     setLoading(true);
     const { error: err } = await lovable.auth.signInWithOAuth("google", {
       redirect_uri: window.location.origin,
+      extraParams: {
+        prompt: "select_account",
+      },
     });
     if (err) setError(err.message || "Google sign-in failed");
     setLoading(false);
