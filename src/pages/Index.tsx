@@ -65,7 +65,15 @@ const Index = () => {
         </h2>
         <div className="tier-grid grid gap-5 grid-cols-1 sm:grid-cols-2">
           {salaryTiers.map((tier, i) => (
-            <div key={tier.key} className="animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+            <div
+              key={tier.key}
+              className={`animate-fade-in-up ${
+                salaryTiers.length % 2 !== 0 && i === salaryTiers.length - 1
+                  ? "sm:col-span-2 sm:max-w-[calc(50%-0.625rem)] sm:mx-auto"
+                  : ""
+              }`}
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
               <SalaryTierCard tier={tier} onAuthRequired={handleTierAuthRequired} />
             </div>
           ))}
