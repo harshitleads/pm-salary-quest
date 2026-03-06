@@ -139,7 +139,6 @@ const Progress = () => {
                 </p>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">{stat.label}</p>
               </div>
-              </div>
             ))}
           </div>
         )}
