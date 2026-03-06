@@ -249,6 +249,8 @@ const Quiz = () => {
   const optionLabel = (i: number) => String.fromCharCode(65 + i);
   const progressPct = ((currentIdx + 1) / tierQuestions.length) * 100;
 
+  const currentCorrect = revealedAnswers[q.id] || [];
+
   const optionClass = (i: number) => {
     const base = "flex w-full items-start gap-3 rounded-xl border px-5 py-4 text-left transition-all duration-200";
     if (!submitted && !timeExpired) {
@@ -258,7 +260,7 @@ const Quiz = () => {
           : "border-border bg-muted/50 hover:bg-primary/5 hover:border-primary/30"
       } cursor-pointer`;
     }
-    if (submitted && isCorrect && q.correctAnswers.includes(i))
+    if (submitted && isCorrect && currentCorrect.includes(i))
       return `${base} border-success bg-success/10 text-foreground`;
     if (submitted && !isCorrect && selected.includes(i))
       return `${base} border-destructive bg-destructive/10 text-foreground`;
