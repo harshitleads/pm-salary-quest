@@ -67,7 +67,7 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
         </span>
         <p className="text-hero-title text-white drop-shadow-md">{tier.salary}</p>
         <p className="text-base font-medium text-white/75">{tier.companies}</p>
-        <span className="mt-auto inline-flex items-center gap-1 text-quiz-option font-semibold text-white/90 underline-offset-4 group-hover:underline">
+        <span className="mt-auto inline-flex items-center gap-1 text-[15px] font-semibold text-white/90 underline-offset-4 group-hover:underline whitespace-nowrap">
           {isLocked ? <><Lock size={14} /> Sign in to access</> : tierButtonLabels[tier.key]}
         </span>
       </div>
