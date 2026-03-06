@@ -517,7 +517,7 @@ const Quiz = () => {
               {showExplanation && (
                 <div className="space-y-2">
                   <p className="font-semibold text-foreground" style={{ fontSize: 15 }}>
-                    Answer: {q.correctAnswers.map((c) => optionLabel(c)).join(", ")}
+                    Answer: {currentCorrect.map((c) => optionLabel(c)).join(", ")}
                   </p>
                   <p className="text-foreground/80" style={{ fontSize: 15, lineHeight: 1.6 }}>
                     {q.explanation}
