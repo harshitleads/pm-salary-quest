@@ -58,6 +58,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <AppHeader />
       <HeroSection />
 
       <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
