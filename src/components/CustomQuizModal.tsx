@@ -5,7 +5,7 @@ import { Question } from "@/hooks/useQuestions";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
 import { Button } from "@/components/ui/button";
-import { Loader2, X, Lock } from "lucide-react";
+import { Loader2, X, Lock, SlidersHorizontal } from "lucide-react";
 
 const TIERS = ["Junior", "Mid", "Senior", "AI Frontier", "Staff+"];
 const LOCKED_TIERS = new Set(["AI Frontier", "Staff+"]);
