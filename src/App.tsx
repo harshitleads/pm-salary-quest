@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import Progress from "./pages/Progress";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import AppHeader from "./components/AppHeader";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AppHeader />
+          <div style={{ paddingTop: 56 }}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quiz/:tier" element={<Quiz />} />
@@ -28,6 +31,7 @@ const App = () => (
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
