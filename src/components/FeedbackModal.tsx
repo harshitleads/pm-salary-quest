@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { MessageSquare, Bug, Lightbulb, HelpCircle, CheckCircle } from "lucide-react";
 
 const FeedbackModal = () => {
   const [open, setOpen] = useState(false);
@@ -29,8 +30,8 @@ const FeedbackModal = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="lg" className="text-quiz-option">
-          🐛 Report a Bug / Suggest Feature
+        <Button variant="outline" size="lg" className="text-quiz-option inline-flex items-center gap-2">
+          <MessageSquare size={16} /> Report a Bug / Suggest Feature
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
@@ -40,7 +41,7 @@ const FeedbackModal = () => {
 
         {submitted ? (
           <div className="flex flex-col items-center gap-3 py-8 text-center">
-            <span className="text-4xl">🎉</span>
+            <CheckCircle size={40} className="text-primary" />
             <p className="text-quiz-option font-semibold">Thanks for your feedback!</p>
           </div>
         ) : (
@@ -52,9 +53,9 @@ const FeedbackModal = () => {
                   onChange={(e) => setType(e.target.value)}
                   className="w-full rounded-lg border border-border bg-muted px-3 py-2.5 text-base font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-ring [&>option]:bg-card [&>option]:text-foreground"
                 >
-                  <option value="Bug Report">🐛 Bug Report</option>
-                  <option value="Feature Request">💡 Feature Request</option>
-                  <option value="Question / Other">❓ Question / Other</option>
+                  <option value="Bug Report">Bug Report</option>
+                  <option value="Feature Request">Feature Request</option>
+                  <option value="Question / Other">Question / Other</option>
                 </select>
             </div>
             <div>

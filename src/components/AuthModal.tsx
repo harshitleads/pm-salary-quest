@@ -4,7 +4,7 @@ import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { X, Loader2 } from "lucide-react";
+import { X, Loader2, Flame, CheckCircle, TrendingUp, Unlock } from "lucide-react";
 
 interface AuthModalProps {
   open: boolean;
@@ -40,8 +40,8 @@ const AuthModal = ({ open, onClose, heading }: AuthModalProps) => {
           </div>
           <p className="text-lg font-bold text-foreground">{profile.display_name}</p>
           <div className="mt-2 flex justify-center gap-4 text-sm text-muted-foreground">
-            <span>🔥 {profile.current_streak} day streak</span>
-            <span>✅ {profile.total_correct}/{profile.total_questions_answered}</span>
+            <span className="inline-flex items-center gap-1"><Flame size={14} className="text-[#7C3AED]" /> {profile.current_streak} day streak</span>
+            <span className="inline-flex items-center gap-1"><CheckCircle size={14} /> {profile.total_correct}/{profile.total_questions_answered}</span>
           </div>
           <Button onClick={onClose} className="mt-5 w-full bg-primary text-primary-foreground hover:bg-primary/90">
             Continue Practicing
@@ -148,9 +148,9 @@ const AuthModal = ({ open, onClose, heading }: AuthModalProps) => {
         {/* Incentive pills */}
         <div className="flex justify-center gap-3 mb-5 flex-wrap">
           {[
-            { icon: "📈", label: "Track Progress" },
-            { icon: "🔓", label: "All 5 Tiers" },
-            { icon: "🏆", label: "Streaks" },
+            { icon: <TrendingUp size={14} />, label: "Track Progress" },
+            { icon: <Unlock size={14} />, label: "All 5 Tiers" },
+            { icon: <Flame size={14} />, label: "Streaks" },
           ].map((item) => (
             <span key={item.label} className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-foreground/80">
               {item.icon} {item.label}

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/AuthModal";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, BarChart2, Flame } from "lucide-react";
 
 const AppHeader = () => {
   const navigate = useNavigate();
@@ -48,9 +48,9 @@ const AppHeader = () => {
           <div ref={dropdownRef} className="relative flex items-center gap-3">
             <button
               onClick={() => navigate("/progress")}
-              className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              className="text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
             >
-              📊 Progress
+              <BarChart2 size={14} /> Progress
             </button>
             <button
               onClick={() => setDropdownOpen((v) => !v)}
@@ -62,8 +62,8 @@ const AppHeader = () => {
               <div className="hidden sm:block text-left">
                 <p className="text-sm font-semibold text-foreground leading-tight">{displayName}</p>
                 {profile && (
-                  <p className="text-xs text-muted-foreground">
-                    🔥 {profile.current_streak} day streak • {profile.total_questions_answered} answered
+                  <p className="text-xs text-muted-foreground inline-flex items-center gap-1">
+                    <Flame size={12} className="text-[#7C3AED]" /> {profile.current_streak} day streak • {profile.total_questions_answered} answered
                   </p>
                 )}
               </div>
