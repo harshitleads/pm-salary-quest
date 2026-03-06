@@ -101,7 +101,7 @@ const AdminAnalytics = () => {
       </section>
 
       <section>
-        <h3 className="text-lg font-semibold text-foreground mb-4">📊 Questions per Tier</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-4">Questions per Tier</h3>
         <div className="h-72 w-full">
           <ResponsiveContainer>
             <PieChart>
