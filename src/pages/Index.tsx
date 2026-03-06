@@ -67,7 +67,7 @@ const Index = () => {
           {salaryTiers.map((tier, i) => (
             <div
               key={tier.key}
-              className={`animate-fade-in-up ${
+              className={`animate-fade-in-up w-full h-full ${
                 i === salaryTiers.length - 1 ? "sm:col-span-2" : ""
               }`}
               style={{ animationDelay: `${i * 80}ms` }}
