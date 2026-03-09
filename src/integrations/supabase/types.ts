@@ -279,7 +279,6 @@ export type Database = {
           category: string | null
           difficulty: number | null
           explanation: string | null
-          flagCount: number | null
           hint: string | null
           id: number | null
           multipleCorrect: boolean | null
@@ -295,7 +294,6 @@ export type Database = {
           category?: string | null
           difficulty?: number | null
           explanation?: string | null
-          flagCount?: number | null
           hint?: string | null
           id?: number | null
           multipleCorrect?: boolean | null
@@ -311,7 +309,6 @@ export type Database = {
           category?: string | null
           difficulty?: number | null
           explanation?: string | null
-          flagCount?: number | null
           hint?: string | null
           id?: number | null
           multipleCorrect?: boolean | null

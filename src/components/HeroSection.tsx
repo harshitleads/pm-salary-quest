@@ -7,11 +7,11 @@ const HeroSection = () => {
 
       <div className="relative z-10 mx-auto max-w-3xl">
         <h1 className="animate-fade-in-up text-hero-title text-foreground md:text-6xl md:leading-[1.08]">
-          Master PM Interviews.{" "}
+          Think Like a Top PM.{" "}
           <span className="text-secondary">Land Top Salaries.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-xl animate-fade-in-up text-hero-subtitle text-muted-foreground [animation-delay:150ms]">
-          Practice real interview questions mapped to actual PM compensation tiers
+          Practice the analytics, product sense, and reasoning skills that top PM interviewers test for
         </p>
       </div>
     </section>
