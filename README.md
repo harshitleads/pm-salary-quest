@@ -35,4 +35,4 @@ Building this exposed concrete tradeoffs in LLM-generated content: AI-generated 
 
 ---
 
-Built by [Harshit Sharma](https://harshit.ai) — MEng IEOR @ UC Berkeley, ex-GE Vernova.
+Built by [Harshit Sharma](https://harshit.ai) — MEng IEOR @ UC Berkeley.
