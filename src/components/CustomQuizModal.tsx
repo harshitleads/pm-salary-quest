@@ -1,14 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Question } from "@/hooks/useQuestions";
 import { useAuth } from "@/contexts/AuthContext";
-import AuthModal from "@/components/AuthModal";
 import { Button } from "@/components/ui/button";
-import { Loader2, X, Lock, SlidersHorizontal } from "lucide-react";
+import { Loader2, X, SlidersHorizontal } from "lucide-react";
 
 const TIERS = ["Junior", "Mid", "Senior", "AI Frontier", "Staff+"];
-const LOCKED_TIERS = new Set(["AI Frontier", "Staff+"]);
 const CATEGORIES = ["Product Sense", "Metrics", "Product Design", "Behavioral"];
 const QUESTION_COUNTS = [5, 10, 20, 30];
 const DIFFICULTIES = [
@@ -32,7 +30,6 @@ const pillInactive =
 
 const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
   const navigate = useNavigate();
-  const { user } = useAuth();
   const [count, setCount] = useState(10);
   const [selectedTiers, setSelectedTiers] = useState<string[]>([...TIERS]);
   const [selectedCats, setSelectedCats] = useState<string[]>([...CATEGORIES]);
@@ -40,14 +37,6 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
   const [matchCount, setMatchCount] = useState<number | null>(null);
   const [loadingCount, setLoadingCount] = useState(false);
   const [starting, setStarting] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
-  const pendingStartRef = useRef(false);
-
-  // Check if current selections require auth
-  const requiresAuth = !user && (
-    selectedTiers.some((t) => LOCKED_TIERS.has(t)) ||
-    difficulty === 3 // Hard (4-5)
-  );
 
   const toggleMulti = (arr: string[], val: string, setter: (v: string[]) => void) => {
     setter(arr.includes(val) ? arr.filter((v) => v !== val) : [...arr, val]);
@@ -82,6 +71,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
 
   const canStart = selectedTiers.length > 0 && selectedCats.length > 0;
 
+
   const executeStart = async () => {
     setStarting(true);
 
@@ -111,21 +101,8 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
     });
   };
 
-  // After auth succeeds, auto-start the quiz
-  useEffect(() => {
-    if (user && pendingStartRef.current) {
-      pendingStartRef.current = false;
-      executeStart();
-    }
-  }, [user]);
-
   const handleStart = () => {
     if (!canStart) return;
-    if (requiresAuth) {
-      pendingStartRef.current = true;
-      setAuthOpen(true);
-      return;
-    }
     executeStart();
   };
 
@@ -220,13 +197,6 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
           ) : null}
         </p>
 
-        {/* Auth requirement notice */}
-        {requiresAuth && (
-          <p className="text-xs text-amber-500 mb-3 flex items-center gap-1">
-            <Lock className="w-3 h-3" /> Sign in required for selected tiers/difficulty
-          </p>
-        )}
-
         {/* Start */}
         <Button
           onClick={handleStart}
@@ -239,22 +209,11 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
         >
           {starting ? (
             <span className="flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Loading...</span>
-          ) : requiresAuth ? (
-            <span className="flex items-center gap-2"><Lock className="w-4 h-4" /> Sign In & Start Quiz</span>
           ) : (
             "Start Custom Quiz"
           )}
         </Button>
       </div>
-
-      <AuthModal
-        open={authOpen}
-        onClose={() => {
-          setAuthOpen(false);
-          pendingStartRef.current = false;
-        }}
-        heading="Sign In to Start This Quiz"
-      />
     </div>
   );
 };
