@@ -71,6 +71,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
 
   const canStart = selectedTiers.length > 0 && selectedCats.length > 0;
 
+
   const executeStart = async () => {
     setStarting(true);
 

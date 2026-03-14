@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { salaryTiers } from "@/data/questions";
-import { Lock, Target } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
+import { Target } from "lucide-react";
 
 const tierButtonLabels: Record<string, string> = {
   Junior: "Practice Junior Questions →",
@@ -19,25 +18,17 @@ const tierGlowColors: Record<string, string> = {
   "Staff+": "hsl(38 92% 50%)",
 };
 
-const lockedTiers = new Set(["AI Frontier", "Staff+"]);
-
 interface SalaryTierCardProps {
   tier: typeof salaryTiers[number];
   onAuthRequired?: () => void;
 }
 
-const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
+const SalaryTierCard = ({ tier }: SalaryTierCardProps) => {
   const navigate = useNavigate();
-  const { user } = useAuth();
   const isStaff = tier.key === "Staff+";
-  const isLocked = !user && lockedTiers.has(tier.key);
   const glowColor = tierGlowColors[tier.key] || "hsl(263 70% 50%)";
 
   const handleClick = () => {
-    if (isLocked && onAuthRequired) {
-      onAuthRequired();
-      return;
-    }
     navigate(`/quiz/${encodeURIComponent(tier.key)}`);
   };
 
@@ -56,11 +47,6 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-      {isLocked && (
-        <div className="absolute top-3 right-3 z-20 rounded-full bg-black/30 p-1.5 backdrop-blur-sm">
-          <Lock className="h-4 w-4 text-white/70" />
-        </div>
-      )}
       <div className="relative z-10 flex flex-col justify-between gap-3 flex-1">
         <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-black/25 px-3 py-1 text-sm font-bold tracking-wide text-white backdrop-blur-sm">
           <Target size={12} /> {tier.label}
@@ -68,7 +54,7 @@ const SalaryTierCard = ({ tier, onAuthRequired }: SalaryTierCardProps) => {
         <p className="text-hero-title text-white drop-shadow-md">{tier.salary}</p>
         <p className="text-base font-medium text-white/75">{tier.companies}</p>
         <span className="mt-auto inline-flex items-center gap-1 text-[15px] font-semibold text-white/90 underline-offset-4 group-hover:underline whitespace-nowrap">
-          {isLocked ? <><Lock size={14} /> Sign in to access</> : tierButtonLabels[tier.key]}
+          {tierButtonLabels[tier.key]}
         </span>
       </div>
     </button>
