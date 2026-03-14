@@ -58,7 +58,7 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
     if (!open) return;
     const fetchCount = async () => {
       setLoadingCount(true);
-      let query = (supabase.from("questions") as any)
+      let query = (supabase.from("public_questions") as any)
         .select("id", { count: "exact", head: true })
         .eq("active", true);
 
