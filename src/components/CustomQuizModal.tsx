@@ -85,8 +85,8 @@ const CustomQuizModal = ({ open, onClose }: CustomQuizModalProps) => {
   const executeStart = async () => {
     setStarting(true);
 
-    let query = (supabase.from("questions") as any)
-      .select("id, category, \"salaryTier\", \"salaryRange\", question, options, \"correctAnswers\", \"multipleCorrect\", hint, explanation")
+    let query = (supabase.from("public_questions") as any)
+      .select("id, category, \"salaryTier\", \"salaryRange\", question, options, \"multipleCorrect\", hint, explanation")
       .eq("active", true);
 
     if (selectedTiers.length < TIERS.length) {
