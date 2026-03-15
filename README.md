@@ -2,7 +2,7 @@
 
 An AI-powered PM interview coaching tool that helps product managers build structured thinking and sharpen their product sense across salary tiers.
 
-**Live:** [pm-salary-quest.lovable.app](https://pm-salary-quest.lovable.app) | **Portfolio:** [harshit.ai/work/pm-salary-ace](https://harshit.ai/work/pm-salary-ace)
+**Portfolio:** [harshit.ai/work/pm-salary-ace](https://harshit.ai/work/pm-salary-ace)
 
 ---
 
