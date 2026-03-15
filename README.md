@@ -3,7 +3,7 @@
 An AI-powered PM interview coaching tool that helps product managers build structured thinking and sharpen their product sense across salary tiers.
 
 
-**Portfolio:** [pmquiz.harshit.ai/](https://pmquiz.harshit.ai/) | **Portfolio:** [harshit.ai/work/pm-salary-ace](https://harshit.ai/work/pm-salary-ace)
+**Portfolio:** [pmquiz.harshit.ai](https://pmquiz.harshit.ai) | **Portfolio:** [harshit.ai/work/pm-salary-ace](https://harshit.ai/work/pm-salary-ace)
 
 ---
 
