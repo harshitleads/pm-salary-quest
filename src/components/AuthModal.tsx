@@ -152,7 +152,6 @@ const AuthModal = ({ open, onClose, heading }: AuthModalProps) => {
         <div className="flex justify-center gap-3 mb-5 flex-wrap">
           {[
             { icon: <TrendingUp size={14} />, label: "Track Progress" },
-            { icon: <Unlock size={14} />, label: "All 5 Tiers" },
             { icon: <Flame size={14} />, label: "Streaks" },
           ].map((item) => (
             <span key={item.label} className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-foreground/80">
