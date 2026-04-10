@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import Progress from "./pages/Progress";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import CaseStudyBubble from "@/components/CaseStudyBubble";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <CaseStudyBubble />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
